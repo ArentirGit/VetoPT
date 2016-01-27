@@ -44,9 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CareManagement\NewFolder.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="CareManagement\NewFolder.cs" />
     <Compile Include="CareManagement\NewFolder.Designer.cs">
       <DependentUpon>NewFolder.cs</DependentUpon>
     </Compile>
@@ -58,9 +56,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CareManagement\NewFolder.resx">
-      <DependentUpon>NewFolder.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
