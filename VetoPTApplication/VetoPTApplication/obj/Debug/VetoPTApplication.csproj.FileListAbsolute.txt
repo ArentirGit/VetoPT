@@ -8,4 +8,3 @@
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.csproj.GenerateResource.Cache
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.exe
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.pdb
-\\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.CareManagement.NewFolder.resources

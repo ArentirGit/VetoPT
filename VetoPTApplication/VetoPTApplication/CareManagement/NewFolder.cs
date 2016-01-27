@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +7,18 @@ using System.Windows.Forms;
 
 namespace VetoPTApplication.CareManagement
 {
-    public partial class NewFolder : Form1
+    class NewFolder
     {
-        public NewFolder()
+        private Panel myPanel;
+        NewFolder(Panel panel)
         {
-            InitializeComponent();
+            myPanel = panel;
         }
+
+        void execute()
+        {
+            myPanel.Controls.Clear();
+        }
+
     }
 }

@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace VetoPTApplication
 {
-    public partial class Form1 : Form
+    public partial class Global : Form
     {
-        public Form1()
+        public Global()
         {
             InitializeComponent();
+        }
+
+        private void nouveauDossierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }
