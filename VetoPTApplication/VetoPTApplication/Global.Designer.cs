@@ -54,7 +54,7 @@
             this.gestionSalariésToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(146, 386);
+            this.menuStrip1.Size = new System.Drawing.Size(146, 462);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -114,16 +114,17 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(146, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(543, 386);
+            this.panel1.Size = new System.Drawing.Size(638, 462);
             this.panel1.TabIndex = 2;
             // 
             // Global
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 386);
+            this.ClientSize = new System.Drawing.Size(784, 462);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Global";
             this.Text = "Veto";
             this.menuStrip1.ResumeLayout(false);

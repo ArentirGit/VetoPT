@@ -3,8 +3,8 @@
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\bin\Debug\VetoPTApplication.exe
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\bin\Debug\VetoPTApplication.pdb
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.csprojResolveAssemblyReference.cache
-\\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.Form1.resources
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.Properties.Resources.resources
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.csproj.GenerateResource.Cache
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.exe
 \\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.pdb
+\\IUT\Etudiants\Home\djacques\Desktop\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.Global.resources
