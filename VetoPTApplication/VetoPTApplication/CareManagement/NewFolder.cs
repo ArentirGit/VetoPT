@@ -16,6 +16,7 @@ namespace VetoPTApplication.CareManagement
         private Button cancel;
 
         private TextBox nameAnimal;
+        private Label title;
 
         public NewFolder(Panel panel)
         {
@@ -44,9 +45,17 @@ namespace VetoPTApplication.CareManagement
             //création du textbox nom animal
             nameAnimal = new TextBox();
             nameAnimal.Size = new Size(100, 40);
-            nameAnimal.Location = new Point(100, 50);
+            nameAnimal.Location = new Point(100, 100);
             nameAnimal.Text = "Nom animal";
             myPanel.Controls.Add(nameAnimal);
+            //création du titre
+            title = new Label();
+            title.Size = new Size(300, 40);
+            title.Location = new Point(200, 50);
+            title.Font = new Font("Arial",15,FontStyle.Bold);
+            title.Text = "Nouveau dossier";
+            myPanel.Controls.Add(title);
+
         }
 
         private void valider_Click(object sender, EventArgs e)
