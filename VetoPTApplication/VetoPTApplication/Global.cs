@@ -19,7 +19,12 @@ namespace VetoPTApplication
 
         private void nouveauDossierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           CareManagement.NewFolder f = new CareManagement.NewFolder(this.panel1);
+            CareManagement.NewFolder f = new CareManagement.NewFolder(this.panel1);
+        }
+
+        private void gestionAnimauxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AnimalManagement.HomePage am = new AnimalManagement.HomePage(this.panel1);
         }
     }
 }

@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimalManagement\DisplayAnimals.cs" />
+    <Compile Include="AnimalManagement\HomePage.cs" />
     <Compile Include="CareManagement\NewFolder.cs" />
     <Compile Include="Global.cs">
       <SubType>Form</SubType>
@@ -79,7 +81,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AnimalManagement\" />
     <Folder Include="ClientManagement\" />
     <Folder Include="UserManagement\" />
   </ItemGroup>
