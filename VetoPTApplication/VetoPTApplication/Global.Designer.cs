@@ -41,17 +41,17 @@
             this.ajouterUneRaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUneEspèceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSoinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nouveauDossierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionsDuStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.venteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.suiviPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherDossiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nouveauDossierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherTraitementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterTraitementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rédigerOrdonnanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionsDuStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.venteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,36 +121,42 @@
             this.afficherAnimauxToolStripMenuItem.Name = "afficherAnimauxToolStripMenuItem";
             this.afficherAnimauxToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.afficherAnimauxToolStripMenuItem.Text = "Afficher animaux";
+            this.afficherAnimauxToolStripMenuItem.Click += new System.EventHandler(this.afficherAnimauxToolStripMenuItem_Click);
             // 
             // afficherRappelToolStripMenuItem
             // 
             this.afficherRappelToolStripMenuItem.Name = "afficherRappelToolStripMenuItem";
             this.afficherRappelToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.afficherRappelToolStripMenuItem.Text = "Afficher rappel";
+            this.afficherRappelToolStripMenuItem.Click += new System.EventHandler(this.afficherRappelToolStripMenuItem_Click);
             // 
             // ajouterAnimalToolStripMenuItem
             // 
             this.ajouterAnimalToolStripMenuItem.Name = "ajouterAnimalToolStripMenuItem";
             this.ajouterAnimalToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ajouterAnimalToolStripMenuItem.Text = "Ajouter animal";
+            this.ajouterAnimalToolStripMenuItem.Click += new System.EventHandler(this.ajouterAnimalToolStripMenuItem_Click);
             // 
             // ajouterRappelToolStripMenuItem
             // 
             this.ajouterRappelToolStripMenuItem.Name = "ajouterRappelToolStripMenuItem";
             this.ajouterRappelToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ajouterRappelToolStripMenuItem.Text = "Ajouter rappel";
+            this.ajouterRappelToolStripMenuItem.Click += new System.EventHandler(this.ajouterRappelToolStripMenuItem_Click);
             // 
             // ajouterUneRaceToolStripMenuItem
             // 
             this.ajouterUneRaceToolStripMenuItem.Name = "ajouterUneRaceToolStripMenuItem";
             this.ajouterUneRaceToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ajouterUneRaceToolStripMenuItem.Text = "Ajouter une race";
+            this.ajouterUneRaceToolStripMenuItem.Click += new System.EventHandler(this.ajouterUneRaceToolStripMenuItem_Click);
             // 
             // ajouterUneEspèceToolStripMenuItem
             // 
             this.ajouterUneEspèceToolStripMenuItem.Name = "ajouterUneEspèceToolStripMenuItem";
             this.ajouterUneEspèceToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ajouterUneEspèceToolStripMenuItem.Text = "Ajouter une espèce";
+            this.ajouterUneEspèceToolStripMenuItem.Click += new System.EventHandler(this.ajouterUneEspèceToolStripMenuItem_Click);
             // 
             // gestionSoinsToolStripMenuItem
             // 
@@ -167,39 +173,6 @@
             this.gestionSoinsToolStripMenuItem.Text = "Gestion des soins";
             this.gestionSoinsToolStripMenuItem.Click += new System.EventHandler(this.gestionSoinsToolStripMenuItem_Click);
             // 
-            // nouveauDossierToolStripMenuItem
-            // 
-            this.nouveauDossierToolStripMenuItem.Name = "nouveauDossierToolStripMenuItem";
-            this.nouveauDossierToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.nouveauDossierToolStripMenuItem.Text = "Nouveau dossier";
-            this.nouveauDossierToolStripMenuItem.Click += new System.EventHandler(this.nouveauDossierToolStripMenuItem_Click);
-            // 
-            // gestionsDuStockToolStripMenuItem
-            // 
-            this.gestionsDuStockToolStripMenuItem.Name = "gestionsDuStockToolStripMenuItem";
-            this.gestionsDuStockToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
-            this.gestionsDuStockToolStripMenuItem.Text = "Gestions du stock";
-            // 
-            // venteToolStripMenuItem
-            // 
-            this.venteToolStripMenuItem.Name = "venteToolStripMenuItem";
-            this.venteToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
-            this.venteToolStripMenuItem.Text = "Vente";
-            // 
-            // gestionSalariésToolStripMenuItem
-            // 
-            this.gestionSalariésToolStripMenuItem.Name = "gestionSalariésToolStripMenuItem";
-            this.gestionSalariésToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
-            this.gestionSalariésToolStripMenuItem.Text = "Gestion salariés";
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(146, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(638, 462);
-            this.panel1.TabIndex = 2;
-            // 
             // suiviPatientToolStripMenuItem
             // 
             this.suiviPatientToolStripMenuItem.Name = "suiviPatientToolStripMenuItem";
@@ -213,6 +186,13 @@
             this.afficherDossiersToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.afficherDossiersToolStripMenuItem.Text = "Afficher dossiers";
             this.afficherDossiersToolStripMenuItem.Click += new System.EventHandler(this.afficherDossiersToolStripMenuItem_Click);
+            // 
+            // nouveauDossierToolStripMenuItem
+            // 
+            this.nouveauDossierToolStripMenuItem.Name = "nouveauDossierToolStripMenuItem";
+            this.nouveauDossierToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.nouveauDossierToolStripMenuItem.Text = "Nouveau dossier";
+            this.nouveauDossierToolStripMenuItem.Click += new System.EventHandler(this.nouveauDossierToolStripMenuItem_Click);
             // 
             // afficherTraitementsToolStripMenuItem
             // 
@@ -241,6 +221,32 @@
             this.imprimerToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.imprimerToolStripMenuItem.Text = "Imprimer";
             this.imprimerToolStripMenuItem.Click += new System.EventHandler(this.imprimerToolStripMenuItem_Click);
+            // 
+            // gestionsDuStockToolStripMenuItem
+            // 
+            this.gestionsDuStockToolStripMenuItem.Name = "gestionsDuStockToolStripMenuItem";
+            this.gestionsDuStockToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
+            this.gestionsDuStockToolStripMenuItem.Text = "Gestions du stock";
+            // 
+            // venteToolStripMenuItem
+            // 
+            this.venteToolStripMenuItem.Name = "venteToolStripMenuItem";
+            this.venteToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
+            this.venteToolStripMenuItem.Text = "Vente";
+            // 
+            // gestionSalariésToolStripMenuItem
+            // 
+            this.gestionSalariésToolStripMenuItem.Name = "gestionSalariésToolStripMenuItem";
+            this.gestionSalariésToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
+            this.gestionSalariésToolStripMenuItem.Text = "Gestion salariés";
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(146, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(638, 462);
+            this.panel1.TabIndex = 2;
             // 
             // Global
             // 

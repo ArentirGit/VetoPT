@@ -61,7 +61,37 @@ namespace VetoPTApplication
         //AnimalManagement
         private void gestionAnimauxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AnimalManagement.HomePage am = new AnimalManagement.HomePage(this.panel1);
+            new AnimalManagement.HomePage(this.panel1);
+        }
+
+        private void afficherAnimauxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AnimalManagement.DisplayAnimals(this.panel1);
+        }
+
+        private void afficherRappelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AnimalManagement.DisplayReminders(this.panel1);
+        }
+
+        private void ajouterAnimalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AnimalManagement.AddAnimal(this.panel1);
+        }
+
+        private void ajouterRappelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AnimalManagement.AddReminder(this.panel1);
+        }
+
+        private void ajouterUneRaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AnimalManagement.AddBreed(this.panel1);
+        }
+
+        private void ajouterUneEspèceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AnimalManagement.AddSpecy(this.panel1);
         }
 
         //UserManagement
@@ -79,7 +109,5 @@ namespace VetoPTApplication
         {
 
         }
-
-
     }
 }
