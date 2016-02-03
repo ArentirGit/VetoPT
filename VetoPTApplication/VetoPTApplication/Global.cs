@@ -51,5 +51,10 @@ namespace VetoPTApplication
         {
             CareManagement.Print p = new CareManagement.Print(this.panel1);
         }
+
+        private void gestionSoinsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CareManagement.HomeCareManagement p = new CareManagement.HomeCareManagement(this.panel1);
+        }
     }
 }

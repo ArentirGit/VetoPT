@@ -144,6 +144,7 @@
             this.gestionSoinsToolStripMenuItem.Name = "gestionSoinsToolStripMenuItem";
             this.gestionSoinsToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.gestionSoinsToolStripMenuItem.Text = "Gestion des soins";
+            this.gestionSoinsToolStripMenuItem.Click += new System.EventHandler(this.gestionSoinsToolStripMenuItem_Click);
             // 
             // nouveauDossierToolStripMenuItem
             // 
