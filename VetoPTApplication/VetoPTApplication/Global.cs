@@ -27,34 +27,15 @@ namespace VetoPTApplication
             AnimalManagement.HomePage am = new AnimalManagement.HomePage(this.panel1);
         }
 
-        private void suiviPatientToolStripMenuItem_Click(object sender, EventArgs e)
+        private void gestionUtilisateursToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CareManagement.MonitoringPatient p = new CareManagement.MonitoringPatient(this.panel1);
+            UserManagement.UserHomePage um = new UserManagement.UserHomePage(this.panel1);
         }
 
-        private void afficherDossiersToolStripMenuItem_Click(object sender, EventArgs e)
+        private void afficherUtilisateursToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CareManagement.DisplayFolder p = new CareManagement.DisplayFolder(this.panel1);
+            UserManagement.DisplayUsers du = new UserManagement.DisplayUsers(this.panel1);
         }
 
-        private void afficherTraitementsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CareManagement.DisplayTreatment p = new CareManagement.DisplayTreatment(this.panel1);
-        }
-
-        private void rédigerOrdonnanceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CareManagement.WriteOrdinance p = new CareManagement.WriteOrdinance(this.panel1);
-        }
-
-        private void imprimerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CareManagement.Print p = new CareManagement.Print(this.panel1);
-        }
-
-        private void gestionSoinsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CareManagement.HomeCareManagement p = new CareManagement.HomeCareManagement(this.panel1);
-        }
     }
 }
