@@ -17,16 +17,54 @@ namespace VetoPTApplication
             InitializeComponent();
         }
 
-        private void nouveauDossierToolStripMenuItem_Click(object sender, EventArgs e)
+        //CareManagement
+        private void gestionSoinsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CareManagement.NewFolder f = new CareManagement.NewFolder(this.panel1);
+            CareManagement.HomeCareManagement h = new CareManagement.HomeCareManagement(this.panel1);
         }
 
+        private void suiviPatientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CareManagement.MonitoringPatient m = new CareManagement.MonitoringPatient(this.panel1);
+        }
+
+        private void afficherDossiersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CareManagement.DisplayFolder df = new CareManagement.DisplayFolder(this.panel1);
+        }
+
+        private void nouveauDossierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CareManagement.NewFolder nf = new CareManagement.NewFolder(this.panel1);
+        }
+
+        private void afficherTraitementsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CareManagement.DisplayTreatment dt = new CareManagement.DisplayTreatment(this.panel1);
+        }
+
+        private void ajouterTraitementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CareManagement.AddTreatment at = new CareManagement.AddTreatment(this.panel1);
+        }
+
+        private void rédigerOrdonnanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CareManagement.WriteOrdinance wo = new CareManagement.WriteOrdinance(this.panel1);
+        }
+
+        private void imprimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CareManagement.Print p = new CareManagement.Print(this.panel1);
+        }
+
+        //AnimalManagement
         private void gestionAnimauxToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AnimalManagement.HomePage am = new AnimalManagement.HomePage(this.panel1);
         }
 
+        //UserManagement
         private void gestionUtilisateursToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserManagement.UserHomePage um = new UserManagement.UserHomePage(this.panel1);
@@ -36,6 +74,12 @@ namespace VetoPTApplication
         {
             UserManagement.DisplayUsers du = new UserManagement.DisplayUsers(this.panel1);
         }
+
+        private void ajouterUtilisateurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

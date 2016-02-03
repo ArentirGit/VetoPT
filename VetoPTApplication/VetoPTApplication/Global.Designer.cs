@@ -30,6 +30,8 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gestionUtilisateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherUtilisateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterUtilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,8 +46,12 @@
             this.venteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.afficherUtilisateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterUtilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.suiviPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherDossiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherTraitementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterTraitementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rédigerOrdonnanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +81,20 @@
             this.gestionUtilisateursToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.gestionUtilisateursToolStripMenuItem.Text = "Gestion des utilisateurs";
             this.gestionUtilisateursToolStripMenuItem.Click += new System.EventHandler(this.gestionUtilisateursToolStripMenuItem_Click);
+            // 
+            // afficherUtilisateursToolStripMenuItem
+            // 
+            this.afficherUtilisateursToolStripMenuItem.Name = "afficherUtilisateursToolStripMenuItem";
+            this.afficherUtilisateursToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.afficherUtilisateursToolStripMenuItem.Text = "Afficher Utilisateurs";
+            this.afficherUtilisateursToolStripMenuItem.Click += new System.EventHandler(this.afficherUtilisateursToolStripMenuItem_Click);
+            // 
+            // ajouterUtilisateurToolStripMenuItem
+            // 
+            this.ajouterUtilisateurToolStripMenuItem.Name = "ajouterUtilisateurToolStripMenuItem";
+            this.ajouterUtilisateurToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.ajouterUtilisateurToolStripMenuItem.Text = "Ajouter Utilisateur";
+            this.ajouterUtilisateurToolStripMenuItem.Click += new System.EventHandler(this.ajouterUtilisateurToolStripMenuItem_Click);
             // 
             // gestionClientsToolStripMenuItem
             // 
@@ -135,15 +155,22 @@
             // gestionSoinsToolStripMenuItem
             // 
             this.gestionSoinsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nouveauDossierToolStripMenuItem});
+            this.suiviPatientToolStripMenuItem,
+            this.afficherDossiersToolStripMenuItem,
+            this.nouveauDossierToolStripMenuItem,
+            this.afficherTraitementsToolStripMenuItem,
+            this.ajouterTraitementToolStripMenuItem,
+            this.rédigerOrdonnanceToolStripMenuItem,
+            this.imprimerToolStripMenuItem});
             this.gestionSoinsToolStripMenuItem.Name = "gestionSoinsToolStripMenuItem";
             this.gestionSoinsToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.gestionSoinsToolStripMenuItem.Text = "Gestion des soins";
+            this.gestionSoinsToolStripMenuItem.Click += new System.EventHandler(this.gestionSoinsToolStripMenuItem_Click);
             // 
             // nouveauDossierToolStripMenuItem
             // 
             this.nouveauDossierToolStripMenuItem.Name = "nouveauDossierToolStripMenuItem";
-            this.nouveauDossierToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.nouveauDossierToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.nouveauDossierToolStripMenuItem.Text = "Nouveau dossier";
             this.nouveauDossierToolStripMenuItem.Click += new System.EventHandler(this.nouveauDossierToolStripMenuItem_Click);
             // 
@@ -173,19 +200,47 @@
             this.panel1.Size = new System.Drawing.Size(638, 462);
             this.panel1.TabIndex = 2;
             // 
-            // afficherUtilisateursToolStripMenuItem
+            // suiviPatientToolStripMenuItem
             // 
-            this.afficherUtilisateursToolStripMenuItem.Name = "afficherUtilisateursToolStripMenuItem";
-            this.afficherUtilisateursToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.afficherUtilisateursToolStripMenuItem.Text = "Afficher Utilisateurs";
-            this.afficherUtilisateursToolStripMenuItem.Click += new System.EventHandler(this.afficherUtilisateursToolStripMenuItem_Click);
+            this.suiviPatientToolStripMenuItem.Name = "suiviPatientToolStripMenuItem";
+            this.suiviPatientToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.suiviPatientToolStripMenuItem.Text = "Suivi patient";
+            this.suiviPatientToolStripMenuItem.Click += new System.EventHandler(this.suiviPatientToolStripMenuItem_Click);
             // 
-            // ajouterUtilisateurToolStripMenuItem
+            // afficherDossiersToolStripMenuItem
             // 
-            this.ajouterUtilisateurToolStripMenuItem.Name = "ajouterUtilisateurToolStripMenuItem";
-            this.ajouterUtilisateurToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.ajouterUtilisateurToolStripMenuItem.Text = "Ajouter Utilisateur";
-            this.ajouterUtilisateurToolStripMenuItem.Click += new System.EventHandler(this.ajouterUtilisateurToolStripMenuItem_Click);
+            this.afficherDossiersToolStripMenuItem.Name = "afficherDossiersToolStripMenuItem";
+            this.afficherDossiersToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.afficherDossiersToolStripMenuItem.Text = "Afficher dossiers";
+            this.afficherDossiersToolStripMenuItem.Click += new System.EventHandler(this.afficherDossiersToolStripMenuItem_Click);
+            // 
+            // afficherTraitementsToolStripMenuItem
+            // 
+            this.afficherTraitementsToolStripMenuItem.Name = "afficherTraitementsToolStripMenuItem";
+            this.afficherTraitementsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.afficherTraitementsToolStripMenuItem.Text = "Afficher traitements";
+            this.afficherTraitementsToolStripMenuItem.Click += new System.EventHandler(this.afficherTraitementsToolStripMenuItem_Click);
+            // 
+            // ajouterTraitementToolStripMenuItem
+            // 
+            this.ajouterTraitementToolStripMenuItem.Name = "ajouterTraitementToolStripMenuItem";
+            this.ajouterTraitementToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.ajouterTraitementToolStripMenuItem.Text = "Ajouter traitement";
+            this.ajouterTraitementToolStripMenuItem.Click += new System.EventHandler(this.ajouterTraitementToolStripMenuItem_Click);
+            // 
+            // rédigerOrdonnanceToolStripMenuItem
+            // 
+            this.rédigerOrdonnanceToolStripMenuItem.Name = "rédigerOrdonnanceToolStripMenuItem";
+            this.rédigerOrdonnanceToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.rédigerOrdonnanceToolStripMenuItem.Text = "Rédiger ordonnance";
+            this.rédigerOrdonnanceToolStripMenuItem.Click += new System.EventHandler(this.rédigerOrdonnanceToolStripMenuItem_Click);
+            // 
+            // imprimerToolStripMenuItem
+            // 
+            this.imprimerToolStripMenuItem.Name = "imprimerToolStripMenuItem";
+            this.imprimerToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.imprimerToolStripMenuItem.Text = "Imprimer";
+            this.imprimerToolStripMenuItem.Click += new System.EventHandler(this.imprimerToolStripMenuItem_Click);
             // 
             // Global
             // 
@@ -224,5 +279,11 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterUneEspèceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherUtilisateursToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUtilisateurToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem suiviPatientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afficherDossiersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afficherTraitementsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajouterTraitementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rédigerOrdonnanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imprimerToolStripMenuItem;
     }
 }
