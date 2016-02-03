@@ -55,6 +55,7 @@
     <Compile Include="CareManagement\Print.cs" />
     <Compile Include="CareManagement\WriteOrdinance.cs" />
     <Compile Include="DataBase\Animal.cs" />
+    <Compile Include="DataBase\DataBaseManagement.cs" />
     <Compile Include="Global.cs">
       <SubType>Form</SubType>
     </Compile>
