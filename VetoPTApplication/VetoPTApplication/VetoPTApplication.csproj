@@ -46,7 +46,15 @@
   <ItemGroup>
     <Compile Include="AnimalManagement\DisplayAnimals.cs" />
     <Compile Include="AnimalManagement\HomePage.cs" />
+    <Compile Include="CareManagement\AddTreatment.cs" />
+    <Compile Include="CareManagement\DisplayFolder.cs" />
+    <Compile Include="CareManagement\DisplayTreatment.cs" />
+    <Compile Include="CareManagement\HomeCareManagement.cs" />
+    <Compile Include="CareManagement\MonitoringPatient.cs" />
     <Compile Include="CareManagement\NewFolder.cs" />
+    <Compile Include="CareManagement\Print.cs" />
+    <Compile Include="CareManagement\WriteOrdinance.cs" />
+    <Compile Include="DataBase\Animal.cs" />
     <Compile Include="Global.cs">
       <SubType>Form</SubType>
     </Compile>
