@@ -32,18 +32,19 @@
             this.gestionUtilisateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherRappelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterAnimalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterRappelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterUneRaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterUneEspèceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSoinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nouveauDossierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionsDuStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.venteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.afficherAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterAnimalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.afficherRappelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterRappelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterUneRaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterUneEspèceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +91,42 @@
             this.gestionAnimauxToolStripMenuItem.Text = "Gestion des animaux";
             this.gestionAnimauxToolStripMenuItem.Click += new System.EventHandler(this.gestionAnimauxToolStripMenuItem_Click);
             // 
+            // afficherAnimauxToolStripMenuItem
+            // 
+            this.afficherAnimauxToolStripMenuItem.Name = "afficherAnimauxToolStripMenuItem";
+            this.afficherAnimauxToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.afficherAnimauxToolStripMenuItem.Text = "Afficher animaux";
+            // 
+            // afficherRappelToolStripMenuItem
+            // 
+            this.afficherRappelToolStripMenuItem.Name = "afficherRappelToolStripMenuItem";
+            this.afficherRappelToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.afficherRappelToolStripMenuItem.Text = "Afficher rappel";
+            // 
+            // ajouterAnimalToolStripMenuItem
+            // 
+            this.ajouterAnimalToolStripMenuItem.Name = "ajouterAnimalToolStripMenuItem";
+            this.ajouterAnimalToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ajouterAnimalToolStripMenuItem.Text = "Ajouter animal";
+            // 
+            // ajouterRappelToolStripMenuItem
+            // 
+            this.ajouterRappelToolStripMenuItem.Name = "ajouterRappelToolStripMenuItem";
+            this.ajouterRappelToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ajouterRappelToolStripMenuItem.Text = "Ajouter rappel";
+            // 
+            // ajouterUneRaceToolStripMenuItem
+            // 
+            this.ajouterUneRaceToolStripMenuItem.Name = "ajouterUneRaceToolStripMenuItem";
+            this.ajouterUneRaceToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ajouterUneRaceToolStripMenuItem.Text = "Ajouter une race";
+            // 
+            // ajouterUneEspèceToolStripMenuItem
+            // 
+            this.ajouterUneEspèceToolStripMenuItem.Name = "ajouterUneEspèceToolStripMenuItem";
+            this.ajouterUneEspèceToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ajouterUneEspèceToolStripMenuItem.Text = "Ajouter une espèce";
+            // 
             // gestionSoinsToolStripMenuItem
             // 
             this.gestionSoinsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -131,42 +168,6 @@
             this.panel1.Size = new System.Drawing.Size(638, 462);
             this.panel1.TabIndex = 2;
             // 
-            // afficherAnimauxToolStripMenuItem
-            // 
-            this.afficherAnimauxToolStripMenuItem.Name = "afficherAnimauxToolStripMenuItem";
-            this.afficherAnimauxToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.afficherAnimauxToolStripMenuItem.Text = "Afficher animaux";
-            // 
-            // ajouterAnimalToolStripMenuItem
-            // 
-            this.ajouterAnimalToolStripMenuItem.Name = "ajouterAnimalToolStripMenuItem";
-            this.ajouterAnimalToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.ajouterAnimalToolStripMenuItem.Text = "Ajouter animal";
-            // 
-            // afficherRappelToolStripMenuItem
-            // 
-            this.afficherRappelToolStripMenuItem.Name = "afficherRappelToolStripMenuItem";
-            this.afficherRappelToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.afficherRappelToolStripMenuItem.Text = "Afficher rappel";
-            // 
-            // ajouterRappelToolStripMenuItem
-            // 
-            this.ajouterRappelToolStripMenuItem.Name = "ajouterRappelToolStripMenuItem";
-            this.ajouterRappelToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.ajouterRappelToolStripMenuItem.Text = "Ajouter rappel";
-            // 
-            // ajouterUneRaceToolStripMenuItem
-            // 
-            this.ajouterUneRaceToolStripMenuItem.Name = "ajouterUneRaceToolStripMenuItem";
-            this.ajouterUneRaceToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.ajouterUneRaceToolStripMenuItem.Text = "Ajouter une race";
-            // 
-            // ajouterUneEspèceToolStripMenuItem
-            // 
-            this.ajouterUneEspèceToolStripMenuItem.Name = "ajouterUneEspèceToolStripMenuItem";
-            this.ajouterUneEspèceToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.ajouterUneEspèceToolStripMenuItem.Text = "Ajouter une espèce";
-            // 
             // Global
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,5 +203,6 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterRappelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUneRaceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUneEspèceToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
