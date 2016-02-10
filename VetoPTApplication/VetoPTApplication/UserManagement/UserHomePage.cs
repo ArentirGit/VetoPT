@@ -40,13 +40,18 @@ namespace VetoPTApplication.UserManagement
             addUserButton.Location = new Point(205, 300);
             addUserButton.Text = "Ajouter un utilisateur";
             addUserButton.Size = new Size(200, 30);
-            //displayUsersButton.Click += new EventHandler(addUser);
+            addUserButton.Click += new EventHandler(addUser);
             userManagementPanel.Controls.Add(addUserButton);
         }
 
         private void displayUsers(object sender, EventArgs e)
         {
             new DisplayUsers(userManagementPanel);
+        }
+
+        private void addUser(object sender, EventArgs e)
+        {
+            new AddUser(userManagementPanel);
         }
     }
 }

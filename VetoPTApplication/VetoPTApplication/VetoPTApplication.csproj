@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserManagement\AddUser.cs" />
     <Compile Include="UserManagement\DisplayUsers.cs" />
     <Compile Include="UserManagement\UserHomePage.cs" />
     <EmbeddedResource Include="Global.resx">
