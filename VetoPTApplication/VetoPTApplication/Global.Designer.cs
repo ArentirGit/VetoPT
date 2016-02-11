@@ -144,6 +144,7 @@
             this.supprimerClientToolStripMenuItem.Name = "supprimerClientToolStripMenuItem";
             this.supprimerClientToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.supprimerClientToolStripMenuItem.Text = "Supprimer client";
+            this.supprimerClientToolStripMenuItem.Click += new System.EventHandler(this.supprimerClientToolStripMenuItem_Click);
             // 
             // ajouterRendezvousToolStripMenuItem
             // 

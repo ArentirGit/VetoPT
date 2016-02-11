@@ -59,10 +59,14 @@
     <Compile Include="CareManagement\NewFolder.cs" />
     <Compile Include="CareManagement\Print.cs" />
     <Compile Include="CareManagement\WriteOrdinance.cs" />
+    <Compile Include="ClientManagement\AddAppointment.cs" />
     <Compile Include="ClientManagement\AddClient.cs" />
+    <Compile Include="ClientManagement\CancelAppointment.cs" />
     <Compile Include="ClientManagement\DeleteClient.cs" />
+    <Compile Include="ClientManagement\DisplayAppointments.cs" />
     <Compile Include="ClientManagement\DisplayClient.cs" />
     <Compile Include="ClientManagement\HomePage.cs" />
+    <Compile Include="ClientManagement\ModifyAppointment.cs" />
     <Compile Include="ClientManagement\ModifyClient.cs" />
     <Compile Include="DataBase\Animal.cs" />
     <Compile Include="DataBase\DataBaseManagement.cs" />

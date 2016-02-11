@@ -12,9 +12,9 @@ namespace VetoPTApplication.ClientManagement
     {
         private Panel deleteClientPanel;
 
-        public DeleteClient(Panel addAnimalPanel)
+        public DeleteClient(Panel deleteClientPanel)
         {
-            this.deleteClientPanel = addAnimalPanel;
+            this.deleteClientPanel = deleteClientPanel;
             Init();
         }
 
