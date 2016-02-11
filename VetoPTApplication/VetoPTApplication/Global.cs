@@ -107,7 +107,7 @@ namespace VetoPTApplication
 
         private void ajouterUtilisateurToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            UserManagement.AddUser au = new UserManagement.AddUser(this.panel1);
         }
 
         //ClientManagement
