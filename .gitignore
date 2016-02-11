@@ -49,3 +49,7 @@ Temporary Items
 *.suo
 *.exe
 *.pdb
+*.sln
+
+VetoPTApplication/VetoPTApplication/bin/
+VetoPTApplication/VetoPTApplication/obj/
