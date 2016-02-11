@@ -109,5 +109,52 @@ namespace VetoPTApplication
         {
 
         }
+
+        //ClientManagement
+        private void gestionClientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClientManagement.HomePage cm = new ClientManagement.HomePage(this.panel1);
+        }
+
+        private void afficherClientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClientManagement.DisplayClient dc = new ClientManagement.DisplayClient(this.panel1);
+        }
+
+        private void ajouterClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifierClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ajouterRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void annulerRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void afficherRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifierRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

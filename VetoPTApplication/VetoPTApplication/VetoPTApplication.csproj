@@ -59,6 +59,11 @@
     <Compile Include="CareManagement\NewFolder.cs" />
     <Compile Include="CareManagement\Print.cs" />
     <Compile Include="CareManagement\WriteOrdinance.cs" />
+    <Compile Include="ClientManagement\AddClient.cs" />
+    <Compile Include="ClientManagement\DeleteClient.cs" />
+    <Compile Include="ClientManagement\DisplayClient.cs" />
+    <Compile Include="ClientManagement\HomePage.cs" />
+    <Compile Include="ClientManagement\ModifyClient.cs" />
     <Compile Include="DataBase\Animal.cs" />
     <Compile Include="DataBase\DataBaseManagement.cs" />
     <Compile Include="Global.cs">
@@ -97,9 +102,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ClientManagement\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

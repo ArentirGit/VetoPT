@@ -44,3 +44,12 @@ C:\Users\Nicolas\Desktop\save+1\VetoPT\VetoPTApplication\VetoPTApplication\bin\D
 \\IUT\Etudiants\Home\vfaugier\Desktop\PT4-VETO\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.Global.resources
 \\IUT\Etudiants\Home\vfaugier\Desktop\PT4-VETO\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.Properties.Resources.resources
 \\IUT\Etudiants\Home\vfaugier\Desktop\PT4-VETO\VetoPT\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.csproj.GenerateResource.Cache
+C:\Users\Valentin\Desktop\VETO\VetoPTApplication\VetoPTApplication\bin\Debug\VetoPTApplication.exe.config
+C:\Users\Valentin\Desktop\VETO\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.exe
+C:\Users\Valentin\Desktop\VETO\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.pdb
+C:\Users\Valentin\Desktop\VETO\VetoPTApplication\VetoPTApplication\bin\Debug\VetoPTApplication.exe
+C:\Users\Valentin\Desktop\VETO\VetoPTApplication\VetoPTApplication\bin\Debug\VetoPTApplication.pdb
+C:\Users\Valentin\Desktop\VETO\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.csprojResolveAssemblyReference.cache
+C:\Users\Valentin\Desktop\VETO\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.Global.resources
+C:\Users\Valentin\Desktop\VETO\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.Properties.Resources.resources
+C:\Users\Valentin\Desktop\VETO\VetoPTApplication\VetoPTApplication\obj\Debug\VetoPTApplication.csproj.GenerateResource.Cache

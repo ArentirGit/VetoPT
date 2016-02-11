@@ -33,6 +33,13 @@
             this.afficherUtilisateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUtilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supprimerClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.annulerRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherRappelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,9 +105,66 @@
             // 
             // gestionClientsToolStripMenuItem
             // 
+            this.gestionClientsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.afficherClientsToolStripMenuItem,
+            this.ajouterClientToolStripMenuItem,
+            this.modifierClientToolStripMenuItem,
+            this.supprimerClientToolStripMenuItem,
+            this.ajouterRendezvousToolStripMenuItem,
+            this.modifierRendezvousToolStripMenuItem,
+            this.annulerRendezvousToolStripMenuItem});
             this.gestionClientsToolStripMenuItem.Name = "gestionClientsToolStripMenuItem";
             this.gestionClientsToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.gestionClientsToolStripMenuItem.Text = "Gestion des clients";
+            this.gestionClientsToolStripMenuItem.Click += new System.EventHandler(this.gestionClientsToolStripMenuItem_Click);
+            // 
+            // afficherClientsToolStripMenuItem
+            // 
+            this.afficherClientsToolStripMenuItem.Name = "afficherClientsToolStripMenuItem";
+            this.afficherClientsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.afficherClientsToolStripMenuItem.Text = "Afficher clients";
+            this.afficherClientsToolStripMenuItem.Click += new System.EventHandler(this.afficherClientsToolStripMenuItem_Click);
+            // 
+            // ajouterClientToolStripMenuItem
+            // 
+            this.ajouterClientToolStripMenuItem.Name = "ajouterClientToolStripMenuItem";
+            this.ajouterClientToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.ajouterClientToolStripMenuItem.Text = "Ajouter client";
+            this.ajouterClientToolStripMenuItem.Click += new System.EventHandler(this.ajouterClientToolStripMenuItem_Click);
+            // 
+            // modifierClientToolStripMenuItem
+            // 
+            this.modifierClientToolStripMenuItem.Name = "modifierClientToolStripMenuItem";
+            this.modifierClientToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.modifierClientToolStripMenuItem.Text = "Modifier client";
+            this.modifierClientToolStripMenuItem.Click += new System.EventHandler(this.modifierClientToolStripMenuItem_Click);
+            // 
+            // supprimerClientToolStripMenuItem
+            // 
+            this.supprimerClientToolStripMenuItem.Name = "supprimerClientToolStripMenuItem";
+            this.supprimerClientToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.supprimerClientToolStripMenuItem.Text = "Supprimer client";
+            // 
+            // ajouterRendezvousToolStripMenuItem
+            // 
+            this.ajouterRendezvousToolStripMenuItem.Name = "ajouterRendezvousToolStripMenuItem";
+            this.ajouterRendezvousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.ajouterRendezvousToolStripMenuItem.Text = "Ajouter rendez-vous";
+            this.ajouterRendezvousToolStripMenuItem.Click += new System.EventHandler(this.ajouterRendezvousToolStripMenuItem_Click);
+            // 
+            // modifierRendezvousToolStripMenuItem
+            // 
+            this.modifierRendezvousToolStripMenuItem.Name = "modifierRendezvousToolStripMenuItem";
+            this.modifierRendezvousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.modifierRendezvousToolStripMenuItem.Text = "Modifier rendez-vous";
+            this.modifierRendezvousToolStripMenuItem.Click += new System.EventHandler(this.modifierRendezvousToolStripMenuItem_Click);
+            // 
+            // annulerRendezvousToolStripMenuItem
+            // 
+            this.annulerRendezvousToolStripMenuItem.Name = "annulerRendezvousToolStripMenuItem";
+            this.annulerRendezvousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.annulerRendezvousToolStripMenuItem.Text = "Annuler rendez-vous";
+            this.annulerRendezvousToolStripMenuItem.Click += new System.EventHandler(this.annulerRendezvousToolStripMenuItem_Click);
             // 
             // gestionAnimauxToolStripMenuItem
             // 
@@ -291,5 +355,12 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterTraitementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rédigerOrdonnanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imprimerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afficherClientsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajouterClientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modifierClientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supprimerClientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajouterRendezvousToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modifierRendezvousToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem annulerRendezvousToolStripMenuItem;
     }
 }
