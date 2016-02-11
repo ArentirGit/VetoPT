@@ -123,37 +123,37 @@ namespace VetoPTApplication
 
         private void ajouterClientToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ClientManagement.AddClient ac = new ClientManagement.AddClient(this.panel1); 
         }
 
         private void modifierClientToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ClientManagement.ModifyClient mc = new ClientManagement.ModifyClient(this.panel1); 
         }
 
         private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ClientManagement.DeleteClient dc = new ClientManagement.DeleteClient(this.panel1); 
         }
 
         private void ajouterRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //ClientManagement.AddAppointment aa = new ClientManagement.AddAppointment(this.panel1); 
         }
 
         private void annulerRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //ClientManagement.CancelAppointment ca = new ClientManagement.CancelAppointment(this.panel1); 
         }
 
         private void afficherRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //ClientManagement.DisplayAppointments da = new ClientManagement.DisplayAppointments(this.panel1); 
         }
 
         private void modifierRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //ClientManagement.ModifyAppointment ma = new ClientManagement.ModifyAppointment(this.panel1); 
         }
 
     }
