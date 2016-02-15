@@ -12,6 +12,11 @@ namespace VetoPTApplication.ClientManagement
     class DisplayClient
     {
         private Panel displayClientsPanel;
+        Label title;
+
+        Button displayRemindersButton;
+        Button addClientButton;
+        TextBox search;
         public DisplayClient(Panel displayClientsPanel)
         {
             this.displayClientsPanel = displayClientsPanel;
@@ -31,19 +36,19 @@ namespace VetoPTApplication.ClientManagement
             title.Text = "Clients";
             displayClientsPanel.Controls.Add(title);
             // bouton afficher rendez-vous
-            Button displayRemindersButton = new Button();
+            displayRemindersButton = new Button();
             displayRemindersButton.Location = new Point(0, 0);
             displayRemindersButton.Text = "Afficher rendez-vous";
             displayRemindersButton.Size = new Size(150, 30);
             displayClientsPanel.Controls.Add(displayRemindersButton);
-            // bouton ajouter animal
-            Button addAnimalButton = new Button();
-            addAnimalButton.Location = new Point(260, 10);
-            addAnimalButton.Text = "Ajouter client";
-            addAnimalButton.Size = new Size(150, 30);
-            displayClientsPanel.Controls.Add(addAnimalButton);
+            // bouton ajouter client
+            addClientButton = new Button();
+            addClientButton.Location = new Point(260, 10);
+            addClientButton.Text = "Ajouter client";
+            addClientButton.Size = new Size(150, 30);
+            displayClientsPanel.Controls.Add(addClientButton);
             // barre de recherche
-            TextBox search = new TextBox();
+            search = new TextBox();
             search.Location = new Point(450, 0);
             search.Text = "Rechercher";
             search.Size = new Size(150, 30);

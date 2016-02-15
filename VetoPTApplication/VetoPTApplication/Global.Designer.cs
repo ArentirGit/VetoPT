@@ -59,6 +59,7 @@
             this.venteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.afficherRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,7 +113,8 @@
             this.supprimerClientToolStripMenuItem,
             this.ajouterRendezvousToolStripMenuItem,
             this.modifierRendezvousToolStripMenuItem,
-            this.annulerRendezvousToolStripMenuItem});
+            this.annulerRendezvousToolStripMenuItem,
+            this.afficherRendezvousToolStripMenuItem});
             this.gestionClientsToolStripMenuItem.Name = "gestionClientsToolStripMenuItem";
             this.gestionClientsToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.gestionClientsToolStripMenuItem.Text = "Gestion des clients";
@@ -313,6 +315,12 @@
             this.panel1.Size = new System.Drawing.Size(638, 462);
             this.panel1.TabIndex = 2;
             // 
+            // afficherRendezvousToolStripMenuItem
+            // 
+            this.afficherRendezvousToolStripMenuItem.Name = "afficherRendezvousToolStripMenuItem";
+            this.afficherRendezvousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.afficherRendezvousToolStripMenuItem.Text = "Afficher rendez-vous";
+            // 
             // Global
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,5 +371,6 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterRendezvousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifierRendezvousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem annulerRendezvousToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afficherRendezvousToolStripMenuItem;
     }
 }

@@ -12,6 +12,16 @@ namespace VetoPTApplication.ClientManagement
     {
         private Panel addClientPanel;
 
+        Label title;
+
+        TextBox name;
+        TextBox firstName;
+        TextBox adress;
+        TextBox mail;
+
+        Button confirmButton;
+        Button cancelButton;
+
         public AddClient(Panel addAnimalPanel)
         {
             this.addClientPanel = addAnimalPanel;
@@ -23,48 +33,68 @@ namespace VetoPTApplication.ClientManagement
             // suppression de tout les objets du panel
             addClientPanel.Controls.Clear();
             // titre
-            Label title = new Label();
+            title = new Label();
             title.Size = new Size(500, 30);
             title.Font = new Font("Arial", 20);
             title.Location = new Point(170, 20);
             title.Text = "Ajouter un client";
             addClientPanel.Controls.Add(title);
             // nom 
-            TextBox name = new TextBox();
+            name = new TextBox();
             name.Size = new Size(100, 30);
             name.Location = new Point(230, 100);
             name.Text = "Nom";
             addClientPanel.Controls.Add(name);
             // prénom 
-            TextBox weight = new TextBox();
-            weight.Size = new Size(100, 30);
-            weight.Location = new Point(230, 130);
-            weight.Text = "Prénom";
-            addClientPanel.Controls.Add(weight);
+            firstName = new TextBox();
+            firstName.Size = new Size(100, 30);
+            firstName.Location = new Point(230, 130);
+            firstName.Text = "Prénom";
+            addClientPanel.Controls.Add(firstName);
             // adresse
-            TextBox owner = new TextBox();
-            owner.Size = new Size(100, 30);
-            owner.Location = new Point(230, 160);
-            owner.Text = "Adresse";
-            addClientPanel.Controls.Add(owner);
+            adress = new TextBox();
+            adress.Size = new Size(100, 30);
+            adress.Location = new Point(230, 160);
+            adress.Text = "Adresse";
+            addClientPanel.Controls.Add(adress);
             // mail
-            TextBox birth = new TextBox();
-            birth.Size = new Size(100, 30);
-            birth.Location = new Point(230, 190);
-            birth.Text = "Mail";
-            addClientPanel.Controls.Add(birth);                      
+            mail = new TextBox();
+            mail.Size = new Size(100, 30);
+            mail.Location = new Point(230, 190);
+            mail.Text = "Mail";
+            addClientPanel.Controls.Add(mail);                      
             // bouton confirmer
-            Button confirmButton = new Button();
+            confirmButton = new Button();
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 310);
             confirmButton.Text = "Confirmer";
             addClientPanel.Controls.Add(confirmButton);
+            confirmButton.Click += new EventHandler(confirm_Click);
             // bouton annuler
-            Button cancelButton = new Button();
+            cancelButton = new Button();
             cancelButton.Size = new Size(100, 30);
             cancelButton.Location = new Point(310, 310);
             cancelButton.Text = "Annuler";
             addClientPanel.Controls.Add(cancelButton);
+            cancelButton.Click += new EventHandler(cancel_Click);
+        }
+
+        private void confirm_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Confirmer");
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
+
+        private void clear()
+        {
+            name.Text = "Nom";
+            firstName.Text = "Prénom";
+            adress.Text = "Adresse";
+            mail.Text = "Mail";
         }
     }
 }

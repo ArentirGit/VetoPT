@@ -12,6 +12,15 @@ namespace VetoPTApplication.ClientManagement
     {
          private Panel AddAppointementPanel;
 
+         Label title;
+
+         ComboBox name;
+         ComboBox animal;
+         MonthCalendar calendar;
+         TextBox reason;
+
+         Button confirmButton;
+         Button cancelButton;
          public AddAppointment(Panel AddAppointementPanel)
         {
             this.AddAppointementPanel = AddAppointementPanel;
@@ -23,48 +32,69 @@ namespace VetoPTApplication.ClientManagement
             // suppression de tout les objets du panel
             AddAppointementPanel.Controls.Clear();
             // titre
-            Label title = new Label();
+            title = new Label();
             title.Size = new Size(500, 30);
             title.Font = new Font("Arial", 20);
             title.Location = new Point(170, 20);
             title.Text = "Ajouter rendez-vous";
             AddAppointementPanel.Controls.Add(title);
             // nom
-            ComboBox name = new ComboBox();
+            name = new ComboBox();
             name.Size = new Size(150, 30);
             name.Location = new Point(205, 100);
             name.Text = "Nom";    
             AddAppointementPanel.Controls.Add(name);
             // animal
-            ComboBox animal = new ComboBox();
+            animal = new ComboBox();
             animal.Size = new Size(150, 30);
             animal.Location = new Point(205, 130);
             animal.Text = "Animal";
             AddAppointementPanel.Controls.Add(animal);
             // Date
-            MonthCalendar calendar = new MonthCalendar();
+            calendar = new MonthCalendar();
             calendar.Location = new Point(165, 170);
             AddAppointementPanel.Controls.Add(calendar);
             // raison
-            TextBox reason = new TextBox();
+            reason = new TextBox();
             reason.Size = new Size(150, 30);
             reason.Location = new Point(205, 350);
             reason.Text = "Objet du rendez-vous";
             AddAppointementPanel.Controls.Add(reason);
             // bouton confirmer
-            Button confirmButton = new Button();
+            confirmButton = new Button();
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 400);
             confirmButton.Text = "Confirmer";
             AddAppointementPanel.Controls.Add(confirmButton);
+            confirmButton.Click += new EventHandler(confirm_Click);
             // bouton annuler
-            Button cancelButton = new Button();
+            cancelButton = new Button();
             cancelButton.Size = new Size(100, 30);
             cancelButton.Location = new Point(310, 400);
             cancelButton.Text = "Annuler";
             AddAppointementPanel.Controls.Add(cancelButton);
+            cancelButton.Click += new EventHandler(cancel_Click);
         }
 
-        public Control animal { get; set; }
+        private void confirm_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Confirmer");
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
+
+        private void clear()
+        {
+            name.Text = "Nom";
+            //firstName.Text = "Prénom";
+            //adress.Text = "Adresse";
+            //mail.Text = "Mail";
+            //calendar.ShowToday();
+            reason.Text = "Objet du rendez-vous";
+            
+        }
     }
 }

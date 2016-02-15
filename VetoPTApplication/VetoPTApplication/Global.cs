@@ -143,17 +143,17 @@ namespace VetoPTApplication
 
         private void annulerRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ClientManagement.CancelAppointment ca = new ClientManagement.CancelAppointment(this.panel1); 
+            ClientManagement.CancelAppointment ca = new ClientManagement.CancelAppointment(this.panel1); 
         }
 
         private void afficherRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ClientManagement.DisplayAppointments da = new ClientManagement.DisplayAppointments(this.panel1); 
+            ClientManagement.DisplayAppointments da = new ClientManagement.DisplayAppointments(this.panel1); 
         }
 
         private void modifierRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ClientManagement.ModifyAppointment ma = new ClientManagement.ModifyAppointment(this.panel1); 
+            ClientManagement.ModifyAppointment ma = new ClientManagement.ModifyAppointment(this.panel1); 
         }
 
     }
