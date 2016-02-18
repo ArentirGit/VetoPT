@@ -41,12 +41,16 @@ namespace VetoPTApplication.CareManagement
             myGrid.Columns[2].Name = "Date traitement";
             myGrid.Columns.Add(detail);
             myGrid.Dock = DockStyle.Fill;
-            string[] row = { "traitement 1", "2h", "2012" };
-            myGrid.Rows.Insert(0, row);
+
 
             myPanel.Controls.Add(myGrid);          
 
 
+        }
+        private void remplirGrid()
+        {
+            string[] row = { "traitement 1", "2h", "2012" };
+            myGrid.Rows.Insert(0, row);
         }
 
         private void myGrid_CellClick(object sender, DataGridViewCellEventArgs e)
