@@ -12,6 +12,7 @@ namespace VetoPTApplication.CareManagement
         private Panel myPanel;
         private DataGridView myGrid;
         private DataGridViewButtonColumn detail;
+        private DataGridViewButtonColumn print;
         
 
         public DisplayTreatment(Panel panel)
@@ -33,6 +34,12 @@ namespace VetoPTApplication.CareManagement
             detail.Name = "Details";
             detail.UseColumnTextForButtonValue = true;
 
+            print = new DataGridViewButtonColumn();
+            print.HeaderText = "Imprimer";
+            print.Text = "Imprimer";
+            print.Name = "Imprimer";
+            print.UseColumnTextForButtonValue = true;
+
             myGrid = new DataGridView();
             myGrid.CellClick += new DataGridViewCellEventHandler(myGrid_CellClick);
             myGrid.ColumnCount = 3;
@@ -40,10 +47,12 @@ namespace VetoPTApplication.CareManagement
             myGrid.Columns[1].Name = "Durée traitement";
             myGrid.Columns[2].Name = "Date traitement";
             myGrid.Columns.Add(detail);
+            myGrid.Columns.Add(print);
             myGrid.Dock = DockStyle.Fill;
 
-
-            myPanel.Controls.Add(myGrid);          
+            
+            myPanel.Controls.Add(myGrid);
+            remplirGrid();
 
 
         }
@@ -57,7 +66,11 @@ namespace VetoPTApplication.CareManagement
         {
             if (e.ColumnIndex == 3)
             {
-                MessageBox.Show(" Details ");
+                DetailsTreatments d = new DetailsTreatments(myPanel);
+            }
+            if (e.ColumnIndex == 4)
+            {
+                MessageBox.Show(" Imprimer ");
             }
         }
 
