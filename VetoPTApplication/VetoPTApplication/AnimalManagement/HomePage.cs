@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace VetoPTApplication.AnimalManagement
 {
     class HomePage
@@ -16,6 +17,7 @@ namespace VetoPTApplication.AnimalManagement
         {
             this.animalManagementPanel = animalManagementPanel;
             Init();
+            //DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
         }
 
         public void Init()

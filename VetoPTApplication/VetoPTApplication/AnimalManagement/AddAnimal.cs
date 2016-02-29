@@ -12,6 +12,7 @@ namespace VetoPTApplication.AnimalManagement
     class AddAnimal
     {
         private Panel addAnimalPanel;
+        DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
 
         public AddAnimal(Panel addAnimalPanel)
         {
@@ -21,6 +22,7 @@ namespace VetoPTApplication.AnimalManagement
 
         public void Init()
         {
+            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             addAnimalPanel.Controls.Clear();
             // titre
@@ -71,13 +73,21 @@ namespace VetoPTApplication.AnimalManagement
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 310);
             confirmButton.Text = "Confirmer";
+            confirmButton.Click += (sender, eventArgs) => { db.InsertAnimal(name.Text, weight.Text, birth.Text); };
             addAnimalPanel.Controls.Add(confirmButton);
             // bouton annuler
             Button cancelButton = new Button();
             cancelButton.Size = new Size(100, 30);
             cancelButton.Location = new Point(310, 310);
             cancelButton.Text = "Annuler";
-            addAnimalPanel.Controls.Add(cancelButton);
+            addAnimalPanel.Controls.Add(cancelButton); 
         }
+
+        /*
+        private void InsertAnimal(object sender, EventArgs e)
+        {
+            db.InsertAnimal(name.Text, weight.Text, birth.Text);
+        }
+        */
     }
 }
