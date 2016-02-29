@@ -40,6 +40,7 @@
             this.ajouterRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.annulerRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherRappelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,10 @@
             this.venteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.afficherRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.retirerProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,6 +172,12 @@
             this.annulerRendezvousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.annulerRendezvousToolStripMenuItem.Text = "Annuler rendez-vous";
             this.annulerRendezvousToolStripMenuItem.Click += new System.EventHandler(this.annulerRendezvousToolStripMenuItem_Click);
+            // 
+            // afficherRendezvousToolStripMenuItem
+            // 
+            this.afficherRendezvousToolStripMenuItem.Name = "afficherRendezvousToolStripMenuItem";
+            this.afficherRendezvousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.afficherRendezvousToolStripMenuItem.Text = "Afficher rendez-vous";
             // 
             // gestionAnimauxToolStripMenuItem
             // 
@@ -291,9 +301,15 @@
             // 
             // gestionsDuStockToolStripMenuItem
             // 
+            this.gestionsDuStockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.afficherStocksToolStripMenuItem,
+            this.ajouterProduitToolStripMenuItem,
+            this.retirerProduitToolStripMenuItem,
+            this.modifierProduitToolStripMenuItem});
             this.gestionsDuStockToolStripMenuItem.Name = "gestionsDuStockToolStripMenuItem";
             this.gestionsDuStockToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.gestionsDuStockToolStripMenuItem.Text = "Gestions du stock";
+            this.gestionsDuStockToolStripMenuItem.Click += new System.EventHandler(this.gestionsDuStockToolStripMenuItem_Click);
             // 
             // venteToolStripMenuItem
             // 
@@ -315,11 +331,30 @@
             this.panel1.Size = new System.Drawing.Size(638, 462);
             this.panel1.TabIndex = 2;
             // 
-            // afficherRendezvousToolStripMenuItem
+            // afficherStocksToolStripMenuItem
             // 
-            this.afficherRendezvousToolStripMenuItem.Name = "afficherRendezvousToolStripMenuItem";
-            this.afficherRendezvousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.afficherRendezvousToolStripMenuItem.Text = "Afficher rendez-vous";
+            this.afficherStocksToolStripMenuItem.Name = "afficherStocksToolStripMenuItem";
+            this.afficherStocksToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.afficherStocksToolStripMenuItem.Text = "Afficher stock";
+            this.afficherStocksToolStripMenuItem.Click += new System.EventHandler(this.afficherStocksToolStripMenuItem_Click);
+            // 
+            // ajouterProduitToolStripMenuItem
+            // 
+            this.ajouterProduitToolStripMenuItem.Name = "ajouterProduitToolStripMenuItem";
+            this.ajouterProduitToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.ajouterProduitToolStripMenuItem.Text = "Ajouter produit";
+            // 
+            // retirerProduitToolStripMenuItem
+            // 
+            this.retirerProduitToolStripMenuItem.Name = "retirerProduitToolStripMenuItem";
+            this.retirerProduitToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.retirerProduitToolStripMenuItem.Text = "Retirer produit";
+            // 
+            // modifierProduitToolStripMenuItem
+            // 
+            this.modifierProduitToolStripMenuItem.Name = "modifierProduitToolStripMenuItem";
+            this.modifierProduitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.modifierProduitToolStripMenuItem.Text = "Modifier prix";
             // 
             // Global
             // 
@@ -372,5 +407,9 @@
         private System.Windows.Forms.ToolStripMenuItem modifierRendezvousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem annulerRendezvousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherRendezvousToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afficherStocksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajouterProduitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem retirerProduitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modifierProduitToolStripMenuItem;
     }
 }

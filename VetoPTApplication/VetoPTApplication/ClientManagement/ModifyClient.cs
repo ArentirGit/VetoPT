@@ -22,9 +22,9 @@ namespace VetoPTApplication.ClientManagement
         Button confirmButton;
         Button cancelButton;
 
-        public ModifyClient(Panel addAnimalPanel)
+        public ModifyClient(Panel modifyClientPanel)
         {
-            this.modifyClientPanel = addAnimalPanel;
+            this.modifyClientPanel = modifyClientPanel;
             Init();
         }
 

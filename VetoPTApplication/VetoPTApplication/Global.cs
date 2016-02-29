@@ -156,5 +156,26 @@ namespace VetoPTApplication
             ClientManagement.ModifyAppointment ma = new ClientManagement.ModifyAppointment(this.panel1); 
         }
 
+        //StockManagement
+        private void afficherStocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gestionsDuStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StockManagement.HomePage hp = new StockManagement.HomePage(this.panel1);
+        }
+
+        private void retirerProduitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifierProduitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
