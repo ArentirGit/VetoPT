@@ -46,12 +46,13 @@ namespace VetoPTApplication.DataBase
             #endregion
         }
 
-        public void InsertAnimal(string name,int weight){
-            string insert = "INSERT INTO Animal Values (?,?)";
+        public void InsertAnimal(string name,string weight, string birth){
+            string insert = "INSERT INTO Animal Values (?,?,?)";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
             cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
-            cmd.Parameters.Add("Poids", OleDbType.Integer).Value = weight;
+            cmd.Parameters.Add("Poids", OleDbType.VarChar).Value = weight;
+            cmd.Parameters.Add("Date de naissance", OleDbType.VarChar).Value = birth;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }
