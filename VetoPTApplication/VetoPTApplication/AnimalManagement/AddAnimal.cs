@@ -12,7 +12,6 @@ namespace VetoPTApplication.AnimalManagement
     class AddAnimal
     {
         private Panel addAnimalPanel;
-        DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
 
         public AddAnimal(Panel addAnimalPanel)
         {
@@ -83,11 +82,5 @@ namespace VetoPTApplication.AnimalManagement
             addAnimalPanel.Controls.Add(cancelButton); 
         }
 
-        /*
-        private void InsertAnimal(object sender, EventArgs e)
-        {
-            db.InsertAnimal(name.Text, weight.Text, birth.Text);
-        }
-        */
     }
 }

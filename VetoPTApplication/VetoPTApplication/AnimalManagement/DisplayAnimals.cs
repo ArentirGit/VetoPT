@@ -20,6 +20,7 @@ namespace VetoPTApplication.AnimalManagement
 
         public void Init()
         {
+            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             displayAnimalsPanel.Controls.Clear();
             // titre
@@ -50,6 +51,12 @@ namespace VetoPTApplication.AnimalManagement
             search.Text = "Rechercher";
             search.Size = new Size(150, 30);
             displayAnimalsPanel.Controls.Add(search);
+            // liste des animaux
+            Label animalsList = new Label();
+            animalsList.Location = new Point(60, 80);
+            animalsList.Text = db.DisplayAnimals();
+            animalsList.Size = new Size(1000, 1000);
+            displayAnimalsPanel.Controls.Add(animalsList);
 
         }
     }
