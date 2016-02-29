@@ -89,12 +89,9 @@ namespace VetoPTApplication.ClientManagement
         private void clear()
         {
             name.Text = "Nom";
-            //firstName.Text = "Prénom";
-            //adress.Text = "Adresse";
-            //mail.Text = "Mail";
-            //calendar.ShowToday();
+            animal.Text = "Animal";
             reason.Text = "Objet du rendez-vous";
-            
+           
         }
     }
 }

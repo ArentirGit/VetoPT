@@ -14,7 +14,7 @@ namespace VetoPTApplication.ClientManagement
         private Panel displayClientsPanel;
         Label title;
 
-        Button displayRemindersButton;
+        Button displayAppointmentsButton;
         Button addClientButton;
         TextBox search;
         public DisplayClient(Panel displayClientsPanel)
@@ -28,7 +28,7 @@ namespace VetoPTApplication.ClientManagement
          // suppression de tout les objets du panel
             displayClientsPanel.Controls.Clear();
             // titre
-            Label title = new Label();
+            title= new Label();
             title.Size = new Size(500, 30);
             title.Size = new Size(90, 30);
             title.Font = new Font("Arial", 15);
@@ -36,23 +36,35 @@ namespace VetoPTApplication.ClientManagement
             title.Text = "Clients";
             displayClientsPanel.Controls.Add(title);
             // bouton afficher rendez-vous
-            displayRemindersButton = new Button();
-            displayRemindersButton.Location = new Point(0, 0);
-            displayRemindersButton.Text = "Afficher rendez-vous";
-            displayRemindersButton.Size = new Size(150, 30);
-            displayClientsPanel.Controls.Add(displayRemindersButton);
+            displayAppointmentsButton = new Button();
+            displayAppointmentsButton.Location = new Point(0, 0);
+            displayAppointmentsButton.Text = "Afficher rendez-vous";
+            displayAppointmentsButton.Size = new Size(150, 30);
+            displayClientsPanel.Controls.Add(displayAppointmentsButton);
+            displayAppointmentsButton.Click += new EventHandler(displayAppointments_Click);
             // bouton ajouter client
             addClientButton = new Button();
             addClientButton.Location = new Point(260, 10);
             addClientButton.Text = "Ajouter client";
             addClientButton.Size = new Size(150, 30);
             displayClientsPanel.Controls.Add(addClientButton);
+            addClientButton.Click += new EventHandler(addClient_Click);
             // barre de recherche
             search = new TextBox();
             search.Location = new Point(450, 0);
             search.Text = "Rechercher";
             search.Size = new Size(150, 30);
             displayClientsPanel.Controls.Add(search);
+        }
+
+        private void addClient_Click(object sender, EventArgs e)
+        {
+            ClientManagement.AddClient ca = new ClientManagement.AddClient(this.displayClientsPanel);
+        }
+
+        private void displayAppointments_Click(object sender, EventArgs e)
+        {
+            ClientManagement.DisplayAppointments ca = new ClientManagement.DisplayAppointments(this.displayClientsPanel);
         }
     }
     
