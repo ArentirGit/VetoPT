@@ -46,6 +46,24 @@ namespace VetoPTApplication.DataBase
             #endregion
         }
 
+        public string DisplayAnimals()
+        {
+            string display = "SELECT nom,intitule FROM Animal "
+                            + "JOIN Espece on Animal.id = Espece.id";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            string animals = "";
+            while (reader.Read())
+            {
+                animals += reader.GetString(0) + "    ";
+                animals += reader.GetString(1) + "\n";
+            }
+            reader.Close();
+            dbCon.Close();
+            return animals;
+        }
+
         public void InsertAnimal(string name,string weight, string birth){
             string insert = "INSERT INTO Animal Values (?,?,?)";
             dbCon.Open();
@@ -68,12 +86,16 @@ namespace VetoPTApplication.DataBase
 
         public void DeleteAnimal(int code)
         {
-            string delete = "DELETE FROM Abonné WHERE Code_Abonné = ?";
+            string delete = "DELETE FROM Animal WHERE id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(delete, dbCon);
-            cmd.Parameters.Add("Code", OleDbType.Integer).Value = code;
+            cmd.Parameters.Add("id", OleDbType.Integer).Value = code;
             dbCon.Close();
         }
+
+        
+
+
 
         public void displayAppointment(int code_animal)
         {
