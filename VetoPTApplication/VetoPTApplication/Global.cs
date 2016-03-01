@@ -159,7 +159,7 @@ namespace VetoPTApplication
         //StockManagement
         private void afficherStocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            StockManagement.DisplayProducts dp = new StockManagement.DisplayProducts(this.panel1);
         }
 
         private void gestionsDuStockToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,15 +167,47 @@ namespace VetoPTApplication
             StockManagement.HomePage hp = new StockManagement.HomePage(this.panel1);
         }
 
-        private void retirerProduitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void supprimerProduitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            StockManagement.DeleteProduct dp = new StockManagement.DeleteProduct(this.panel1);
         }
 
-        private void modifierProduitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void modifierPrixToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            StockManagement.ModifyPrice mp = new StockManagement.ModifyPrice(this.panel1);
         }
+
+        private void ajouterProduitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StockManagement.AddProduct ap = new StockManagement.AddProduct(this.panel1);
+        }
+
+        //Selling
+        private void vendreProduitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Selling.SellProduct sp = new Selling.SellProduct(this.panel1);
+        }
+
+        private void afficherFactureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Selling.DisplayInvoice di = new Selling.DisplayInvoice(this.panel1);
+        }
+
+        private void créerFactureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selling.CreateInvoice ci = new Selling.CreateInvoice(this.panel1);
+        }
+
+        private void imprimerFactureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Selling.PrintInvoice pi = new Selling.PrintInvoice(this.panel1);
+        }
+
+        private void venteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selling.HomePage hp = new Selling.HomePage(this.panel1);
+        }
+
 
     }
 }

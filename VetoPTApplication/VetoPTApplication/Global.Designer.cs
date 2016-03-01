@@ -57,13 +57,17 @@
             this.rédigerOrdonnanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionsDuStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supprimerProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierPrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.venteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.afficherStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.retirerProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifierProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendreProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afficherFactureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.créerFactureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimerFactureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -304,18 +308,52 @@
             this.gestionsDuStockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.afficherStocksToolStripMenuItem,
             this.ajouterProduitToolStripMenuItem,
-            this.retirerProduitToolStripMenuItem,
-            this.modifierProduitToolStripMenuItem});
+            this.supprimerProduitToolStripMenuItem,
+            this.modifierPrixToolStripMenuItem});
             this.gestionsDuStockToolStripMenuItem.Name = "gestionsDuStockToolStripMenuItem";
             this.gestionsDuStockToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.gestionsDuStockToolStripMenuItem.Text = "Gestions du stock";
             this.gestionsDuStockToolStripMenuItem.Click += new System.EventHandler(this.gestionsDuStockToolStripMenuItem_Click);
             // 
+            // afficherStocksToolStripMenuItem
+            // 
+            this.afficherStocksToolStripMenuItem.Name = "afficherStocksToolStripMenuItem";
+            this.afficherStocksToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.afficherStocksToolStripMenuItem.Text = "Afficher stock";
+            this.afficherStocksToolStripMenuItem.Click += new System.EventHandler(this.afficherStocksToolStripMenuItem_Click);
+            // 
+            // ajouterProduitToolStripMenuItem
+            // 
+            this.ajouterProduitToolStripMenuItem.Name = "ajouterProduitToolStripMenuItem";
+            this.ajouterProduitToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.ajouterProduitToolStripMenuItem.Text = "Ajouter produit";
+            this.ajouterProduitToolStripMenuItem.Click += new System.EventHandler(this.ajouterProduitToolStripMenuItem_Click);
+            // 
+            // supprimerProduitToolStripMenuItem
+            // 
+            this.supprimerProduitToolStripMenuItem.Name = "supprimerProduitToolStripMenuItem";
+            this.supprimerProduitToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.supprimerProduitToolStripMenuItem.Text = "Supprimer produit";
+            this.supprimerProduitToolStripMenuItem.Click += new System.EventHandler(this.supprimerProduitToolStripMenuItem_Click);
+            // 
+            // modifierPrixToolStripMenuItem
+            // 
+            this.modifierPrixToolStripMenuItem.Name = "modifierPrixToolStripMenuItem";
+            this.modifierPrixToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.modifierPrixToolStripMenuItem.Text = "Modifier prix";
+            this.modifierPrixToolStripMenuItem.Click += new System.EventHandler(this.modifierPrixToolStripMenuItem_Click);
+            // 
             // venteToolStripMenuItem
             // 
+            this.venteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vendreProduitToolStripMenuItem,
+            this.afficherFactureToolStripMenuItem,
+            this.créerFactureToolStripMenuItem,
+            this.imprimerFactureToolStripMenuItem});
             this.venteToolStripMenuItem.Name = "venteToolStripMenuItem";
             this.venteToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.venteToolStripMenuItem.Text = "Vente";
+            this.venteToolStripMenuItem.Click += new System.EventHandler(this.venteToolStripMenuItem_Click);
             // 
             // gestionSalariésToolStripMenuItem
             // 
@@ -331,30 +369,33 @@
             this.panel1.Size = new System.Drawing.Size(638, 462);
             this.panel1.TabIndex = 2;
             // 
-            // afficherStocksToolStripMenuItem
+            // vendreProduitToolStripMenuItem
             // 
-            this.afficherStocksToolStripMenuItem.Name = "afficherStocksToolStripMenuItem";
-            this.afficherStocksToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.afficherStocksToolStripMenuItem.Text = "Afficher stock";
-            this.afficherStocksToolStripMenuItem.Click += new System.EventHandler(this.afficherStocksToolStripMenuItem_Click);
+            this.vendreProduitToolStripMenuItem.Name = "vendreProduitToolStripMenuItem";
+            this.vendreProduitToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.vendreProduitToolStripMenuItem.Text = "Vendre produit";
+            this.vendreProduitToolStripMenuItem.Click += new System.EventHandler(this.vendreProduitToolStripMenuItem_Click);
             // 
-            // ajouterProduitToolStripMenuItem
+            // afficherFactureToolStripMenuItem
             // 
-            this.ajouterProduitToolStripMenuItem.Name = "ajouterProduitToolStripMenuItem";
-            this.ajouterProduitToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.ajouterProduitToolStripMenuItem.Text = "Ajouter produit";
+            this.afficherFactureToolStripMenuItem.Name = "afficherFactureToolStripMenuItem";
+            this.afficherFactureToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.afficherFactureToolStripMenuItem.Text = "Afficher facture";
+            this.afficherFactureToolStripMenuItem.Click += new System.EventHandler(this.afficherFactureToolStripMenuItem_Click);
             // 
-            // retirerProduitToolStripMenuItem
+            // créerFactureToolStripMenuItem
             // 
-            this.retirerProduitToolStripMenuItem.Name = "retirerProduitToolStripMenuItem";
-            this.retirerProduitToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.retirerProduitToolStripMenuItem.Text = "Retirer produit";
+            this.créerFactureToolStripMenuItem.Name = "créerFactureToolStripMenuItem";
+            this.créerFactureToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.créerFactureToolStripMenuItem.Text = "Créer facture";
+            this.créerFactureToolStripMenuItem.Click += new System.EventHandler(this.créerFactureToolStripMenuItem_Click);
             // 
-            // modifierProduitToolStripMenuItem
+            // imprimerFactureToolStripMenuItem
             // 
-            this.modifierProduitToolStripMenuItem.Name = "modifierProduitToolStripMenuItem";
-            this.modifierProduitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.modifierProduitToolStripMenuItem.Text = "Modifier prix";
+            this.imprimerFactureToolStripMenuItem.Name = "imprimerFactureToolStripMenuItem";
+            this.imprimerFactureToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.imprimerFactureToolStripMenuItem.Text = "Imprimer facture";
+            this.imprimerFactureToolStripMenuItem.Click += new System.EventHandler(this.imprimerFactureToolStripMenuItem_Click);
             // 
             // Global
             // 
@@ -409,7 +450,11 @@
         private System.Windows.Forms.ToolStripMenuItem afficherRendezvousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherStocksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterProduitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem retirerProduitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modifierProduitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supprimerProduitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modifierPrixToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vendreProduitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afficherFactureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem créerFactureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imprimerFactureToolStripMenuItem;
     }
 }

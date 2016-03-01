@@ -28,7 +28,7 @@ namespace VetoPTApplication.StockManagement
             Label title = new Label();
             title.Size = new Size(300, 30);
             title.Font = new Font("Arial", 20);
-            title.Location = new Point(170, 20);
+            title.Location = new Point(195, 20);
             title.Text = "Gestion du stock";
             stockManagementPanel.Controls.Add(title);
 
@@ -65,7 +65,7 @@ namespace VetoPTApplication.StockManagement
 
         private void deleteProduct_Click(object sender, EventArgs e)
         {
-            //StockManagement.DeleteProduct dc = new StockManagement.DeleteProduct(this.stockManagementPanel);
+            StockManagement.DeleteProduct dc = new StockManagement.DeleteProduct(this.stockManagementPanel);
         }
 
         private void modifyPrice_Click(object sender, EventArgs e)
@@ -75,12 +75,12 @@ namespace VetoPTApplication.StockManagement
 
         private void addProduct_Click(object sender, EventArgs e)
         {
-            //StockManagement.AddProduct ac = new StockManagement.AddProduct(this.stockManagementPanel);
+            StockManagement.AddProduct ac = new StockManagement.AddProduct(this.stockManagementPanel);
         }
 
         private void displayProducts_Click(object sender, EventArgs e)
         {
-            //StockManagement.DisplayProducts dc = new StockManagement.DisplayProducts(this.stockManagementPanel);
+            StockManagement.DisplayProducts dc = new StockManagement.DisplayProducts(this.stockManagementPanel);
         }
     }
 }

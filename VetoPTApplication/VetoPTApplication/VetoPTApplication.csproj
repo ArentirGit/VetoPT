@@ -79,6 +79,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selling\CreateInvoice.cs" />
+    <Compile Include="Selling\DisplayInvoice.cs" />
+    <Compile Include="Selling\HomePage.cs" />
+    <Compile Include="Selling\PrintInvoice.cs" />
+    <Compile Include="Selling\SellProduct.cs" />
     <Compile Include="StockManagement\AddProduct.cs" />
     <Compile Include="StockManagement\DeleteProduct.cs" />
     <Compile Include="StockManagement\DisplayProducts.cs" />
@@ -114,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EmployeeManagement\" />
-    <Folder Include="Selling\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
