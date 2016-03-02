@@ -60,6 +60,12 @@ namespace VetoPTApplication.AnimalManagement
             specy.Size = new Size(100, 30);
             specy.Location = new Point(230, 220);
             specy.Text = "Espece";
+            string[] species = db.displaySpecies();
+            for (int i = 0; i < species.Length; i++)
+            {
+                if (species[i] != null)
+                    specy.Items.Add(species[i]);
+            }
             addAnimalPanel.Controls.Add(specy);
             // race
             ComboBox breed = new ComboBox();
@@ -73,13 +79,25 @@ namespace VetoPTApplication.AnimalManagement
             confirmButton.Location = new Point(150, 310);
             confirmButton.Text = "Confirmer";
             confirmButton.Click += (sender, eventArgs) => { db.InsertAnimal(name.Text, weight.Text, birth.Text); };
+            confirmButton.Click += new EventHandler(displayAnimals);
             addAnimalPanel.Controls.Add(confirmButton);
             // bouton annuler
             Button cancelButton = new Button();
             cancelButton.Size = new Size(100, 30);
             cancelButton.Location = new Point(310, 310);
             cancelButton.Text = "Annuler";
+            cancelButton.Click += new EventHandler(homePage);
             addAnimalPanel.Controls.Add(cancelButton); 
+        }
+
+        private void homePage(object sender, EventArgs e)
+        {
+            new HomePage(addAnimalPanel);
+        }
+
+        private void displayAnimals(object sender, EventArgs e)
+        {
+            new DisplayAnimals(addAnimalPanel);
         }
 
     }

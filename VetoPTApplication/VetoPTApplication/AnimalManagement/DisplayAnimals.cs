@@ -36,14 +36,14 @@ namespace VetoPTApplication.AnimalManagement
             displayRemindersButton.Location = new Point(0, 0);
             displayRemindersButton.Text = "Afficher rendez-vous";
             displayRemindersButton.Size = new Size(150, 30);
-            //displayAnimals.Click += new EventHandler(displayRemindersButton);
+            displayRemindersButton.Click += new EventHandler(displayReminders);
             displayAnimalsPanel.Controls.Add(displayRemindersButton);
             // bouton ajouter animal
             Button addAnimalButton = new Button();
             addAnimalButton.Location = new Point(260, 10);
             addAnimalButton.Text = "Ajouter animal";
             addAnimalButton.Size = new Size(150, 30);
-            //addAnimalButton.Click += new EventHandler(addAnimalButton);
+            addAnimalButton.Click += new EventHandler(addAnimal);
             displayAnimalsPanel.Controls.Add(addAnimalButton);
             // barre de recherche
             TextBox search = new TextBox();
@@ -58,6 +58,16 @@ namespace VetoPTApplication.AnimalManagement
             animalsList.Size = new Size(1000, 1000);
             displayAnimalsPanel.Controls.Add(animalsList);
 
+        }
+
+        private void addAnimal(object sender, EventArgs e)
+        {
+            new AddAnimal(displayAnimalsPanel);
+        }
+
+        private void displayReminders(object sender, EventArgs e)
+        {
+            new DisplayReminders(displayAnimalsPanel);
         }
     }
 }

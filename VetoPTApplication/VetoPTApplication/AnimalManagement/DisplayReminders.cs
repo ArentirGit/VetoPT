@@ -35,7 +35,7 @@ namespace VetoPTApplication.AnimalManagement
             addReminderButton.Location = new Point(260, 10);
             addReminderButton.Text = "Ajouter rappel";
             addReminderButton.Size = new Size(150, 30);
-            //displayAnimals.Click += new EventHandler(displayRemindersButton);
+            addReminderButton.Click += new EventHandler(addReminder);
             displayRemindersPanel.Controls.Add(addReminderButton);
             // barre de recherche
             TextBox search = new TextBox();
@@ -43,6 +43,11 @@ namespace VetoPTApplication.AnimalManagement
             search.Text = "Rechercher";
             search.Size = new Size(150, 30);
             displayRemindersPanel.Controls.Add(search);
+        }
+
+        private void addReminder(object sender, EventArgs e)
+        {
+            new AddReminder(displayRemindersPanel);
         }
     }
 }

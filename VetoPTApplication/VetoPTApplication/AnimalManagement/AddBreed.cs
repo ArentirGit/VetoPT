@@ -20,6 +20,7 @@ namespace VetoPTApplication.AnimalManagement
 
         public void Init()
         {
+            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             addBreedPanel.Controls.Clear();
             // titre
@@ -40,13 +41,21 @@ namespace VetoPTApplication.AnimalManagement
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 350);
             confirmButton.Text = "Confirmer";
+            confirmButton.Click += (sender, eventArgs) => { db.insertBreed(breed.Text); };
+            confirmButton.Click += new EventHandler(homePage);
             addBreedPanel.Controls.Add(confirmButton);
             // bouton annuler
             Button cancelButton = new Button();
             cancelButton.Size = new Size(100, 30);
             cancelButton.Location = new Point(310, 350);
             cancelButton.Text = "Annuler";
+            cancelButton.Click += new EventHandler(homePage);
             addBreedPanel.Controls.Add(cancelButton);
+        }
+
+        private void homePage(object sender, EventArgs e)
+        {
+            new HomePage(addBreedPanel);
         }
     }
 }

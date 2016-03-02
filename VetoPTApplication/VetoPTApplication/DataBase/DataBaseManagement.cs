@@ -48,16 +48,18 @@ namespace VetoPTApplication.DataBase
 
         public string DisplayAnimals()
         {
-            string display = "SELECT nom,intitule FROM Animal "
-                            + "JOIN Espece on Animal.id = Espece.id";
+            //string display = "SELECT nom,intitule FROM Animal "
+            //                + "JOIN Espece on Animal.id = Espece.id";
+            string display = "SELECT nom from Animal";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             string animals = "";
             while (reader.Read())
             {
-                animals += reader.GetString(0) + "    ";
-                animals += reader.GetString(1) + "\n";
+                //animals += reader.GetString(0) + "    ";
+                //animals += reader.GetString(1) + "\n";
+                animals += reader.GetString(0) + "\n\n";
             }
             reader.Close();
             dbCon.Close();
@@ -92,10 +94,6 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("id", OleDbType.Integer).Value = code;
             dbCon.Close();
         }
-
-        
-
-
 
         public void displayAppointment(int code_animal)
         {
@@ -216,6 +214,24 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("Nom Espece", OleDbType.VarChar).Value = specy_name;
             cmd.ExecuteNonQuery();
             dbCon.Close();
+        }
+
+        public string[] displaySpecies()
+        {
+            string display = "SELECT intitule FROM Espece";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            string[] species = new string[20];
+            int i = 0;
+            while (reader.Read())
+            {
+                species[i] = reader.GetString(0);
+                i++;
+            }
+            reader.Close();
+            dbCon.Close();
+            return species;
         }
 
         public void insertBreed(string breed_name)
