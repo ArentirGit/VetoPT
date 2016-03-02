@@ -55,14 +55,32 @@ namespace VetoPTApplication.AnimalManagement
             Label animalsList = new Label();
             animalsList.Location = new Point(60, 80);
             animalsList.Text = db.DisplayAnimals();
-            animalsList.Size = new Size(1000, 1000);
+            animalsList.Size = new Size(50, 1000);
             displayAnimalsPanel.Controls.Add(animalsList);
+            // bouton modifier animal
+            int y = 75;
+            for (int i=0; i<3; i++)
+            {
+                Button modAnimalButton = new Button();
+                modAnimalButton.Location = new Point(130, y);
+                modAnimalButton.Text = "Modifier animal";
+                modAnimalButton.Size = new Size(75, 20);
+                modAnimalButton.Click += new EventHandler(modifyAnimal);
+                displayAnimalsPanel.Controls.Add(modAnimalButton);
+                y += 30;
+            }
+            
 
         }
 
         private void addAnimal(object sender, EventArgs e)
         {
             new AddAnimal(displayAnimalsPanel);
+        }
+
+        private void modifyAnimal(object sender, EventArgs e)
+        {
+            new ModifyAnimal(displayAnimalsPanel);
         }
 
         private void displayReminders(object sender, EventArgs e)
