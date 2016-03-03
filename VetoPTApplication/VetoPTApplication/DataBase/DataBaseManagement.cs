@@ -54,7 +54,7 @@ namespace VetoPTApplication.DataBase
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
-            List<string> animals = nex List<string>();
+            List<string> animals = new List<string>();
             //string[] animals = new string[50];
             while (reader.Read())
             {

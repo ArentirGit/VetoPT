@@ -54,12 +54,17 @@ namespace VetoPTApplication.AnimalManagement
             // liste des animaux
             Label animalsList = new Label();
             animalsList.Location = new Point(60, 80);
-            animalsList.Text = db.DisplayAnimals();
+            foreach (string animal in db.DisplayAnimals()){
+                animalsList.Text += animal;
+                animalsList.Text += "\n\n";
+            }
+                
+            //animalsList.Text = db.DisplayAnimals();
             animalsList.Size = new Size(50, 1000);
             displayAnimalsPanel.Controls.Add(animalsList);
             // bouton modifier animal
             int y = 75;
-            for (int i=0; i<3; i++)
+            for (int i = 0; i < db.DisplayAnimals().Count; i++)
             {
                 Button modAnimalButton = new Button();
                 modAnimalButton.Location = new Point(130, y);
