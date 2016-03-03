@@ -11,6 +11,7 @@ namespace VetoPTApplication.AnimalManagement
     class DisplayAnimals
     {
         private Panel displayAnimalsPanel;
+        private DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
 
         public DisplayAnimals(Panel displayAnimalsPanel)
         {
@@ -20,7 +21,6 @@ namespace VetoPTApplication.AnimalManagement
 
         public void Init()
         {
-            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             displayAnimalsPanel.Controls.Clear();
             // titre
@@ -73,34 +73,21 @@ namespace VetoPTApplication.AnimalManagement
                 delAnimalButton.Size = new Size(75, 20);
                 int animal_id = Int32.Parse(s.Split(':')[0]);
                 delAnimalButton.Click += (sender, eventArgs) => { db.DeleteAnimal(animal_id); };
+                delAnimalButton.Click += new EventHandler(refreshAnimals);
                 displayAnimalsPanel.Controls.Add(delAnimalButton);
                 y += 27;
             }
             displayAnimalsPanel.Controls.Add(animalsList);
-            // boutons pour chaque animal
-            /*
-            int y = 75;     // ordonnee bouton
-            for (int i = 0; i < db.DisplayAnimals().Count; i++)
-            {
-                // bouton modifier animal
-                Button modAnimalButton = new Button();
-                modAnimalButton.Location = new Point(145, y);
-                modAnimalButton.Text = "Modifier animal";
-                modAnimalButton.Size = new Size(75, 20);
-                modAnimalButton.Click += new EventHandler(modifyAnimal);
-                displayAnimalsPanel.Controls.Add(modAnimalButton);
-                // bouton supprimer animal
-                Button delAnimalButton = new Button();
-                delAnimalButton.Location = new Point(230, y);
-                delAnimalButton.Text = "Supprimer animal";
-                delAnimalButton.Size = new Size(75, 20);
-                string animal_id = s.Split(':')[0];
-                delAnimalButton.Click += (sender, eventArgs) => { db.DeleteAnimal(Int32.Parse(animal_id)); };
-                displayAnimalsPanel.Controls.Add(delAnimalButton);
-                y += 27;
-            }
-             * */
-            
+
+            /**** BOUTON TEST ****/
+            Button INSERT_TEST = new Button();
+            INSERT_TEST.Size = new Size(200, 30);
+            INSERT_TEST.Location = new Point(250, 400);
+            INSERT_TEST.Text = "AJOUTER UN ANIMAL TEST";
+            INSERT_TEST.Click += (sender, eventArgs) => { db.InsertAnimal("felix", "4 kg", "date random"); };
+            INSERT_TEST.Click += new EventHandler(refreshAnimals);
+            displayAnimalsPanel.Controls.Add(INSERT_TEST); 
+          
         }
 
         private void addAnimal(object sender, EventArgs e)
@@ -116,6 +103,11 @@ namespace VetoPTApplication.AnimalManagement
         private void displayReminders(object sender, EventArgs e)
         {
             new DisplayReminders(displayAnimalsPanel);
+        }
+
+        public void refreshAnimals(object sender, EventArgs e)
+        {
+            new DisplayAnimals(displayAnimalsPanel);
         }
     }
 }
