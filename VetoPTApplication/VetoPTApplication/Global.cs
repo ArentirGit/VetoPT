@@ -20,7 +20,7 @@ namespace VetoPTApplication
         //CareManagement
         private void gestionSoinsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CareManagement.HomeCareManagement h = new CareManagement.HomeCareManagement(this.panel1);
+            //CareManagement.HomeCareManagement h = new CareManagement.HomeCareManagement(this.panel1);
         }
 
         private void suiviPatientToolStripMenuItem_Click(object sender, EventArgs e)

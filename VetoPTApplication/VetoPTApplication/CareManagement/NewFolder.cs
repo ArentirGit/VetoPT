@@ -12,6 +12,8 @@ namespace VetoPTApplication.CareManagement
     {
         private Panel myPanel;
 
+        private DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+
         private Label title;
 
         private Button validate;
@@ -21,6 +23,8 @@ namespace VetoPTApplication.CareManagement
         private ComboBox nameClient;
         private RichTextBox note;
         private DateTimePicker dateCourante;
+
+        private string[] clients;
         
 
         public NewFolder(Panel panel)
@@ -42,19 +46,20 @@ namespace VetoPTApplication.CareManagement
             title.Text = "Nouveau dossier";
             myPanel.Controls.Add(title);
 
-            //création du textbox nom animal
-            nameAnimal = new ComboBox();
-            nameAnimal.Size = new Size(100, 40);
-            nameAnimal.Location = new Point(100, 100);
-            nameAnimal.Text = "Nom animal";
-            myPanel.Controls.Add(nameAnimal);
-
             //création du textbox nom client
             nameClient = new ComboBox();
             nameClient.Size = new Size(100, 40);
-            nameClient.Location = new Point(100, 150);
+            nameClient.Location = new Point(100, 100);
             nameClient.Text = "Nom client";
+            nameClient.SelectedIndexChanged += new EventHandler(nameClient_SelectedIndexChanged);
             myPanel.Controls.Add(nameClient);
+
+            //création du textbox nom animal
+            nameAnimal = new ComboBox();
+            nameAnimal.Size = new Size(100, 40);
+            nameAnimal.Location = new Point(100, 150);
+            nameAnimal.Text = "Nom animal";
+            myPanel.Controls.Add(nameAnimal);
 
             //création du textbox note
             note = new RichTextBox();
@@ -88,6 +93,18 @@ namespace VetoPTApplication.CareManagement
             myPanel.Controls.Add(cancel);
             cancel.Click += new EventHandler(cancel_Click);
 
+            this.completeClient();
+
+        }
+
+        private void completeClient()
+        {
+            clients = new string[] {"1:Gerard:Bigard","2:Bernard:Latour"};
+            //clients = db.AllClient();
+            foreach (string s in clients)
+            {
+                nameClient.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+            }
 
         }
 
@@ -111,6 +128,11 @@ namespace VetoPTApplication.CareManagement
             nameAnimal.Text = "Nom animal";
             nameClient.Text = "Nom client";
             note.Text = "Note : \nExemple : fatigue,pate droite cassée ..";
+        }
+
+        private void nameClient_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show(clients[nameClient.SelectedIndex]);
         }
     }
 }
