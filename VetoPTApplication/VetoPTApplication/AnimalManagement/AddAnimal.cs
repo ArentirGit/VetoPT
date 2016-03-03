@@ -50,11 +50,11 @@ namespace VetoPTApplication.AnimalManagement
             owner.Text = "Propriétaire";
             addAnimalPanel.Controls.Add(owner);
             // date de naissance
-            TextBox birth = new TextBox();
-            birth.Size = new Size(100, 30);
-            birth.Location = new Point(230, 190);
-            birth.Text = "Date de naissance";
-            addAnimalPanel.Controls.Add(birth);
+            DateTimePicker dtp = new DateTimePicker();
+            dtp.Format = DateTimePickerFormat.Short;
+            dtp.Size = new Size(100, 30);
+            dtp.Location = new Point(230, 190);
+            addAnimalPanel.Controls.Add(dtp);
             // espece
             ComboBox specy = new ComboBox();
             specy.Size = new Size(100, 30);
@@ -78,7 +78,7 @@ namespace VetoPTApplication.AnimalManagement
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 310);
             confirmButton.Text = "Confirmer";
-            confirmButton.Click += (sender, eventArgs) => { db.InsertAnimal(name.Text, weight.Text, birth.Text); };
+            confirmButton.Click += (sender, eventArgs) => { db.InsertAnimal(name.Text, weight.Text, dtp.Text); };
             confirmButton.Click += new EventHandler(displayAnimals);
             addAnimalPanel.Controls.Add(confirmButton);
             // bouton annuler

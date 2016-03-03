@@ -54,28 +54,38 @@ namespace VetoPTApplication.AnimalManagement
             // liste des animaux
             Label animalsList = new Label();
             animalsList.Location = new Point(60, 80);
-            foreach (string animal in db.DisplayAnimals()){
+            animalsList.Size = new Size(75, 1000);
+            /*foreach (string animal in db.DisplayAnimals()){
                 animalsList.Text += animal;
                 animalsList.Text += "\n\n";
+            }*/
+            //string[] animals = { "1:Gerard:Bigard", "2:Bernard:Latour" };
+            foreach (string s in db.DisplayAnimals())
+            {
+                animalsList.Text += (s.Split(':')[1] + " " + s.Split(':')[2]);
             }
-                
-            //animalsList.Text = db.DisplayAnimals();
-            animalsList.Size = new Size(50, 1000);
             displayAnimalsPanel.Controls.Add(animalsList);
-            // bouton modifier animal
-            int y = 75;
+            // boutons pour chaque animal
+            int y = 75;     // ordonnee bouton
             for (int i = 0; i < db.DisplayAnimals().Count; i++)
             {
+                // bouton modifier animal
                 Button modAnimalButton = new Button();
-                modAnimalButton.Location = new Point(130, y);
+                modAnimalButton.Location = new Point(145, y);
                 modAnimalButton.Text = "Modifier animal";
                 modAnimalButton.Size = new Size(75, 20);
                 modAnimalButton.Click += new EventHandler(modifyAnimal);
                 displayAnimalsPanel.Controls.Add(modAnimalButton);
-                y += 30;
+                // bouton supprimer animal
+                Button delAnimalButton = new Button();
+                delAnimalButton.Location = new Point(230, y);
+                delAnimalButton.Text = "Supprimer animal";
+                delAnimalButton.Size = new Size(75, 20);
+                //delAnimalButton.Click += (sender, eventArgs) => { db.DeleteAnimal(id.Text); };
+                displayAnimalsPanel.Controls.Add(delAnimalButton);
+                y += 27;
             }
             
-
         }
 
         private void addAnimal(object sender, EventArgs e)
