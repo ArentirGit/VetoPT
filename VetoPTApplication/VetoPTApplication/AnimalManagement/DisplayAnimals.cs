@@ -55,14 +55,9 @@ namespace VetoPTApplication.AnimalManagement
             Label animalsList = new Label();
             animalsList.Location = new Point(60, 80);
             animalsList.Size = new Size(75, 1000);
-            /*foreach (string animal in db.DisplayAnimals()){
-                animalsList.Text += animal;
-                animalsList.Text += "\n\n";
-            }*/
-            //string[] animals = { "1:Gerard:Bigard", "2:Bernard:Latour" };
             foreach (string s in db.DisplayAnimals())
             {
-                animalsList.Text += (s.Split(':')[1] + " " + s.Split(':')[2]);
+                animalsList.Text += s.Split(':')[1] + "\n\n";
             }
             displayAnimalsPanel.Controls.Add(animalsList);
             // boutons pour chaque animal
@@ -81,7 +76,8 @@ namespace VetoPTApplication.AnimalManagement
                 delAnimalButton.Location = new Point(230, y);
                 delAnimalButton.Text = "Supprimer animal";
                 delAnimalButton.Size = new Size(75, 20);
-                //delAnimalButton.Click += (sender, eventArgs) => { db.DeleteAnimal(id.Text); };
+                string animal_id = s.Split(':')[0];
+                delAnimalButton.Click += (sender, eventArgs) => { db.DeleteAnimal(Int32.Parse(animal_id)); };
                 displayAnimalsPanel.Controls.Add(delAnimalButton);
                 y += 27;
             }
