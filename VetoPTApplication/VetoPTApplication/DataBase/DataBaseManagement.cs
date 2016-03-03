@@ -249,7 +249,16 @@ namespace VetoPTApplication.DataBase
 
         public void addClient(string name, string firstname, string city, string adress, string mail)
         {
-
+            string insert = "INSERT INTO Personne Values (?,?,?)";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(insert, dbCon);
+            cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
+            cmd.Parameters.Add("Prénom", OleDbType.VarChar).Value = firstname;
+            cmd.Parameters.Add("Ville", OleDbType.VarChar).Value = city;
+            cmd.Parameters.Add("Adresse", OleDbType.VarChar).Value = adress;
+            cmd.Parameters.Add("Mail", OleDbType.VarChar).Value = mail;
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
         }
 
         public void modifyClient(string name, string firstname, string city, string adress, string mail)

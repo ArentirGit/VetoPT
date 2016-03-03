@@ -11,6 +11,7 @@ namespace VetoPTApplication.ClientManagement
     class AddClient
     {
         private Panel addClientPanel;
+        DataBase.DataBaseManagement db;
 
         Label title;
 
@@ -31,7 +32,7 @@ namespace VetoPTApplication.ClientManagement
 
         public void Init()
         {
-            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             addClientPanel.Controls.Clear();
             // titre
@@ -89,7 +90,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Confirmer");
+            db.addClient(name.Text, firstName.Text, city.Text, adress.Text, mail.Text);
         }
 
         private void cancel_Click(object sender, EventArgs e)
