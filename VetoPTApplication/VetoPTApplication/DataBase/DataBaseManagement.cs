@@ -87,6 +87,7 @@ namespace VetoPTApplication.DataBase
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(delete, dbCon);
             cmd.Parameters.Add("id", OleDbType.Integer).Value = code;
+            cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 

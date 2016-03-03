@@ -55,12 +55,30 @@ namespace VetoPTApplication.AnimalManagement
             Label animalsList = new Label();
             animalsList.Location = new Point(60, 80);
             animalsList.Size = new Size(75, 1000);
+            int y = 75;     // ordonnee boutons pour chaque animal
             foreach (string s in db.DisplayAnimals())
             {
                 animalsList.Text += s.Split(':')[1] + "\n\n";
+                // bouton modifier animal
+                Button modAnimalButton = new Button();
+                modAnimalButton.Location = new Point(145, y);
+                modAnimalButton.Text = "Modifier animal";
+                modAnimalButton.Size = new Size(75, 20);
+                modAnimalButton.Click += new EventHandler(modifyAnimal);
+                displayAnimalsPanel.Controls.Add(modAnimalButton);
+                // bouton supprimer animal
+                Button delAnimalButton = new Button();
+                delAnimalButton.Location = new Point(230, y);
+                delAnimalButton.Text = "Supprimer animal"; 
+                delAnimalButton.Size = new Size(75, 20);
+                int animal_id = Int32.Parse(s.Split(':')[0]);
+                delAnimalButton.Click += (sender, eventArgs) => { db.DeleteAnimal(animal_id); };
+                displayAnimalsPanel.Controls.Add(delAnimalButton);
+                y += 27;
             }
             displayAnimalsPanel.Controls.Add(animalsList);
             // boutons pour chaque animal
+            /*
             int y = 75;     // ordonnee bouton
             for (int i = 0; i < db.DisplayAnimals().Count; i++)
             {
@@ -81,6 +99,7 @@ namespace VetoPTApplication.AnimalManagement
                 displayAnimalsPanel.Controls.Add(delAnimalButton);
                 y += 27;
             }
+             * */
             
         }
 
