@@ -240,7 +240,6 @@ namespace VetoPTApplication.DataBase
         }
 
         //ClientManagement
-
         public void addClient(string name, string firstname, string city, string adress, string mail)
         {
             string insert = "INSERT INTO Personne Values (?,?,?,?,?)";
@@ -255,19 +254,41 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public void modifyClient(string name, string firstname, string city, string adress, string mail)
+        public void modifyClient(int code, string city, string adress, string mail)
         {
-
+            string update = "UPDATE Personne SET ville= ? and adresse= ? and mail= ? WHERE Code_Personne = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(update, dbCon);
+            cmd.Parameters.Add("Ville", OleDbType.VarChar).Value = city;
+            cmd.Parameters.Add("Adresse", OleDbType.VarChar).Value = adress;
+            cmd.Parameters.Add("Mail", OleDbType.VarChar).Value = mail;
+            cmd.Parameters.Add("Code", OleDbType.Integer).Value = code;
+            dbCon.Close();
         }
 
-        public void deleteClient()
+        public void deleteClient(int code)
         {
-
+            string delete = "DELETE FROM Personne WHERE id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(delete, dbCon);
+            cmd.Parameters.Add("Code client", OleDbType.Integer).Value = code;
+            dbCon.Close();
         }
 
-        public void displayClients()
+        public List<string> DisplayClients()
         {
-
+            string display = "SELECT nom,prenom from Personne";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> clients = new List<string>();
+            while (reader.Read())
+            {
+                clients.Add(reader.GetInt32(0) + ":" + reader.GetString(1));
+            }
+            reader.Close();
+            dbCon.Close();
+            return clients;
         }
 
         public void addAppointement()

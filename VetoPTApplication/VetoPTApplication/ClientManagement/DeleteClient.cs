@@ -11,13 +11,13 @@ namespace VetoPTApplication.ClientManagement
     class DeleteClient
     {
         private Panel deleteClientPanel;
+        DataBase.DataBaseManagement db;
 
         Label title;
 
-        TextBox name;
-        TextBox firstName;
-        TextBox adress;
-        TextBox mail;
+        ComboBox client;
+        Label adress;
+        Label mail;
 
         Button confirmButton;
         Button cancelButton;
@@ -29,7 +29,7 @@ namespace VetoPTApplication.ClientManagement
 
         public void Init()
         {
-            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             deleteClientPanel.Controls.Clear();
             // titre
@@ -39,26 +39,21 @@ namespace VetoPTApplication.ClientManagement
             title.Location = new Point(170, 20);
             title.Text = "Supprimer un client";
             deleteClientPanel.Controls.Add(title);
-            // nom 
-            name = new TextBox();
-            name.Size = new Size(100, 30);
-            name.Location = new Point(230, 100);
-            name.Text = "Nom";
-            deleteClientPanel.Controls.Add(name);
-            // prénom 
-            firstName = new TextBox();
-            firstName.Size = new Size(100, 30);
-            firstName.Location = new Point(230, 130);
-            firstName.Text = "Prénom";
-            deleteClientPanel.Controls.Add(firstName);
+            // client 
+            client = new ComboBox();
+            client.Size = new Size(100, 30);
+            client.Location = new Point(230, 100);
+            client.Text = "Nom Client";
+            client.SelectedIndexChanged += new EventHandler(client_SelectedIndexChanged);
+            deleteClientPanel.Controls.Add(client);
             // adresse
-            adress = new TextBox();
+            adress = new Label();
             adress.Size = new Size(100, 30);
             adress.Location = new Point(230, 160);
             adress.Text = "Adresse";
             deleteClientPanel.Controls.Add(adress);
             // mail
-            mail = new TextBox();
+            mail = new Label();
             mail.Size = new Size(100, 30);
             mail.Location = new Point(230, 190);
             mail.Text = "Mail";
@@ -78,6 +73,20 @@ namespace VetoPTApplication.ClientManagement
             deleteClientPanel.Controls.Add(cancelButton);
             cancelButton.Click += new EventHandler(cancel_Click);
         }
+        private void completeClient()
+        {
+            //string[] clients = new string[] { "1:Gerard:Bigard", "2:Bernard:Latour" };
+            //clients = db.AllClient();
+            foreach(string s in db.DisplayClients())
+            {
+                client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+            }
+
+        }
+        private void client_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         private void confirm_Click(object sender, EventArgs e)
         {
@@ -91,8 +100,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void clear()
         {
-            name.Text = "Nom";
-            firstName.Text = "Prénom";
+            client.Text = "Nom Client";
             adress.Text = "Adresse";
             mail.Text = "Mail";
         }

@@ -91,6 +91,7 @@ namespace VetoPTApplication.ClientManagement
         private void confirm_Click(object sender, EventArgs e)
         {
             db.addClient(name.Text, firstName.Text, city.Text, adress.Text, mail.Text);
+            clear();
         }
 
         private void cancel_Click(object sender, EventArgs e)
