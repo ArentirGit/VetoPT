@@ -245,5 +245,47 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
+        //ClientManagement
+
+        public void addClient(string name, string firstname, string city, string adress, string mail)
+        {
+
+        }
+
+        public void modifyClient(string name, string firstname, string city, string adress, string mail)
+        {
+
+        }
+
+        public void deleteClient()
+        {
+
+        }
+
+        public void displayClients()
+        {
+
+        }
+
+        public void addAppointement()
+        {
+
+        }
+
+        public void modifyAppointement()
+        {
+
+        }
+
+        public void cancelAppointement()
+        {
+
+        }
+
+        public void displayAppointements()
+        {
+
+        }
+
     }
 }

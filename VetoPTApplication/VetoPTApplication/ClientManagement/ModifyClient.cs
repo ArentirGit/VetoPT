@@ -16,6 +16,7 @@ namespace VetoPTApplication.ClientManagement
 
         TextBox name;
         TextBox firstName;
+        TextBox city;
         TextBox adress;
         TextBox mail;
 
@@ -30,6 +31,7 @@ namespace VetoPTApplication.ClientManagement
 
         public void Init()
         {
+            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             modifyClientPanel.Controls.Clear();
             // titre
@@ -51,16 +53,22 @@ namespace VetoPTApplication.ClientManagement
             firstName.Location = new Point(230, 130);
             firstName.Text = "Prénom";
             modifyClientPanel.Controls.Add(firstName);
+            // city
+            city = new TextBox();
+            city.Size = new Size(100, 30);
+            city.Location = new Point(230, 160);
+            city.Text = "Ville";
+            modifyClientPanel.Controls.Add(city);
             // adresse
             adress = new TextBox();
             adress.Size = new Size(100, 30);
-            adress.Location = new Point(230, 160);
+            adress.Location = new Point(230, 190);
             adress.Text = "Adresse";
             modifyClientPanel.Controls.Add(adress);
             // mail
             mail = new TextBox();
             mail.Size = new Size(100, 30);
-            mail.Location = new Point(230, 190);
+            mail.Location = new Point(230, 220);
             mail.Text = "Mail";
             modifyClientPanel.Controls.Add(mail);                      
             // bouton confirmer
@@ -93,6 +101,7 @@ namespace VetoPTApplication.ClientManagement
         {
             name.Text = "Nom";
             firstName.Text = "Prénom";
+            city.Text = "Ville";
             adress.Text = "Adresse";
             mail.Text = "Mail";
         }

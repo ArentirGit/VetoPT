@@ -25,7 +25,8 @@ namespace VetoPTApplication.ClientManagement
 
         public void Init()
         {
-         // suppression de tout les objets du panel
+            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+            // suppression de tout les objets du panel
             displayClientsPanel.Controls.Clear();
             // titre
             title= new Label();

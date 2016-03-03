@@ -31,6 +31,7 @@ namespace VetoPTApplication.ClientManagement
 
         public void Init()
         {
+            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             ModifyAppointementPanel.Controls.Clear();
             // titre
