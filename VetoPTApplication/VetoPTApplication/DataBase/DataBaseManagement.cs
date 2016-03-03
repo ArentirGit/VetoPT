@@ -72,12 +72,14 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public void UpdateAnimal(int weight,int code){
-            string update = "UPDATE Animal SET Poids_Animal = ? WHERE Code_Animal = ?";
+        public void UpdateAnimal(string name, string weight, int id){
+            string update = "UPDATE Animal SET nom = ? ,poids = ?  WHERE id = ?";
             dbCon.Open();            
             OleDbCommand cmd = new OleDbCommand(update, dbCon);
-            cmd.Parameters.Add("Nom", OleDbType.Integer).Value = weight;
-            cmd.Parameters.Add("Code", OleDbType.Integer).Value = code;
+            cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
+            cmd.Parameters.Add("Poids", OleDbType.VarChar).Value = weight;
+            cmd.Parameters.Add("Code", OleDbType.Integer).Value = id;
+            cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
@@ -123,73 +125,26 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public void insertAnimalv2(string name, int weight, string owner, string birth_date, string specy, string breed)
+        public void insertReminder(string date, string intitule)
         {
-            string insert = "INSERT INTO Animal Values (?,?,?);"
-                          + "INSERT INTO Race Values (?) "
-                           + "JOIN Race on Animal.id = Race.id;"
-                          + "INSERT INTO Personne Values (?) "
-                           + "JOIN Personne on Personne.id = Animal.id;"
-                          + "INSERT INTO Espece Values (?) "
-                           + "JOIN Race on Race.id = Espece.id;";
-                           
+            string insert = "INSERT INTO Rappel Values (1,?,?)";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
-            cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
-            cmd.Parameters.Add("Poids", OleDbType.Integer).Value = weight;
-            cmd.Parameters.Add("Date de naissance", OleDbType.VarChar).Value = birth_date;
-            cmd.Parameters.Add("Race", OleDbType.VarChar).Value = breed;
-            cmd.Parameters.Add("Proprietaire", OleDbType.VarChar).Value = owner;
-            cmd.Parameters.Add("Espece", OleDbType.VarChar).Value = specy;
-            cmd.ExecuteNonQuery();
-            dbCon.Close();
-        }
-
-        public void updateAnimalv2(int weight, int code)
-        {
-            string update = "UPDATE Animal SET Poids_Animal = ? WHERE Code_Animal = ?";
-            dbCon.Open();
-            OleDbCommand cmd = new OleDbCommand(update, dbCon);
-            cmd.Parameters.Add("Nom", OleDbType.Integer).Value = weight;
-            cmd.Parameters.Add("Code", OleDbType.Integer).Value = code;
-            dbCon.Close();
-        }
-
-        public void displayReminders()
-        {
-            string display = "SELECT * FROM Rappel "
-                            + "JOIN Traitement on Traitement.id = Rappel.id "
-                            + "JOIN Animal on Animal.id = Traitement.id "
-                            + "JOIN Personne on Personne.id = Animal.id";
-            dbCon.Open();
-            OleDbCommand cmd = new OleDbCommand(display, dbCon);
-            dbCon.Close();
-        }
-
-        public void insertReminder(string date, string intitule, string code_animal)
-        {
-            string insert = "INSERT INTO Rappel Values (?,?)"
-                            + "JOIN Traitement on Traitement.id = Rappel.id "
-                            + "JOIN Animal on Traitement.id = Animal.id "
-                            + "WHERE Animal.id = ?";
-            dbCon.Open();
-            OleDbCommand cmd = new OleDbCommand(insert, dbCon);
-            cmd.Parameters.Add("Date Rappel", OleDbType.VarChar).Value = date;
+            cmd.Parameters.Add("Date", OleDbType.VarChar).Value = date;
             cmd.Parameters.Add("Intitule", OleDbType.VarChar).Value = intitule;
-            cmd.Parameters.Add("Code Animal", OleDbType.VarChar).Value = code_animal;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
         public void updateReminder(int code_reminder, string date, string intitule)
         {
-            string update = "UPDATE Reminder SET date = ? and Intitule = ? "
-                            + "WHERE id = ?";
+            string update = "UPDATE Rappel SET date = ?, intitule = ? WHERE id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(update, dbCon);
-            cmd.Parameters.Add("Code Rappel", OleDbType.Integer).Value = code_reminder;
             cmd.Parameters.Add("Date", OleDbType.VarChar).Value = date;
             cmd.Parameters.Add("Intitule", OleDbType.VarChar).Value = intitule;
+            cmd.Parameters.Add("id", OleDbType.Integer).Value = code_reminder;
+            cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
@@ -198,7 +153,8 @@ namespace VetoPTApplication.DataBase
             string delete = "DELETE FROM Rappel WHERE id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(delete, dbCon);
-            cmd.Parameters.Add("Code Rappel", OleDbType.Integer).Value = code_reminder;
+            cmd.Parameters.Add("id", OleDbType.Integer).Value = code_reminder;
+            cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
@@ -212,24 +168,6 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public string[] displaySpecies()
-        {
-            string display = "SELECT intitule FROM Espece";
-            dbCon.Open();
-            OleDbCommand cmd = new OleDbCommand(display, dbCon);
-            OleDbDataReader reader = cmd.ExecuteReader();
-            string[] species = new string[20];
-            int i = 0;
-            while (reader.Read())
-            {
-                species[i] = reader.GetString(0);
-                i++;
-            }
-            reader.Close();
-            dbCon.Close();
-            return species;
-        }
-
         public void insertBreed(string breed_name)
         {
             string insert = "INSERT INTO Race Values (?)";
@@ -238,6 +176,82 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("Nom Race", OleDbType.VarChar).Value = breed_name;
             cmd.ExecuteNonQuery();
             dbCon.Close();
+        }
+
+        public List<string> getAnimals()
+        {
+            string get = "SELECT nom FROM Animal";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(get, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> animals = new List<string>();
+            while (reader.Read())
+            {
+                animals.Add(reader.GetString(0));
+            }
+            reader.Close();
+            dbCon.Close();
+            return animals;
+        }
+
+        public List<string> getSpecies()
+        {
+            string get = "SELECT intitule FROM Espece";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(get, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> species = new List<string>();
+            while (reader.Read()){
+                species.Add(reader.GetString(0));
+            }
+            reader.Close();
+            dbCon.Close();
+            return species;
+        }
+
+        public List<string> getBreeds()
+        {
+            string get = "SELECT intitule FROM Race";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(get, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> breeds = new List<string>();
+            while (reader.Read()){
+                breeds.Add(reader.GetString(0));
+            }
+            reader.Close();
+            dbCon.Close();
+            return breeds;
+        }
+
+        public List<string> getPeople()
+        {
+            string get = "SELECT nom,prenom FROM Personne";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(get, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> people = new List<string>();
+            while (reader.Read()){
+                people.Add(reader.GetString(0) + ":" + reader.GetString(1));
+            }
+            reader.Close();
+            dbCon.Close();
+            return people;
+        }
+
+        public List<string> getReminders()
+        {
+            string get = "SELECT * FROM Rappel";   
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(get, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> reminders = new List<string>();
+            while (reader.Read()){
+                reminders.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetString(2));
+            }
+            reader.Close();
+            dbCon.Close();
+            return reminders;
         }
 
         //ClientManagement

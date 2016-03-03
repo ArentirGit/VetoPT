@@ -52,6 +52,7 @@
     <Compile Include="AnimalManagement\DisplayReminders.cs" />
     <Compile Include="AnimalManagement\HomePage.cs" />
     <Compile Include="AnimalManagement\ModifyAnimal.cs" />
+    <Compile Include="AnimalManagement\ModifyReminder.cs" />
     <Compile Include="CareManagement\AddTreatment.cs" />
     <Compile Include="CareManagement\DetailsTreatments.cs" />
     <Compile Include="CareManagement\DisplayFolder.cs" />

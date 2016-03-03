@@ -12,16 +12,19 @@ namespace VetoPTApplication.AnimalManagement
     class ModifyAnimal
     {
         private Panel modifyAnimalPanel;
+        private int animal_id;
+        DataBase.DataBaseManagement db;
 
-        public ModifyAnimal(Panel modifyAnimalPanel)
+        public ModifyAnimal(Panel modifyAnimalPanel, int animal_id)
         {
             this.modifyAnimalPanel = modifyAnimalPanel;
+            this.animal_id = animal_id;
             Init();
         }
 
         public void Init()
         {
-            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             modifyAnimalPanel.Controls.Clear();
             // titre
@@ -48,23 +51,25 @@ namespace VetoPTApplication.AnimalManagement
             owner.Size = new Size(100, 30);
             owner.Location = new Point(230, 160);
             owner.Text = "Propriétaire";
+            List<string> people = db.getPeople();
+            foreach(string p in people){
+                owner.Items.Add(p.Split(':')[0] + " " + p.Split(':')[1]);
+            }
             modifyAnimalPanel.Controls.Add(owner);
             // date de naissance
-            TextBox birth = new TextBox();
-            birth.Size = new Size(100, 30);
-            birth.Location = new Point(230, 190);
-            birth.Text = "Date de naissance";
-            modifyAnimalPanel.Controls.Add(birth);
+            DateTimePicker date = new DateTimePicker();
+            date.Format = DateTimePickerFormat.Short;
+            date.Size = new Size(100, 30);
+            date.Location = new Point(230, 190);
+            modifyAnimalPanel.Controls.Add(date);
             // espece
             ComboBox specy = new ComboBox();
             specy.Size = new Size(100, 30);
             specy.Location = new Point(230, 220);
             specy.Text = "Espece";
-            string[] species = db.displaySpecies();
-            for (int i = 0; i < species.Length; i++)
-            {
-                if (species[i] != null)
-                    specy.Items.Add(species[i]);
+            List<string> species = db.getSpecies();
+            foreach (string s in species){
+                specy.Items.Add(s);
             }
             modifyAnimalPanel.Controls.Add(specy);
             // race
@@ -72,13 +77,17 @@ namespace VetoPTApplication.AnimalManagement
             breed.Size = new Size(100, 30);
             breed.Location = new Point(230, 250);
             breed.Text = "Race";
+            List<string> breeds = db.getBreeds();
+            foreach (string b in breeds){
+                breed.Items.Add(b);
+            }
             modifyAnimalPanel.Controls.Add(breed);
             // bouton confirmer
             Button confirmButton = new Button();
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 310);
             confirmButton.Text = "Confirmer";
-            confirmButton.Click += (sender, eventArgs) => { db.InsertAnimal(name.Text, weight.Text, birth.Text); };
+            confirmButton.Click += (sender, eventArgs) => { db.UpdateAnimal(name.Text, weight.Text, this.animal_id); };
             confirmButton.Click += new EventHandler(displayAnimals);
             modifyAnimalPanel.Controls.Add(confirmButton);
             // bouton retour
@@ -88,6 +97,20 @@ namespace VetoPTApplication.AnimalManagement
             backButton.Text = "Retour";
             backButton.Click += new EventHandler(displayAnimals);
             modifyAnimalPanel.Controls.Add(backButton);
+            /*
+            // bouton proprietaire
+            Button ownerButton = new Button();
+            ownerButton.Size = new Size(100, 30);
+            ownerButton.Location = new Point(470, 310);
+            ownerButton.Text = "Propriétaire";
+            modifyAnimalPanel.Controls.Add(ownerButton);
+            // bouton soins
+            Button careButton = new Button();
+            careButton.Size = new Size(100, 30);
+            careButton.Location = new Point(580, 310);
+            careButton.Text = "Soins";
+            modifyAnimalPanel.Controls.Add(careButton);
+            */
         }
 
         private void displayAnimals(object sender, EventArgs e)

@@ -8,14 +8,16 @@ using System.Windows.Forms;
 
 namespace VetoPTApplication.AnimalManagement
 {
-    class AddReminder
+    class ModifyReminder
     {
         private Panel addReminderPanel;
+        private int reminder_id;
         DataBase.DataBaseManagement db;
 
-        public AddReminder(Panel addReminderPanel)
+        public ModifyReminder(Panel addReminderPanel, int reminder_id)
         {
             this.addReminderPanel = addReminderPanel;
+            this.reminder_id = reminder_id;
             Init();
         }
 
@@ -29,7 +31,7 @@ namespace VetoPTApplication.AnimalManagement
             title.Size = new Size(500, 30);
             title.Font = new Font("Arial", 20);
             title.Location = new Point(170, 20);
-            title.Text = "Ajouter un rappel";
+            title.Text = "Modifier un rappel";
             addReminderPanel.Controls.Add(title);
             // intitule
             TextBox name = new TextBox();
@@ -58,7 +60,7 @@ namespace VetoPTApplication.AnimalManagement
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 350);
             confirmButton.Text = "Confirmer";
-            confirmButton.Click += (sender, eventArgs) => { db.insertReminder(date.Text, name.Text); };
+            confirmButton.Click += (sender, eventArgs) => { db.updateReminder(this.reminder_id, date.Text, name.Text); };
             confirmButton.Click += new EventHandler(displayReminders);
             addReminderPanel.Controls.Add(confirmButton);
             // bouton annuler
@@ -66,13 +68,8 @@ namespace VetoPTApplication.AnimalManagement
             cancelButton.Size = new Size(100, 30);
             cancelButton.Location = new Point(310, 350);
             cancelButton.Text = "Annuler";
-            cancelButton.Click += new EventHandler(homePage);
+            cancelButton.Click += new EventHandler(displayReminders);
             addReminderPanel.Controls.Add(cancelButton);
-        }
-
-        private void homePage(object sender, EventArgs e)
-        {
-            new HomePage(addReminderPanel);
         }
 
         private void displayReminders(object sender, EventArgs e)

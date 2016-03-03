@@ -11,7 +11,7 @@ namespace VetoPTApplication.AnimalManagement
     class DisplayAnimals
     {
         private Panel displayAnimalsPanel;
-        private DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+        private DataBase.DataBaseManagement db;
 
         public DisplayAnimals(Panel displayAnimalsPanel)
         {
@@ -21,6 +21,7 @@ namespace VetoPTApplication.AnimalManagement
 
         public void Init()
         {
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             displayAnimalsPanel.Controls.Clear();
             // titre
@@ -59,19 +60,19 @@ namespace VetoPTApplication.AnimalManagement
             foreach (string s in db.DisplayAnimals())
             {
                 animalsList.Text += s.Split(':')[1] + "\n\n";
+                int animal_id = Int32.Parse(s.Split(':')[0]);
                 // bouton modifier animal
                 Button modAnimalButton = new Button();
                 modAnimalButton.Location = new Point(145, y);
                 modAnimalButton.Text = "Modifier animal";
                 modAnimalButton.Size = new Size(75, 20);
-                modAnimalButton.Click += new EventHandler(modifyAnimal);
+                modAnimalButton.Click += (sender, eventArgs) => modifyAnimal(sender, eventArgs, animal_id);
                 displayAnimalsPanel.Controls.Add(modAnimalButton);
                 // bouton supprimer animal
                 Button delAnimalButton = new Button();
                 delAnimalButton.Location = new Point(230, y);
                 delAnimalButton.Text = "Supprimer animal"; 
-                delAnimalButton.Size = new Size(75, 20);
-                int animal_id = Int32.Parse(s.Split(':')[0]);
+                delAnimalButton.Size = new Size(75, 20);         
                 delAnimalButton.Click += (sender, eventArgs) => { db.DeleteAnimal(animal_id); };
                 delAnimalButton.Click += new EventHandler(refreshAnimals);
                 displayAnimalsPanel.Controls.Add(delAnimalButton);
@@ -95,9 +96,9 @@ namespace VetoPTApplication.AnimalManagement
             new AddAnimal(displayAnimalsPanel);
         }
 
-        private void modifyAnimal(object sender, EventArgs e)
+        private void modifyAnimal(object sender, EventArgs e, int id)
         {
-            new ModifyAnimal(displayAnimalsPanel);
+            new ModifyAnimal(displayAnimalsPanel, id);
         }
 
         private void displayReminders(object sender, EventArgs e)
