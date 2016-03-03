@@ -21,6 +21,8 @@ namespace VetoPTApplication.ClientManagement
 
         Button confirmButton;
         Button cancelButton;
+
+        List<string> clients;
         public DeleteClient(Panel deleteClientPanel)
         {
             this.deleteClientPanel = deleteClientPanel;
@@ -72,12 +74,13 @@ namespace VetoPTApplication.ClientManagement
             cancelButton.Text = "Annuler";
             deleteClientPanel.Controls.Add(cancelButton);
             cancelButton.Click += new EventHandler(cancel_Click);
+
+            completeClient();
         }
         private void completeClient()
         {
-            //string[] clients = new string[] { "1:Gerard:Bigard", "2:Bernard:Latour" };
-            //clients = db.AllClient();
-            foreach(string s in db.DisplayClients())
+            clients = db.DisplayClients();
+            foreach(string s in clients)
             {
                 client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
             }
@@ -85,7 +88,7 @@ namespace VetoPTApplication.ClientManagement
         }
         private void client_SelectedIndexChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show(clients[client.SelectedIndex]);
         }
 
         private void confirm_Click(object sender, EventArgs e)
