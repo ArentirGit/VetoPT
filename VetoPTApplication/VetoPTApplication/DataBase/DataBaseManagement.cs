@@ -46,7 +46,7 @@ namespace VetoPTApplication.DataBase
             #endregion
         }
 
-        public string DisplayAnimals()
+        public List<string> DisplayAnimals()
         {
             //string display = "SELECT nom,intitule FROM Animal "
             //                + "JOIN Espece on Animal.id = Espece.id";
@@ -54,12 +54,13 @@ namespace VetoPTApplication.DataBase
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
-            string animals = "";
+            List<string> animals = nex List<string>();
+            //string[] animals = new string[50];
             while (reader.Read())
             {
                 //animals += reader.GetString(0) + "    ";
                 //animals += reader.GetString(1) + "\n";
-                animals += reader.GetString(0) + "\n\n";
+                animals.Add(reader.GetString(0));
             }
             reader.Close();
             dbCon.Close();
