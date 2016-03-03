@@ -250,14 +250,14 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("Prénom", OleDbType.VarChar).Value = firstname;
             cmd.Parameters.Add("Ville", OleDbType.VarChar).Value = city;
             cmd.Parameters.Add("Adresse", OleDbType.VarChar).Value = adress;
-            cmd.Parameters.Add("Mail", OleDbType.VarChar).Value = mail;
+            cmd.Parameters.Add("Email", OleDbType.VarChar).Value = mail;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
         public void modifyClient(int code, string city, string adress, string mail)
         {
-            string update = "UPDATE Personne SET ville= ? and adresse= ? and mail= ? WHERE Code_Personne = ?";
+            string update = "UPDATE Personne SET ville= ? and adresse= ? and email= ? WHERE Code_Personne = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(update, dbCon);
             cmd.Parameters.Add("Ville", OleDbType.VarChar).Value = city;
@@ -278,14 +278,14 @@ namespace VetoPTApplication.DataBase
 
         public List<string> DisplayClients()
         {
-            string display = "SELECT nom,prenom from Personne";
+            string display = "SELECT id,nom,prenom,ville,adresse,email from Personne";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> clients = new List<string>();
             while (reader.Read())
             {
-                clients.Add(reader.GetInt32(0) + ":" + reader.GetString(1));
+                clients.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetString(2) + ":" + reader.GetString(3) + ":" + reader.GetString(4) + ":" + reader.GetString(5));
             }
             reader.Close();
             dbCon.Close();

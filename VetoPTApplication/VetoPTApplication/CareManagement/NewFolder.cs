@@ -24,7 +24,7 @@ namespace VetoPTApplication.CareManagement
         private RichTextBox note;
         private DateTimePicker dateCourante;
 
-        private string[] clients;
+        private List<string> clients;
         
 
         public NewFolder(Panel panel)
@@ -99,8 +99,8 @@ namespace VetoPTApplication.CareManagement
 
         private void completeClient()
         {
-            clients = new string[] {"1:Gerard:Bigard","2:Bernard:Latour"};
-            //clients = db.AllClient();
+            clients = new List<string>();
+            clients = db.DisplayClients();
             foreach (string s in clients)
             {
                 nameClient.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
