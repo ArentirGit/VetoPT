@@ -11,17 +11,21 @@ namespace VetoPTApplication.ClientManagement
     class ModifyClient
     {
         private Panel modifyClientPanel;
+        private int clientId;
 
         Label title;
 
-        TextBox name;
-        TextBox firstName;
+        ComboBox client;
         TextBox city;
         TextBox adress;
         TextBox mail;
 
         Button confirmButton;
         Button cancelButton;
+
+        List<string> clients;
+
+        DataBase.DataBaseManagement db;
 
         public ModifyClient(Panel modifyClientPanel)
         {
@@ -31,7 +35,7 @@ namespace VetoPTApplication.ClientManagement
 
         public void Init()
         {
-            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             modifyClientPanel.Controls.Clear();
             // titre
@@ -41,18 +45,13 @@ namespace VetoPTApplication.ClientManagement
             title.Location = new Point(170, 20);
             title.Text = "Modifier un client";
             modifyClientPanel.Controls.Add(title);
-            // nom 
-            name = new TextBox();
-            name.Size = new Size(100, 30);
-            name.Location = new Point(230, 100);
-            name.Text = "Nom";
-            modifyClientPanel.Controls.Add(name);
-            // prénom 
-            firstName = new TextBox();
-            firstName.Size = new Size(100, 30);
-            firstName.Location = new Point(230, 130);
-            firstName.Text = "Prénom";
-            modifyClientPanel.Controls.Add(firstName);
+            // client 
+            client = new ComboBox();
+            client.Size = new Size(100, 30);
+            client.Location = new Point(230, 100);
+            client.Text = "Nom Client";
+            client.SelectedIndexChanged += new EventHandler(client_SelectedIndexChanged);
+            modifyClientPanel.Controls.Add(client);     
             // city
             city = new TextBox();
             city.Size = new Size(100, 30);
@@ -85,11 +84,30 @@ namespace VetoPTApplication.ClientManagement
             cancelButton.Text = "Annuler";
             modifyClientPanel.Controls.Add(cancelButton);
             cancelButton.Click += new EventHandler(cancel_Click);
+
+            completeClient();
+        }
+
+        private void completeClient()
+        {
+            clients = db.DisplayClients();
+            foreach (string s in clients)
+            {
+                client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+            }
+
+        }
+        private void client_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show(clients[client.SelectedIndex]);
+            adress.Text = clients[client.SelectedIndex].Split(':')[4];
+            mail.Text = clients[client.SelectedIndex].Split(':')[5];
         }
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Confirmer");
+            db.modifyClient(Int32.Parse(clients[client.SelectedIndex].Split(':')[0]),city.Text,adress.Text,mail.Text);
+            clear();
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -99,8 +117,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void clear()
         {
-            name.Text = "Nom";
-            firstName.Text = "Prénom";
+            client.Text = "Nom Client";
             city.Text = "Ville";
             adress.Text = "Adresse";
             mail.Text = "Mail";

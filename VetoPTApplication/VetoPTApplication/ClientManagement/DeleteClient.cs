@@ -88,12 +88,15 @@ namespace VetoPTApplication.ClientManagement
         }
         private void client_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(clients[client.SelectedIndex].Split(':')[0]);
+            MessageBox.Show(clients[client.SelectedIndex]);
+            adress.Text = clients[client.SelectedIndex].Split(':')[4];
+            mail.Text = clients[client.SelectedIndex].Split(':')[5];
         }
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Confirmer");
+            db.deleteClient(Int32.Parse(clients[client.SelectedIndex].Split(':')[0]));
+            clear();
         }
 
         private void cancel_Click(object sender, EventArgs e)

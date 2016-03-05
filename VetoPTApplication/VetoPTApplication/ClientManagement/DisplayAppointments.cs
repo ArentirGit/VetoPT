@@ -43,13 +43,15 @@ namespace VetoPTApplication.ClientManagement
             name = new ComboBox();
             name.Size = new Size(150, 30);
             name.Location = new Point(205, 100);
-            name.Text = "Nom";    
+            name.Text = "Nom";
+            name.SelectedIndexChanged += new EventHandler(name_SelectedIndexChanged);
             DisplayAppointmentsPanel.Controls.Add(name);
             // animal
             animal = new ComboBox();
             animal.Size = new Size(150, 30);
             animal.Location = new Point(205, 130);
             animal.Text = "Animal";
+            animal.SelectedIndexChanged += new EventHandler(animal_SelectedIndexChanged);
             DisplayAppointmentsPanel.Controls.Add(animal);
             // Date
             calendar = new MonthCalendar();
@@ -75,6 +77,20 @@ namespace VetoPTApplication.ClientManagement
             cancelButton.Text = "Annuler";
             DisplayAppointmentsPanel.Controls.Add(cancelButton);
             cancelButton.Click += new EventHandler(cancel_Click);
+        }
+
+        private void animal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Animal");
+            //adress.Text = clients[client.SelectedIndex].Split(':')[4];
+            //mail.Text = clients[client.SelectedIndex].Split(':')[5];
+        }
+
+        private void name_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Nom");
+            //adress.Text = clients[client.SelectedIndex].Split(':')[4];
+            //mail.Text = clients[client.SelectedIndex].Split(':')[5];
         }
 
         private void cancel_Click(object sender, EventArgs e)
