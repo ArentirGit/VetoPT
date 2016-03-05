@@ -11,17 +11,21 @@ namespace VetoPTApplication.ClientManagement
     class AddAppointment
     {
          private Panel AddAppointementPanel;
-
+        DataBase.DataBaseManagement db;
          Label title;
 
-         ComboBox name;
+         ComboBox client;
          ComboBox animal;
          MonthCalendar calendar;
          TextBox reason;
 
          Button confirmButton;
          Button cancelButton;
-         public AddAppointment(Panel AddAppointementPanel)
+
+        List<string> clients;
+        List<string> animals;
+
+        public AddAppointment(Panel AddAppointementPanel)
         {
             this.AddAppointementPanel = AddAppointementPanel;
             Init();
@@ -29,7 +33,7 @@ namespace VetoPTApplication.ClientManagement
 
         public void Init()
         {
-            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             AddAppointementPanel.Controls.Clear();
             // titre
@@ -40,11 +44,12 @@ namespace VetoPTApplication.ClientManagement
             title.Text = "Ajouter rendez-vous";
             AddAppointementPanel.Controls.Add(title);
             // nom
-            name = new ComboBox();
-            name.Size = new Size(150, 30);
-            name.Location = new Point(205, 100);
-            name.Text = "Nom";    
-            AddAppointementPanel.Controls.Add(name);
+            client = new ComboBox();
+            client.Size = new Size(150, 30);
+            client.Location = new Point(205, 100);
+            client.Text = "Nom";
+            client.SelectedIndexChanged += new EventHandler(Name_SelectedIndexChanged);
+            AddAppointementPanel.Controls.Add(client);
             // animal
             animal = new ComboBox();
             animal.Size = new Size(150, 30);
@@ -75,11 +80,34 @@ namespace VetoPTApplication.ClientManagement
             cancelButton.Text = "Annuler";
             AddAppointementPanel.Controls.Add(cancelButton);
             cancelButton.Click += new EventHandler(cancel_Click);
+
+            completeClient();
+        }
+
+
+        private void completeClient()
+        {
+            clients = db.DisplayClients();
+            foreach (string s in clients)
+            {
+                client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+            }
+           
+        }
+
+        private void Name_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            animals = db.getAnimalsClient(client.SelectedIndex);
+            foreach (string s in clients)
+            {
+                animal.Items.Add(s.Split(':')[1]);
+            }
         }
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Confirmer");
+            db.addAppointement(calendar.SelectionStart.ToShortDateString(), reason.Text, client.SelectedIndex, Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
+            clear();
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -89,7 +117,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void clear()
         {
-            name.Text = "Nom";
+            client.Text = "Nom";
             animal.Text = "Animal";
             reason.Text = "Objet du rendez-vous";
            

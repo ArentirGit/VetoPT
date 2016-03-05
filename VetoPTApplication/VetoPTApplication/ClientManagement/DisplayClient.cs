@@ -90,7 +90,7 @@ namespace VetoPTApplication.ClientManagement
                 modifyClientButton.Location = new Point(145, y);
                 modifyClientButton.Text = "Modifier client";
                 modifyClientButton.Size = new Size(75, 20);
-                modifyClientButton.Click += new EventHandler(modifyClient_Click);
+                modifyClientButton.Click += (sender, eventArgs) => modifyClient_Click(sender, eventArgs, client_id);
                 displayClientsPanel.Controls.Add(modifyClientButton);
                 // bouton supprimer client
                 Button deleteClientButton = new Button();
@@ -111,20 +111,20 @@ namespace VetoPTApplication.ClientManagement
                 detailsClientButton.Location = new Point(380, y);
                 detailsClientButton.Text = "Détails client";
                 detailsClientButton.Size = new Size(75, 20);
-                detailsClientButton.Click += new EventHandler(detailsClient_Click);
+                detailsClientButton.Click += (sender, eventArgs) => detailsClient_Click(sender, eventArgs, client_id);
                 displayClientsPanel.Controls.Add(detailsClientButton);
                 y += 27;
             }
         }
 
-        private void detailsClient_Click(object sender, EventArgs e)
+        private void detailsClient_Click(object sender, EventArgs e, int code)
         {
-            MessageBox.Show("details clients");
+            new DetailsClient(displayClientsPanel,code);
         }
 
         private void displayAppointment_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("afficher rendez-vous");
+            new DisplayAppointments(displayClientsPanel);
         }
 
         private void deleteClient_Click(object sender, EventArgs e, int code)
@@ -134,9 +134,9 @@ namespace VetoPTApplication.ClientManagement
             Init();
         }
 
-        private void modifyClient_Click(object sender, EventArgs e)
+        private void modifyClient_Click(object sender, EventArgs e, int code)
         {
-            new ModifyClient(displayClientsPanel);
+            new ModifyClient(displayClientsPanel, code);
         }
     }
     

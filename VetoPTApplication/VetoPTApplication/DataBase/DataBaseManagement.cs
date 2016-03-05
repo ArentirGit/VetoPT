@@ -278,6 +278,7 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("Adresse", OleDbType.VarChar).Value = adress;
             cmd.Parameters.Add("Mail", OleDbType.VarChar).Value = mail;
             cmd.Parameters.Add("Code", OleDbType.Integer).Value = code;
+            cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
@@ -287,6 +288,7 @@ namespace VetoPTApplication.DataBase
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(delete, dbCon);
             cmd.Parameters.Add("Code client", OleDbType.Integer).Value = code;
+            cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
@@ -306,9 +308,49 @@ namespace VetoPTApplication.DataBase
             return clients;
         }
 
-        public void addAppointement()
+        public string detailsClient(int code)
         {
+            string details = "SELECT nom,prenom,ville,adresse,email from Personne where id=?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(details, dbCon);
+            cmd.Parameters.Add("Code client", OleDbType.Integer).Value = code;
+            cmd.ExecuteNonQuery();
+            OleDbDataReader reader = cmd.ExecuteReader();
+            string client = reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetString(2) + ":" + reader.GetString(3) + ":" + reader.GetString(4);
+            reader.Close();
+            dbCon.Close();
+            return client;
+        }
 
+        public void addAppointement(string date, string objet, int codeClient, int codeAnimal)
+        {
+            string insert = "INSERT INTO Rendez_Vous JOIN Animal ON Rendez_Vous.id = Animal.id JOIN Personne ON Personne.id = Animal.id Values (?,?) Where Personne.id=? and Animal.id =?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(insert, dbCon);
+            cmd.Parameters.Add("Date", OleDbType.VarChar).Value = date;
+            cmd.Parameters.Add("Objet", OleDbType.VarChar).Value = objet;
+            cmd.Parameters.Add("idClient", OleDbType.Integer).Value = codeClient;
+            cmd.Parameters.Add("idAnimal", OleDbType.Integer).Value = codeAnimal;
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
+        }
+
+        public List<string> getAnimalsClient(int codeClient)
+        {
+            string display = "SELECT * from Personne Join Animal.id = Personne.id Where Personne.id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            cmd.Parameters.Add("idClient", OleDbType.Integer).Value = codeClient;
+            cmd.ExecuteNonQuery();
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> animals = new List<string>();
+            while (reader.Read())
+            {
+                animals.Add(reader.GetInt32(0) + ":" + reader.GetString(1));
+            }
+            reader.Close();
+            dbCon.Close();
+            return animals;
         }
 
         public void modifyAppointement()

@@ -24,12 +24,14 @@ namespace VetoPTApplication.ClientManagement
         Button cancelButton;
 
         List<string> clients;
+        int? code;
 
         DataBase.DataBaseManagement db;
 
-        public ModifyClient(Panel modifyClientPanel)
+        public ModifyClient(Panel modifyClientPanel, int code)
         {
             this.modifyClientPanel = modifyClientPanel;
+            this.code = code;
             Init();
         }
 
@@ -90,12 +92,18 @@ namespace VetoPTApplication.ClientManagement
 
         private void completeClient()
         {
-            clients = db.DisplayClients();
-            foreach (string s in clients)
+            if(code == null)
             {
-                client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+                clients = db.DisplayClients();
+                foreach (string s in clients)
+                {
+                    client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+                }
             }
-
+            else
+            {
+                client.Items.Add(db.detailsClient(code.Value));
+            }
         }
         private void client_SelectedIndexChanged(object sender, EventArgs e)
         {

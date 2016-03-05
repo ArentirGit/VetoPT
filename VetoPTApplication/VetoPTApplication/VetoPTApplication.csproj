@@ -66,6 +66,7 @@
     <Compile Include="ClientManagement\AddClient.cs" />
     <Compile Include="ClientManagement\CancelAppointment.cs" />
     <Compile Include="ClientManagement\DeleteClient.cs" />
+    <Compile Include="ClientManagement\DetailsClient.cs" />
     <Compile Include="ClientManagement\DisplayAppointments.cs" />
     <Compile Include="ClientManagement\DisplayClient.cs" />
     <Compile Include="ClientManagement\HomePage.cs" />
