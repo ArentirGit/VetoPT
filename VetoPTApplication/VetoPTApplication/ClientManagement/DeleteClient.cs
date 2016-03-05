@@ -88,7 +88,7 @@ namespace VetoPTApplication.ClientManagement
         }
         private void client_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(clients[client.SelectedIndex]);
+            MessageBox.Show(clients[client.SelectedIndex].Split(':')[0]);
         }
 
         private void confirm_Click(object sender, EventArgs e)
