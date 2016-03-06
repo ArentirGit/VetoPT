@@ -28,7 +28,7 @@ namespace VetoPTApplication.ClientManagement
 
         DataBase.DataBaseManagement db;
 
-        public ModifyClient(Panel modifyClientPanel, int code)
+        public ModifyClient(Panel modifyClientPanel, int? code)
         {
             this.modifyClientPanel = modifyClientPanel;
             this.code = code;

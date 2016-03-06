@@ -74,6 +74,10 @@
     <Compile Include="ClientManagement\ModifyClient.cs" />
     <Compile Include="DataBase\Animal.cs" />
     <Compile Include="DataBase\DataBaseManagement.cs" />
+    <Compile Include="EmployeeManagement\AddLeavePeriod.cs" />
+    <Compile Include="EmployeeManagement\CreatePaySlip.cs" />
+    <Compile Include="EmployeeManagement\DisplayPaySlip.cs" />
+    <Compile Include="EmployeeManagement\HomePage.cs" />
     <Compile Include="Global.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,9 +124,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EmployeeManagement\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

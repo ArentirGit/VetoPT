@@ -128,7 +128,7 @@ namespace VetoPTApplication
 
         private void modifierClientToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ClientManagement.ModifyClient mc = new ClientManagement.ModifyClient(this.panel1);
+            ClientManagement.ModifyClient mc = new ClientManagement.ModifyClient(this.panel1,null);
         }
 
         private void supprimerClientToolStripMenuItem_Click(object sender, EventArgs e)
@@ -209,5 +209,25 @@ namespace VetoPTApplication
         }
 
 
+        //EmployeeManagement
+        private void gestionSalariésToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeManagement.HomePage hp = new EmployeeManagement.HomePage(this.panel1);
+        }
+
+        private void afficherFichesDePaieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeManagement.DisplayPaySlip dp = new EmployeeManagement.DisplayPaySlip(this.panel1);
+        }
+
+        private void créerFicheDePaieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeManagement.CreatePaySlip cp = new EmployeeManagement.CreatePaySlip(this.panel1);
+        }
+
+        private void ajouterPériodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeManagement.AddLeavePeriod al = new EmployeeManagement.AddLeavePeriod(this.panel1);
+        }
     }
 }

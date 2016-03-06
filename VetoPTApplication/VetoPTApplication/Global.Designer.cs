@@ -62,12 +62,15 @@
             this.supprimerProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierPrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.venteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.vendreProduitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherFactureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créerFactureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimerFactureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.afficherFichesDePaieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.créerFicheDePaieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterPériodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -355,20 +358,6 @@
             this.venteToolStripMenuItem.Text = "Vente";
             this.venteToolStripMenuItem.Click += new System.EventHandler(this.venteToolStripMenuItem_Click);
             // 
-            // gestionSalariésToolStripMenuItem
-            // 
-            this.gestionSalariésToolStripMenuItem.Name = "gestionSalariésToolStripMenuItem";
-            this.gestionSalariésToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
-            this.gestionSalariésToolStripMenuItem.Text = "Gestion salariés";
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(146, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(638, 462);
-            this.panel1.TabIndex = 2;
-            // 
             // vendreProduitToolStripMenuItem
             // 
             this.vendreProduitToolStripMenuItem.Name = "vendreProduitToolStripMenuItem";
@@ -396,6 +385,46 @@
             this.imprimerFactureToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.imprimerFactureToolStripMenuItem.Text = "Imprimer facture";
             this.imprimerFactureToolStripMenuItem.Click += new System.EventHandler(this.imprimerFactureToolStripMenuItem_Click);
+            // 
+            // gestionSalariésToolStripMenuItem
+            // 
+            this.gestionSalariésToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.afficherFichesDePaieToolStripMenuItem,
+            this.créerFicheDePaieToolStripMenuItem,
+            this.ajouterPériodeToolStripMenuItem});
+            this.gestionSalariésToolStripMenuItem.Name = "gestionSalariésToolStripMenuItem";
+            this.gestionSalariésToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
+            this.gestionSalariésToolStripMenuItem.Text = "Gestion salariés";
+            this.gestionSalariésToolStripMenuItem.Click += new System.EventHandler(this.gestionSalariésToolStripMenuItem_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(146, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(638, 462);
+            this.panel1.TabIndex = 2;
+            // 
+            // afficherFichesDePaieToolStripMenuItem
+            // 
+            this.afficherFichesDePaieToolStripMenuItem.Name = "afficherFichesDePaieToolStripMenuItem";
+            this.afficherFichesDePaieToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.afficherFichesDePaieToolStripMenuItem.Text = "Afficher fiches de paie";
+            this.afficherFichesDePaieToolStripMenuItem.Click += new System.EventHandler(this.afficherFichesDePaieToolStripMenuItem_Click);
+            // 
+            // créerFicheDePaieToolStripMenuItem
+            // 
+            this.créerFicheDePaieToolStripMenuItem.Name = "créerFicheDePaieToolStripMenuItem";
+            this.créerFicheDePaieToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.créerFicheDePaieToolStripMenuItem.Text = "Créer fiche de paie";
+            this.créerFicheDePaieToolStripMenuItem.Click += new System.EventHandler(this.créerFicheDePaieToolStripMenuItem_Click);
+            // 
+            // ajouterPériodeToolStripMenuItem
+            // 
+            this.ajouterPériodeToolStripMenuItem.Name = "ajouterPériodeToolStripMenuItem";
+            this.ajouterPériodeToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.ajouterPériodeToolStripMenuItem.Text = "Ajouter période de congés";
+            this.ajouterPériodeToolStripMenuItem.Click += new System.EventHandler(this.ajouterPériodeToolStripMenuItem_Click);
             // 
             // Global
             // 
@@ -456,5 +485,8 @@
         private System.Windows.Forms.ToolStripMenuItem afficherFactureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem créerFactureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imprimerFactureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afficherFichesDePaieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem créerFicheDePaieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajouterPériodeToolStripMenuItem;
     }
 }

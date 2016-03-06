@@ -106,7 +106,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void modifyClient_Click(object sender, EventArgs e)
         {
-            ClientManagement.ModifyClient mc = new ClientManagement.ModifyClient(this.clientManagementPanel);
+            ClientManagement.ModifyClient mc = new ClientManagement.ModifyClient(this.clientManagementPanel,null);
         }
 
         private void addClient_Click(object sender, EventArgs e)

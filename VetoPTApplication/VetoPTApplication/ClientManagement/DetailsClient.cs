@@ -114,7 +114,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void modify_Click(object sender, EventArgs e)
         {
-            new ModifyClient(detailsClientPanel);
+            new ModifyClient(detailsClientPanel,null);
         }
 
     }
