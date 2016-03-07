@@ -81,7 +81,7 @@ namespace VetoPTApplication.ClientManagement
         private void completeClientsList()
         {
             int y = 75;     // ordonnee boutons pour chaque client
-            foreach (string s in db.DisplayAnimals())
+            foreach (string s in db.DisplayClients())
             {
                 clientsList.Text += s.Split(':')[1] + "\n\n";
                 int client_id = Int32.Parse(s.Split(':')[0]);

@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace VetoPTApplication.DataBase
 {
@@ -310,13 +311,15 @@ namespace VetoPTApplication.DataBase
 
         public string detailsClient(int code)
         {
-            string details = "SELECT nom,prenom,ville,adresse,email from Personne where id=?";
+            string details = "SELECT id,nom,prenom,ville,adresse,email from Personne where id=?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(details, dbCon);
             cmd.Parameters.Add("Code client", OleDbType.Integer).Value = code;
+            MessageBox.Show(code.ToString());
             cmd.ExecuteNonQuery();
             OleDbDataReader reader = cmd.ExecuteReader();
-            string client = reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetString(2) + ":" + reader.GetString(3) + ":" + reader.GetString(4);
+            reader.Read();
+            string client = reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetString(2) + ":" + reader.GetString(3) + ":" + reader.GetString(4) + ":" + reader.GetString(5);
             reader.Close();
             dbCon.Close();
             return client;
