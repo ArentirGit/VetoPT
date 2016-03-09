@@ -340,7 +340,7 @@ namespace VetoPTApplication.DataBase
 
         public List<string> getAnimalsClient(int codeClient)
         {
-            string display = "SELECT * from Personne Join Animal.id On Personne.id Where Personne.id = ?";
+            string display = "SELECT * from Animal Join Personne On Animal.id = Personne.id Where Personne.id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             cmd.Parameters.Add("idClient", OleDbType.Integer).Value = codeClient;

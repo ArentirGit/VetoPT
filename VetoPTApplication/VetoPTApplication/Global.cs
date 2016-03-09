@@ -28,16 +28,6 @@ namespace VetoPTApplication
             CareManagement.MonitoringPatient m = new CareManagement.MonitoringPatient(this.panel1);
         }
 
-        private void afficherDossiersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CareManagement.DisplayFolder df = new CareManagement.DisplayFolder(this.panel1);
-        }
-
-        private void nouveauDossierToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CareManagement.NewFolder nf = new CareManagement.NewFolder(this.panel1);
-        }
-
         private void afficherTraitementsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CareManagement.DisplayTreatment dt = new CareManagement.DisplayTreatment(this.panel1);

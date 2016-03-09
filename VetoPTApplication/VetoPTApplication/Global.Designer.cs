@@ -50,8 +50,6 @@
             this.ajouterUneEspèceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSoinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suiviPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.afficherDossiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nouveauDossierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherTraitementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterTraitementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rédigerOrdonnanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,10 +65,10 @@
             this.créerFactureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimerFactureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSalariésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.afficherFichesDePaieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créerFicheDePaieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterPériodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -246,8 +244,6 @@
             // 
             this.gestionSoinsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.suiviPatientToolStripMenuItem,
-            this.afficherDossiersToolStripMenuItem,
-            this.nouveauDossierToolStripMenuItem,
             this.afficherTraitementsToolStripMenuItem,
             this.ajouterTraitementToolStripMenuItem,
             this.rédigerOrdonnanceToolStripMenuItem,
@@ -263,20 +259,6 @@
             this.suiviPatientToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.suiviPatientToolStripMenuItem.Text = "Suivi patient";
             this.suiviPatientToolStripMenuItem.Click += new System.EventHandler(this.suiviPatientToolStripMenuItem_Click);
-            // 
-            // afficherDossiersToolStripMenuItem
-            // 
-            this.afficherDossiersToolStripMenuItem.Name = "afficherDossiersToolStripMenuItem";
-            this.afficherDossiersToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.afficherDossiersToolStripMenuItem.Text = "Afficher dossiers";
-            this.afficherDossiersToolStripMenuItem.Click += new System.EventHandler(this.afficherDossiersToolStripMenuItem_Click);
-            // 
-            // nouveauDossierToolStripMenuItem
-            // 
-            this.nouveauDossierToolStripMenuItem.Name = "nouveauDossierToolStripMenuItem";
-            this.nouveauDossierToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.nouveauDossierToolStripMenuItem.Text = "Nouveau dossier";
-            this.nouveauDossierToolStripMenuItem.Click += new System.EventHandler(this.nouveauDossierToolStripMenuItem_Click);
             // 
             // afficherTraitementsToolStripMenuItem
             // 
@@ -397,14 +379,6 @@
             this.gestionSalariésToolStripMenuItem.Text = "Gestion salariés";
             this.gestionSalariésToolStripMenuItem.Click += new System.EventHandler(this.gestionSalariésToolStripMenuItem_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(146, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(638, 462);
-            this.panel1.TabIndex = 2;
-            // 
             // afficherFichesDePaieToolStripMenuItem
             // 
             this.afficherFichesDePaieToolStripMenuItem.Name = "afficherFichesDePaieToolStripMenuItem";
@@ -425,6 +399,14 @@
             this.ajouterPériodeToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.ajouterPériodeToolStripMenuItem.Text = "Ajouter période de congés";
             this.ajouterPériodeToolStripMenuItem.Click += new System.EventHandler(this.ajouterPériodeToolStripMenuItem_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(146, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(638, 462);
+            this.panel1.TabIndex = 2;
             // 
             // Global
             // 
@@ -453,7 +435,6 @@
         private System.Windows.Forms.ToolStripMenuItem gestionsDuStockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem venteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionSalariésToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nouveauDossierToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem afficherAnimauxToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherRappelToolStripMenuItem;
@@ -464,7 +445,6 @@
         private System.Windows.Forms.ToolStripMenuItem afficherUtilisateursToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUtilisateurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suiviPatientToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem afficherDossiersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherTraitementsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterTraitementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rédigerOrdonnanceToolStripMenuItem;
