@@ -50,14 +50,14 @@ namespace VetoPTApplication.ClientManagement
             deleteClientPanel.Controls.Add(client);
             // adresse
             adress = new Label();
-            adress.Size = new Size(100, 30);
-            adress.Location = new Point(230, 160);
+            adress.Size = new Size(200, 30);
+            adress.Location = new Point(180, 160);
             adress.Text = "Adresse";
             deleteClientPanel.Controls.Add(adress);
             // mail
             mail = new Label();
-            mail.Size = new Size(100, 30);
-            mail.Location = new Point(230, 190);
+            mail.Size = new Size(200, 30);
+            mail.Location = new Point(180, 190);
             mail.Text = "Mail";
             deleteClientPanel.Controls.Add(mail);                      
             // bouton confirmer
@@ -88,7 +88,6 @@ namespace VetoPTApplication.ClientManagement
         }
         private void client_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(clients[client.SelectedIndex]);
             adress.Text = clients[client.SelectedIndex].Split(':')[4];
             mail.Text = clients[client.SelectedIndex].Split(':')[5];
         }
@@ -97,6 +96,9 @@ namespace VetoPTApplication.ClientManagement
         {
             db.deleteClient(Int32.Parse(clients[client.SelectedIndex].Split(':')[0]));
             clear();
+            clients.Clear();
+            client.Items.Clear();
+            completeClient();
         }
 
         private void cancel_Click(object sender, EventArgs e)

@@ -272,7 +272,7 @@ namespace VetoPTApplication.DataBase
 
         public void modifyClient(int code, string city, string adress, string mail)
         {
-            string update = "UPDATE Personne SET ville= ? and adresse= ? and email= ? WHERE Code_Personne = ?";
+            string update = "UPDATE Personne SET ville= ?, adresse= ?, email= ? WHERE id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(update, dbCon);
             cmd.Parameters.Add("Ville", OleDbType.VarChar).Value = city;
@@ -315,7 +315,6 @@ namespace VetoPTApplication.DataBase
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(details, dbCon);
             cmd.Parameters.Add("Code client", OleDbType.Integer).Value = code;
-            MessageBox.Show(code.ToString());
             cmd.ExecuteNonQuery();
             OleDbDataReader reader = cmd.ExecuteReader();
             reader.Read();
@@ -340,7 +339,7 @@ namespace VetoPTApplication.DataBase
 
         public List<string> getAnimalsClient(int codeClient)
         {
-            string display = "SELECT * from Personne Join Animal.id = Personne.id Where Personne.id = ?";
+            string display = "SELECT * from Personne Join Animal.id=Personne.id Where Personne.id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             cmd.Parameters.Add("idClient", OleDbType.Integer).Value = codeClient;

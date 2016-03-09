@@ -14,22 +14,29 @@ namespace VetoPTApplication.ClientManagement
 
         Label title;
 
-        ComboBox name;
+        ComboBox client;
         ComboBox animal;
         MonthCalendar calendar;
         TextBox reason;
 
         Button confirmButton;
         Button cancelButton;
-         public DisplayAppointments(Panel DisplayAppointmentsPanel)
+
+        List<string> clients;
+        string clientData;
+        int? code;
+
+        DataBase.DataBaseManagement db;
+         public DisplayAppointments(Panel DisplayAppointmentsPanel, int? code)
         {
             this.DisplayAppointmentsPanel = DisplayAppointmentsPanel;
+            this.code = code;
             Init();
         }
 
         public void Init()
         {
-            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             DisplayAppointmentsPanel.Controls.Clear();
             // titre
@@ -39,13 +46,13 @@ namespace VetoPTApplication.ClientManagement
             title.Location = new Point(170, 20);
             title.Text = "Afficher rendez-vous";
             DisplayAppointmentsPanel.Controls.Add(title);
-            // nom
-            name = new ComboBox();
-            name.Size = new Size(150, 30);
-            name.Location = new Point(205, 100);
-            name.Text = "Nom";
-            name.SelectedIndexChanged += new EventHandler(name_SelectedIndexChanged);
-            DisplayAppointmentsPanel.Controls.Add(name);
+            // client
+            client = new ComboBox();
+            client.Size = new Size(150, 30);
+            client.Location = new Point(205, 100);
+            client.Text = "Nom";
+            client.SelectedIndexChanged += new EventHandler(name_SelectedIndexChanged);
+            DisplayAppointmentsPanel.Controls.Add(client);
             // animal
             animal = new ComboBox();
             animal.Size = new Size(150, 30);
@@ -105,9 +112,27 @@ namespace VetoPTApplication.ClientManagement
 
         private void clear()
         {
-            name.Text = "Nom";
+            client.Text = "Nom";
             animal.Text = "Animal";
             reason.Text = "Objet du rendez-vous";
+        }
+
+        private void completeClient()
+        {
+            if (code == null)
+            {
+                clients = db.DisplayClients();
+                foreach (string s in clients)
+                {
+                    client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+                }
+            }
+            else
+            {
+                clientData = db.detailsClient(code.Value);
+                client.Items.Add(clientData.Split(':')[1] + " " + clientData.Split(':')[2]);
+                client.Text = clientData.Split(':')[1] + " " + clientData.Split(':')[2];
+            }
         }
     }
 }

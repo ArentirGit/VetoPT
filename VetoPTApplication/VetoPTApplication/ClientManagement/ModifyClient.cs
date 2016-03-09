@@ -11,8 +11,7 @@ namespace VetoPTApplication.ClientManagement
     class ModifyClient
     {
         private Panel modifyClientPanel;
-        private int clientId;
-
+       
         Label title;
 
         ComboBox client;
@@ -25,6 +24,7 @@ namespace VetoPTApplication.ClientManagement
 
         List<string> clients;
         int? code;
+        string clientData;
 
         DataBase.DataBaseManagement db;
 
@@ -102,20 +102,45 @@ namespace VetoPTApplication.ClientManagement
             }
             else
             {
-                client.Items.Add(db.detailsClient(code.Value));
+                clientData = db.detailsClient(code.Value);
+                client.Items.Add(clientData.Split(':')[1] + " " + clientData.Split(':')[2]);
+                client.Text = clientData.Split(':')[1] + " " + clientData.Split(':')[2];
             }
         }
+
         private void client_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(clients[client.SelectedIndex]);
-            adress.Text = clients[client.SelectedIndex].Split(':')[4];
-            mail.Text = clients[client.SelectedIndex].Split(':')[5];
+            if(code == null)
+            {
+                city.Text = clients[client.SelectedIndex].Split(':')[3];
+                adress.Text = clients[client.SelectedIndex].Split(':')[4];
+                mail.Text = clients[client.SelectedIndex].Split(':')[5];
+            }
+            else
+            {
+                city.Text = clientData.Split(':')[3];
+                adress.Text = clientData.Split(':')[4];
+                mail.Text = clientData.Split(':')[5];
+            }
+            
         }
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            db.modifyClient(Int32.Parse(clients[client.SelectedIndex].Split(':')[0]),city.Text,adress.Text,mail.Text);
+            if (code == null)
+            {
+                db.modifyClient(Int32.Parse(clients[client.SelectedIndex].Split(':')[0]), city.Text, adress.Text, mail.Text);
+                clients.Clear();
+            }
+            else
+            {
+                db.modifyClient(Int32.Parse(clientData.Split(':')[0]), city.Text, adress.Text, mail.Text);
+                code = null;
+            }
             clear();
+            client.Items.Clear();
+            completeClient();
+            
         }
 
         private void cancel_Click(object sender, EventArgs e)

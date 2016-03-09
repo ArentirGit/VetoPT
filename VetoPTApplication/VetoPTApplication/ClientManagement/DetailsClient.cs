@@ -52,31 +52,31 @@ namespace VetoPTApplication.ClientManagement
             name = new Label();
             name.Size = new Size(100, 30);
             name.Location = new Point(230, 100);
-            name.Text = client.Split(':')[0];
+            name.Text = client.Split(':')[1];
             detailsClientPanel.Controls.Add(name);
             // prénom 
             firstName = new Label();
             firstName.Size = new Size(100, 30);
             firstName.Location = new Point(230, 130);
-            firstName.Text = client.Split(':')[1];
+            firstName.Text = client.Split(':')[2];
             detailsClientPanel.Controls.Add(firstName);
             // city
             city = new Label();
             city.Size = new Size(100, 30);
             city.Location = new Point(230, 160);
-            city.Text = client.Split(':')[2];
+            city.Text = client.Split(':')[3];
             detailsClientPanel.Controls.Add(city);
             // adresse
             adress = new Label();
-            adress.Size = new Size(100, 30);
+            adress.Size = new Size(200, 30);
             adress.Location = new Point(230, 190);
-            adress.Text = client.Split(':')[3];
+            adress.Text = client.Split(':')[4];
             detailsClientPanel.Controls.Add(adress);
             // mail
             mail = new Label();
-            mail.Size = new Size(100, 30);
+            mail.Size = new Size(200, 30);
             mail.Location = new Point(230, 220);
-            mail.Text = client.Split(':')[4];
+            mail.Text = client.Split(':')[5];
             detailsClientPanel.Controls.Add(mail);
             // bouton retour
             backButton = new Button();
@@ -88,7 +88,7 @@ namespace VetoPTApplication.ClientManagement
             // bouton modifier
             modifyButton = new Button();
             modifyButton.Size = new Size(100, 30);
-            modifyButton.Location = new Point(310, 310);
+            modifyButton.Location = new Point(275, 310);
             modifyButton.Text = "Modifier";
             detailsClientPanel.Controls.Add(modifyButton);
             modifyButton.Click += new EventHandler(modify_Click);
@@ -104,7 +104,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void displayAppointment_Click(object sender, EventArgs e)
         {
-            new DisplayAppointments(detailsClientPanel);
+            new DisplayAppointments(detailsClientPanel, code);
         }
 
         private void back_Click(object sender, EventArgs e)
@@ -114,7 +114,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void modify_Click(object sender, EventArgs e)
         {
-            new ModifyClient(detailsClientPanel,null);
+            new ModifyClient(detailsClientPanel,code);
         }
 
     }

@@ -75,7 +75,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void displayAppointments_Click(object sender, EventArgs e)
         {
-            ClientManagement.DisplayAppointments ca = new ClientManagement.DisplayAppointments(this.displayClientsPanel);
+            //ClientManagement.DisplayAppointments ca = new ClientManagement.DisplayAppointments(this.displayClientsPanel);
         }
 
         private void completeClientsList()
@@ -104,7 +104,7 @@ namespace VetoPTApplication.ClientManagement
                 displayAppointmentButton.Location = new Point(305, y);
                 displayAppointmentButton.Text = "Afficher rendez-vous";
                 displayAppointmentButton.Size = new Size(75, 20);
-                displayAppointmentButton.Click += new EventHandler(displayAppointment_Click);
+                displayAppointmentButton.Click += (sender, eventArgs) => displayAppointment_Click(sender, eventArgs, client_id);
                 displayClientsPanel.Controls.Add(displayAppointmentButton);
                 // bouton details client
                 Button detailsClientButton = new Button();
@@ -122,14 +122,14 @@ namespace VetoPTApplication.ClientManagement
             new DetailsClient(displayClientsPanel,code);
         }
 
-        private void displayAppointment_Click(object sender, EventArgs e)
+        private void displayAppointment_Click(object sender, EventArgs e, int code)
         {
-            new DisplayAppointments(displayClientsPanel);
+            //MessageBox.Show(Int32.Parse(code));
+            new DisplayAppointments(displayClientsPanel,code);
         }
 
         private void deleteClient_Click(object sender, EventArgs e, int code)
         {
-            MessageBox.Show("supprimer client");
             db.deleteClient(code);
             Init();
         }
