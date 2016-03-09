@@ -24,7 +24,8 @@ namespace VetoPTApplication.CareManagement
         private RichTextBox note;
         private DateTimePicker dateCourante;
 
-        private string[] clients;
+        private List<string> clients;
+        private List<string> animals;
         
 
         public NewFolder(Panel panel)
@@ -99,11 +100,23 @@ namespace VetoPTApplication.CareManagement
 
         private void completeClient()
         {
-            clients = new string[] {"1:Gerard:Bigard","2:Bernard:Latour"};
-            //clients = db.AllClient();
+            clients = new List<string>();
+            clients = db.DisplayClients();
             foreach (string s in clients)
             {
                 nameClient.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+            }
+
+        }
+
+        private void completeAnimal(int idClient)
+        {
+            animals = new List<string>();
+            animals = db.getAnimalsClient(idClient);
+            nameAnimal.Items.Clear();
+            foreach (string s in animals)
+            {
+                nameAnimal.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
             }
 
         }
@@ -132,7 +145,7 @@ namespace VetoPTApplication.CareManagement
 
         private void nameClient_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(clients[nameClient.SelectedIndex]);
+            completeAnimal(Int32.Parse(clients[nameClient.SelectedIndex].Split(':')[0]));
         }
     }
 }
