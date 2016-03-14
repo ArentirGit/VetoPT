@@ -41,7 +41,7 @@ namespace VetoPTApplication.AnimalManagement
             TextBox weight = new TextBox();
             weight.Size = new Size(100, 30);
             weight.Location = new Point(230, 130);
-            weight.Text = "Poids";
+            weight.Text = "Poids (en kg)";
             addAnimalPanel.Controls.Add(weight);
             // proprietaire
             ComboBox owner = new ComboBox();
@@ -84,7 +84,7 @@ namespace VetoPTApplication.AnimalManagement
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 310);
             confirmButton.Text = "Confirmer";
-            confirmButton.Click += (sender, eventArgs) => { db.InsertAnimal(name.Text, weight.Text, date.Text); };
+            confirmButton.Click += (sender, eventArgs) => { db.InsertAnimal(name.Text, weight.Text + " kg", date.Text); };
             confirmButton.Click += new EventHandler(displayAnimals);
             addAnimalPanel.Controls.Add(confirmButton);
             // bouton annuler

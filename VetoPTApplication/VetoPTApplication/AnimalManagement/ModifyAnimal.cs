@@ -38,13 +38,13 @@ namespace VetoPTApplication.AnimalManagement
             TextBox name = new TextBox();
             name.Size = new Size(100, 30);
             name.Location = new Point(230, 100);
-            name.Text = "Nom";
+            name.Text = "Nom : ";
             modifyAnimalPanel.Controls.Add(name);
             // poids 
             TextBox weight = new TextBox();
             weight.Size = new Size(100, 30);
             weight.Location = new Point(230, 130);
-            weight.Text = "Poids";
+            weight.Text = "Poids (en kg)";
             modifyAnimalPanel.Controls.Add(weight);
             // proprietaire
             ComboBox owner = new ComboBox();
@@ -87,7 +87,7 @@ namespace VetoPTApplication.AnimalManagement
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 310);
             confirmButton.Text = "Confirmer";
-            confirmButton.Click += (sender, eventArgs) => { db.UpdateAnimal(name.Text, weight.Text, this.animal_id); };
+            confirmButton.Click += (sender, eventArgs) => { db.UpdateAnimal(name.Text, weight.Text + " kg", this.animal_id); };
             confirmButton.Click += new EventHandler(displayAnimals);
             modifyAnimalPanel.Controls.Add(confirmButton);
             // bouton retour

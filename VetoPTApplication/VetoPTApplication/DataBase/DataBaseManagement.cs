@@ -116,14 +116,23 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public void displayAnimalDetails(int code_animal)
+        public List<String> displayAnimalDetails(int code_animal)
         {
-            string display = "SELECT * FROM Animal "
+            string display = "SELECT nom,poids,date_naissance FROM Animal "
                             + "WHERE Animal.id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             cmd.Parameters.Add("Code", OleDbType.Integer).Value = code_animal;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> animals = new List<string>();
+            while (reader.Read())
+            {
+                animals.Add(reader.GetString(0) + ":" + reader.GetString(1)
+                    + ":" + reader.GetString(2));
+            }
+            reader.Close();
             dbCon.Close();
+            return animals;
         }
 
         public void insertReminder(string date, string intitule)
