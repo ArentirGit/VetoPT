@@ -21,6 +21,7 @@ namespace VetoPTApplication.CareManagement
 
         private ComboBox nameAnimal;
         private ComboBox nameClient;
+        private TextBox nom;
         private TextBox duree;
         private RichTextBox note;
         private DateTimePicker dateCourante;
@@ -67,17 +68,23 @@ namespace VetoPTApplication.CareManagement
             nameAnimal.SelectedIndexChanged += new EventHandler(nameAnimal_SelectedIndexChanged);
             myPanel.Controls.Add(nameAnimal);
 
-            //création du Combox nom animal
+            nom = new TextBox();
+            nom.Size = new Size(100, 40);
+            nom.Location = new Point(100, 160);
+            nom.Text = "Nom";
+            myPanel.Controls.Add(nom);
+
+            //création du TextBox durée
             duree = new TextBox();
             duree.Size = new Size(100, 40);
-            duree.Location = new Point(100, 160);
+            duree.Location = new Point(100, 200);
             duree.Text = "Durée";
             myPanel.Controls.Add(duree);
 
             //création du textbox note
             note = new RichTextBox();
             note.Size = new Size(300, 100);
-            note.Location = new Point(100, 200);
+            note.Location = new Point(100, 250);
             note.Text = "Note : \nExemple : fatigue,pate droite cassée ..";
             myPanel.Controls.Add(note);
            
@@ -87,7 +94,7 @@ namespace VetoPTApplication.CareManagement
             dateCourante.Format = DateTimePickerFormat.Short;
             dateCourante.ValueChanged += new EventHandler(date_Change);
             dateCourante.Value = DateTime.Now.AddDays(0);
-            dateCourante.Location = new Point(100, 350);
+            dateCourante.Location = new Point(100, 360);
             myPanel.Controls.Add(dateCourante);
 
             //création du boutton valider

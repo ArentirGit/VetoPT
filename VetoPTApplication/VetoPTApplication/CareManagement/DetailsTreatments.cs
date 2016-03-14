@@ -10,7 +10,8 @@ namespace VetoPTApplication.CareManagement
 {
     class DetailsTreatments
     {
-                private Panel myPanel;
+        private Panel myPanel;
+        private string myTreatment;
 
         private Label title;
 
@@ -24,9 +25,10 @@ namespace VetoPTApplication.CareManagement
         private DateTimePicker beginingDate;
         
 
-        public DetailsTreatments(Panel panel)
+        public DetailsTreatments(Panel panel ,string treatment )
         {
             myPanel = panel;
+            myTreatment = treatment;
             Init();
         }
 

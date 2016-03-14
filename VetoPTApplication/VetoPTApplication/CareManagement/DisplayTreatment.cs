@@ -13,6 +13,8 @@ namespace VetoPTApplication.CareManagement
         private DataGridView myGrid;
         private DataGridViewButtonColumn detail;
         private DataGridViewButtonColumn print;
+        private List<string> treatments = new List<string>();
+        private DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
         
 
         public DisplayTreatment(Panel panel)
@@ -58,15 +60,25 @@ namespace VetoPTApplication.CareManagement
         }
         private void remplirGrid()
         {
-            string[] row = { "traitement 1", "2h", "2012" };
-            myGrid.Rows.Insert(0, row);
+            treatments = new List<string>();
+            treatments = db.DisplayTreatments();
+            string[] row = new string[] {};
+            int i = 0;
+            foreach (string s in treatments)
+            {
+                row = new string[] { s.Split(':')[1], s.Split(':')[2], s.Split(':')[3] };
+                myGrid.Rows.Insert(i, row);
+                i++;
+            }
+            
+            
         }
 
         private void myGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 3)
             {
-                DetailsTreatments d = new DetailsTreatments(myPanel);
+                DetailsTreatments d = new DetailsTreatments(myPanel,treatments[myGrid.CurrentRow.Index]);
             }
             if (e.ColumnIndex == 4)
             {
