@@ -62,13 +62,14 @@ namespace VetoPTApplication.DataBase
             return animals;
         }
 
-        public void InsertAnimal(string name,string weight, string birth){
-            string insert = "INSERT INTO Animal Values (?,?,?)";
+        public void InsertAnimal(string name,string weight, string birth, int personne_id){
+            string insert = "INSERT INTO Animal Values (?,?,?,?)";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
             cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
             cmd.Parameters.Add("Poids", OleDbType.VarChar).Value = weight;
             cmd.Parameters.Add("Date de naissance", OleDbType.VarChar).Value = birth;
+            cmd.Parameters.Add("ID personne", OleDbType.Integer).Value = personne_id;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }
@@ -116,14 +117,23 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public void displayAnimalDetails(int code_animal)
+        public List<String> displayAnimalDetails(int code_animal)
         {
-            string display = "SELECT * FROM Animal "
+            string display = "SELECT nom,poids,date_naissance FROM Animal "
                             + "WHERE Animal.id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             cmd.Parameters.Add("Code", OleDbType.Integer).Value = code_animal;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> animals = new List<string>();
+            while (reader.Read())
+            {
+                animals.Add(reader.GetString(0) + ":" + reader.GetString(1)
+                    + ":" + reader.GetString(2));
+            }
+            reader.Close();
             dbCon.Close();
+            return animals;
         }
 
         public void insertReminder(string date, string intitule)
@@ -369,6 +379,21 @@ namespace VetoPTApplication.DataBase
         public void cancelAppointment()
         {
 
+        }
+        public List<string> DisplayTreatments()
+        {
+            string display = "SELECT id,dateDebut,duree,nom,description from Traitement";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> treatments = new List<string>();
+            while (reader.Read())
+            {
+                treatments.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetInt32(2) + ":" + reader.GetString(3) + ":" + reader.GetString(4));
+            }
+            reader.Close();
+            dbCon.Close();
+            return treatments;
         }
 
     }

@@ -10,7 +10,8 @@ namespace VetoPTApplication.CareManagement
 {
     class DetailsTreatments
     {
-                private Panel myPanel;
+        private Panel myPanel;
+        private string myTreatment;
 
         private Label title;
 
@@ -18,15 +19,15 @@ namespace VetoPTApplication.CareManagement
         private Button cancel;
 
         private Label nameTreatments;
-        private Label objectTreatments;
-        private Label durationTreatments;
-        private RichTextBox comment;
+        private TextBox durationTreatments;
+        private RichTextBox description;
         private DateTimePicker beginingDate;
         
 
-        public DetailsTreatments(Panel panel)
+        public DetailsTreatments(Panel panel ,string treatment )
         {
             myPanel = panel;
+            myTreatment = treatment;
             Init();
         }
 
@@ -47,20 +48,14 @@ namespace VetoPTApplication.CareManagement
             nameTreatments = new Label();
             nameTreatments.Size = new Size(300, 40);
             nameTreatments.Location = new Point(100, 70);
-            nameTreatments.Text = "Nom Traitement";
+            nameTreatments.Text = myTreatment.Split(':')[3];
             myPanel.Controls.Add(nameTreatments);
 
-            //création du textbox nom client
-            objectTreatments = new Label();
-            objectTreatments.Size = new Size(300, 40);
-            objectTreatments.Location = new Point(100, 120);
-            objectTreatments.Text = "Objet Traitement";
-            myPanel.Controls.Add(objectTreatments);
 
-            durationTreatments = new Label();
+            durationTreatments = new TextBox();
             durationTreatments.Size = new Size(300, 40);
             durationTreatments.Location = new Point(100, 170);
-            durationTreatments.Text = "Durées Traitements";
+            durationTreatments.Text = myTreatment.Split(':')[2];
             myPanel.Controls.Add(durationTreatments);
 
             //création de la date
@@ -68,16 +63,16 @@ namespace VetoPTApplication.CareManagement
             beginingDate.Size = new Size(300, 40);
             beginingDate.Format = DateTimePickerFormat.Short;
             beginingDate.ValueChanged += new EventHandler(date_Change);
-            beginingDate.Value = new DateTime(2012,10,30);
+            beginingDate.Value = Convert.ToDateTime(myTreatment.Split(':')[1]);
             beginingDate.Location = new Point(100, 220);
             myPanel.Controls.Add(beginingDate);
 
             //création du textbox note
-            comment = new RichTextBox();
-            comment.Size = new Size(300, 100);
-            comment.Location = new Point(100, 270);
-            comment.Text = "Commentaire : \nExemple : \n - a declancher insomnie chez l'animal";
-            myPanel.Controls.Add(comment);
+            description = new RichTextBox();
+            description.Size = new Size(300, 100);
+            description.Location = new Point(100, 270);
+            description.Text = myTreatment.Split(':')[4];
+            myPanel.Controls.Add(description);
            
 
 
@@ -85,7 +80,7 @@ namespace VetoPTApplication.CareManagement
             validate = new Button();
             validate.Size = new Size(60, 40);
             validate.Location = new Point(100, 400);
-            validate.Text = "Valider";
+            validate.Text = "Modifier";
             myPanel.Controls.Add(validate);
             validate.Click += new EventHandler(valider_Click);
 
@@ -93,7 +88,7 @@ namespace VetoPTApplication.CareManagement
             cancel = new Button();
             cancel.Size = new Size(60, 40);
             cancel.Location = new Point(200, 400);
-            cancel.Text = "Annuler";
+            cancel.Text = "Suprimer";
             myPanel.Controls.Add(cancel);
             cancel.Click += new EventHandler(cancel_Click);
 
@@ -112,12 +107,12 @@ namespace VetoPTApplication.CareManagement
 
         private void date_Change(object sender, EventArgs e)
         {
-            beginingDate.Value = new DateTime(2012, 10, 30);
+            beginingDate.Value = Convert.ToDateTime(myTreatment.Split(':')[1]);
         }
 
         private void clear()
         {
-            comment.Text = "Commentaire : \nExemple : \n - a declancher insomnie chez l'animal";
+            description.Text = "Commentaire : \nExemple : \n - a declancher insomnie chez l'animal";
         }
     }
 }

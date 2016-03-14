@@ -48,6 +48,7 @@
     <Compile Include="AnimalManagement\AddBreed.cs" />
     <Compile Include="AnimalManagement\AddReminder.cs" />
     <Compile Include="AnimalManagement\AddSpecy.cs" />
+    <Compile Include="AnimalManagement\AnimalDetails.cs" />
     <Compile Include="AnimalManagement\DisplayAnimals.cs" />
     <Compile Include="AnimalManagement\DisplayReminders.cs" />
     <Compile Include="AnimalManagement\HomePage.cs" />

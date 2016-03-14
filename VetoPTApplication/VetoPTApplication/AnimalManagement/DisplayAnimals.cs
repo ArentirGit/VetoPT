@@ -56,6 +56,7 @@ namespace VetoPTApplication.AnimalManagement
             Label animalsList = new Label();
             animalsList.Location = new Point(60, 80);
             animalsList.Size = new Size(75, 1000);
+            int x = 145;     // abscisse boutons 
             int y = 75;     // ordonnee boutons pour chaque animal
             foreach (string s in db.DisplayAnimals())
             {
@@ -63,32 +64,48 @@ namespace VetoPTApplication.AnimalManagement
                 int animal_id = Int32.Parse(s.Split(':')[0]);
                 // bouton modifier animal
                 Button modAnimalButton = new Button();
-                modAnimalButton.Location = new Point(145, y);
+                modAnimalButton.Location = new Point(x, y);
                 modAnimalButton.Text = "Modifier animal";
                 modAnimalButton.Size = new Size(75, 20);
                 modAnimalButton.Click += (sender, eventArgs) => modifyAnimal(sender, eventArgs, animal_id);
                 displayAnimalsPanel.Controls.Add(modAnimalButton);
+                x += 85;
                 // bouton supprimer animal
                 Button delAnimalButton = new Button();
-                delAnimalButton.Location = new Point(230, y);
+                delAnimalButton.Location = new Point(x, y);
                 delAnimalButton.Text = "Supprimer animal"; 
                 delAnimalButton.Size = new Size(75, 20);         
                 delAnimalButton.Click += (sender, eventArgs) => { db.DeleteAnimal(animal_id); };
                 delAnimalButton.Click += new EventHandler(refreshAnimals);
                 displayAnimalsPanel.Controls.Add(delAnimalButton);
+                x += 85;
+                // bouton afficher rendez-vous
+                Button displayRemindersAnimalButton = new Button();
+                displayRemindersAnimalButton.Location = new Point(x, y);
+                displayRemindersAnimalButton.Text = "Rendez-vous";
+                displayRemindersAnimalButton.Size = new Size(80, 20);
+                displayRemindersAnimalButton.Click += new EventHandler(refreshAnimals);
+                displayAnimalsPanel.Controls.Add(displayRemindersAnimalButton);
+                x += 90;
+                // bouton soins
+                Button careButton = new Button();
+                careButton.Location = new Point(x, y);
+                careButton.Text = "Soins";
+                careButton.Size = new Size(75, 20);
+                careButton.Click += new EventHandler(refreshAnimals);
+                displayAnimalsPanel.Controls.Add(careButton);
+                x += 85;
+                // bouton details
+                Button detailsButton = new Button();
+                detailsButton.Location = new Point(x, y);
+                detailsButton.Text = "Details";
+                detailsButton.Size = new Size(75, 20);
+                detailsButton.Click += (sender, eventArgs) => displayAnimalDetails(sender, eventArgs, animal_id);
+                displayAnimalsPanel.Controls.Add(detailsButton);
+                x = 145;
                 y += 27;
             }
             displayAnimalsPanel.Controls.Add(animalsList);
-
-            /**** BOUTON TEST ****/
-            Button INSERT_TEST = new Button();
-            INSERT_TEST.Size = new Size(200, 30);
-            INSERT_TEST.Location = new Point(250, 400);
-            INSERT_TEST.Text = "AJOUTER UN ANIMAL TEST";
-            INSERT_TEST.Click += (sender, eventArgs) => { db.InsertAnimal("felix", "4 kg", "date random"); };
-            INSERT_TEST.Click += new EventHandler(refreshAnimals);
-            displayAnimalsPanel.Controls.Add(INSERT_TEST); 
-          
         }
 
         private void addAnimal(object sender, EventArgs e)
@@ -109,6 +126,11 @@ namespace VetoPTApplication.AnimalManagement
         public void refreshAnimals(object sender, EventArgs e)
         {
             new DisplayAnimals(displayAnimalsPanel);
+        }
+
+        public void displayAnimalDetails(object sender, EventArgs e, int id)
+        {
+            new AnimalDetails(displayAnimalsPanel, id);
         }
     }
 }

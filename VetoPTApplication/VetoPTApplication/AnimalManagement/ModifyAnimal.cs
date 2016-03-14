@@ -12,13 +12,13 @@ namespace VetoPTApplication.AnimalManagement
     class ModifyAnimal
     {
         private Panel modifyAnimalPanel;
-        private int animal_id;
+        private int code_animal;
         DataBase.DataBaseManagement db;
 
-        public ModifyAnimal(Panel modifyAnimalPanel, int animal_id)
+        public ModifyAnimal(Panel modifyAnimalPanel, int code_animal)
         {
             this.modifyAnimalPanel = modifyAnimalPanel;
-            this.animal_id = animal_id;
+            this.code_animal = code_animal;
             Init();
         }
 
@@ -34,62 +34,70 @@ namespace VetoPTApplication.AnimalManagement
             title.Location = new Point(170, 20);
             title.Text = "Modifier un animal";
             modifyAnimalPanel.Controls.Add(title);
-            // nom 
-            TextBox name = new TextBox();
-            name.Size = new Size(100, 30);
-            name.Location = new Point(230, 100);
-            name.Text = "Nom";
-            modifyAnimalPanel.Controls.Add(name);
-            // poids 
-            TextBox weight = new TextBox();
-            weight.Size = new Size(100, 30);
-            weight.Location = new Point(230, 130);
-            weight.Text = "Poids";
-            modifyAnimalPanel.Controls.Add(weight);
-            // proprietaire
-            ComboBox owner = new ComboBox();
-            owner.Size = new Size(100, 30);
-            owner.Location = new Point(230, 160);
-            owner.Text = "Propriétaire";
-            List<string> people = db.getPeople();
-            foreach(string p in people){
-                owner.Items.Add(p.Split(':')[0] + " " + p.Split(':')[1]);
+            int y = 100;   // ordonnee labels
+            foreach (string d in db.displayAnimalDetails(code_animal))
+            {
+                // nom 
+                TextBox name = new TextBox();
+                name.Size = new Size(100, 30);
+                name.Location = new Point(230, 100);
+                name.Text = d.Split(':')[0];
+                modifyAnimalPanel.Controls.Add(name);
+                // poids 
+                TextBox weight = new TextBox();
+                weight.Size = new Size(100, 30);
+                weight.Location = new Point(230, 130);
+                weight.Text = d.Split(':')[1];
+                modifyAnimalPanel.Controls.Add(weight);
+                // proprietaire
+                ComboBox owner = new ComboBox();
+                owner.Size = new Size(100, 30);
+                owner.Location = new Point(230, 160);
+                owner.Text = "Propriétaire";
+                List<string> people = db.getPeople();
+                foreach (string p in people)
+                {
+                    owner.Items.Add(p.Split(':')[0] + " " + p.Split(':')[1]);
+                }
+                modifyAnimalPanel.Controls.Add(owner);
+                // date de naissance
+                DateTimePicker date = new DateTimePicker();
+                date.Format = DateTimePickerFormat.Short;
+                date.Size = new Size(100, 30);
+                date.Location = new Point(230, 190);
+                modifyAnimalPanel.Controls.Add(date);
+                // espece
+                ComboBox specy = new ComboBox();
+                specy.Size = new Size(100, 30);
+                specy.Location = new Point(230, 220);
+                specy.Text = "Espece";
+                List<string> species = db.getSpecies();
+                foreach (string s in species)
+                {
+                    specy.Items.Add(s);
+                }
+                modifyAnimalPanel.Controls.Add(specy);
+                // race
+                ComboBox breed = new ComboBox();
+                breed.Size = new Size(100, 30);
+                breed.Location = new Point(230, 250);
+                breed.Text = "Race";
+                List<string> breeds = db.getBreeds();
+                foreach (string b in breeds)
+                {
+                    breed.Items.Add(b);
+                }
+                modifyAnimalPanel.Controls.Add(breed);
+                // bouton confirmer
+                Button confirmButton = new Button();
+                confirmButton.Size = new Size(100, 30);
+                confirmButton.Location = new Point(150, 310);
+                confirmButton.Text = "Confirmer";
+                confirmButton.Click += (sender, eventArgs) => { db.UpdateAnimal(name.Text, weight.Text + " kg", this.code_animal); };
+                confirmButton.Click += new EventHandler(displayAnimals);
+                modifyAnimalPanel.Controls.Add(confirmButton);
             }
-            modifyAnimalPanel.Controls.Add(owner);
-            // date de naissance
-            DateTimePicker date = new DateTimePicker();
-            date.Format = DateTimePickerFormat.Short;
-            date.Size = new Size(100, 30);
-            date.Location = new Point(230, 190);
-            modifyAnimalPanel.Controls.Add(date);
-            // espece
-            ComboBox specy = new ComboBox();
-            specy.Size = new Size(100, 30);
-            specy.Location = new Point(230, 220);
-            specy.Text = "Espece";
-            List<string> species = db.getSpecies();
-            foreach (string s in species){
-                specy.Items.Add(s);
-            }
-            modifyAnimalPanel.Controls.Add(specy);
-            // race
-            ComboBox breed = new ComboBox();
-            breed.Size = new Size(100, 30);
-            breed.Location = new Point(230, 250);
-            breed.Text = "Race";
-            List<string> breeds = db.getBreeds();
-            foreach (string b in breeds){
-                breed.Items.Add(b);
-            }
-            modifyAnimalPanel.Controls.Add(breed);
-            // bouton confirmer
-            Button confirmButton = new Button();
-            confirmButton.Size = new Size(100, 30);
-            confirmButton.Location = new Point(150, 310);
-            confirmButton.Text = "Confirmer";
-            confirmButton.Click += (sender, eventArgs) => { db.UpdateAnimal(name.Text, weight.Text, this.animal_id); };
-            confirmButton.Click += new EventHandler(displayAnimals);
-            modifyAnimalPanel.Controls.Add(confirmButton);
+            
             // bouton retour
             Button backButton = new Button();
             backButton.Size = new Size(100, 30);
