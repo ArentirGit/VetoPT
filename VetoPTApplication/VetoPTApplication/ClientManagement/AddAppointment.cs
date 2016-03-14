@@ -106,7 +106,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            db.addAppointement(calendar.SelectionStart.ToShortDateString(), reason.Text, client.SelectedIndex, Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
+            db.addAppointement(calendar.SelectionStart.ToShortDateString(), reason.Text, Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
             clear();
         }
 

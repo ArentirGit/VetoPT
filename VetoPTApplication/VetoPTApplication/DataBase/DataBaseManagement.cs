@@ -324,22 +324,28 @@ namespace VetoPTApplication.DataBase
             return client;
         }
 
-        public void addAppointement(string date, string objet, int codeClient, int codeAnimal)
+        public void addAppointement(string date, string objet, int codeAnimal)
         {
-            string insert = "INSERT INTO Rendez_Vous JOIN Animal ON Rendez_Vous.id = Animal.id JOIN Personne ON Personne.id = Animal.id Values (?,?) Where Personne.id=? and Animal.id =?";
+            //Insert Into Rendez_Vous Join Animal_RDV ON Rendez_Vous.id = Animal_RDV.RDVID Join Animal on Animal.id = Animal_RDV.AnimalID
+            string insert = "INSERT INTO Rendez_Vous Values(?,?)";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
             cmd.Parameters.Add("Date", OleDbType.VarChar).Value = date;
             cmd.Parameters.Add("Objet", OleDbType.VarChar).Value = objet;
-            cmd.Parameters.Add("idClient", OleDbType.Integer).Value = codeClient;
+            cmd.ExecuteNonQuery();
+
+            insert = "INSERT INTO Animal_RDV Values(?,?)";
+            cmd = new OleDbCommand(insert, dbCon);
+            string rdvID="";
             cmd.Parameters.Add("idAnimal", OleDbType.Integer).Value = codeAnimal;
+            cmd.Parameters.Add("RDVID", OleDbType.VarChar).Value = rdvID;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
         public List<string> getAnimalsClient(int codeClient)
         {
-            string display = "SELECT * from Personne Join Animal.id=Personne.id Where Personne.id = ?";
+            string display = "SELECT Animal.id, Animal.nom from Personne Join Animal ON Animal.PersonneID = Personne.id Where Personne.id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             cmd.Parameters.Add("idClient", OleDbType.Integer).Value = codeClient;
@@ -355,17 +361,12 @@ namespace VetoPTApplication.DataBase
             return animals;
         }
 
-        public void modifyAppointement()
+        public void modifyAppointment()
         {
 
         }
 
-        public void cancelAppointement()
-        {
-
-        }
-
-        public void displayAppointements()
+        public void cancelAppointment()
         {
 
         }

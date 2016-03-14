@@ -124,7 +124,6 @@ namespace VetoPTApplication.ClientManagement
 
         private void displayAppointment_Click(object sender, EventArgs e, int code)
         {
-            //MessageBox.Show(Int32.Parse(code));
             new DisplayAppointments(displayClientsPanel,code);
         }
 

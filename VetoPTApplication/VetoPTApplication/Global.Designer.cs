@@ -40,7 +40,6 @@
             this.ajouterRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.annulerRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.afficherRendezvousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherAnimauxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherRappelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,8 +121,7 @@
             this.supprimerClientToolStripMenuItem,
             this.ajouterRendezvousToolStripMenuItem,
             this.modifierRendezvousToolStripMenuItem,
-            this.annulerRendezvousToolStripMenuItem,
-            this.afficherRendezvousToolStripMenuItem});
+            this.annulerRendezvousToolStripMenuItem});
             this.gestionClientsToolStripMenuItem.Name = "gestionClientsToolStripMenuItem";
             this.gestionClientsToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.gestionClientsToolStripMenuItem.Text = "Gestion des clients";
@@ -177,12 +175,6 @@
             this.annulerRendezvousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.annulerRendezvousToolStripMenuItem.Text = "Annuler rendez-vous";
             this.annulerRendezvousToolStripMenuItem.Click += new System.EventHandler(this.annulerRendezvousToolStripMenuItem_Click);
-            // 
-            // afficherRendezvousToolStripMenuItem
-            // 
-            this.afficherRendezvousToolStripMenuItem.Name = "afficherRendezvousToolStripMenuItem";
-            this.afficherRendezvousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.afficherRendezvousToolStripMenuItem.Text = "Afficher rendez-vous";
             // 
             // gestionAnimauxToolStripMenuItem
             // 
@@ -456,7 +448,6 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterRendezvousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifierRendezvousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem annulerRendezvousToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem afficherRendezvousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherStocksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterProduitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supprimerProduitToolStripMenuItem;
