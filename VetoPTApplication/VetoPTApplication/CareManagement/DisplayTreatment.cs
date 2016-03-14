@@ -66,7 +66,7 @@ namespace VetoPTApplication.CareManagement
             int i = 0;
             foreach (string s in treatments)
             {
-                row = new string[] { s.Split(':')[1], s.Split(':')[2], s.Split(':')[3] };
+                row = new string[] { s.Split(':')[3], s.Split(':')[2], s.Split(':')[1] };
                 myGrid.Rows.Insert(i, row);
                 i++;
             }

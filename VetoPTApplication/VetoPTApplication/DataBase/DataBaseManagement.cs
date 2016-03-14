@@ -396,5 +396,19 @@ namespace VetoPTApplication.DataBase
             return treatments;
         }
 
+         public void addTreatments(string animal, string nom,string dateDebut,string duree,string description)
+        {
+            string insert = "INSERT INTO Traitement  Values (?,?,?,?,?) ";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(insert, dbCon);
+            cmd.Parameters.Add("dateDebut", OleDbType.VarChar).Value = dateDebut;
+            cmd.Parameters.Add("duree", OleDbType.Integer).Value = Int32.Parse(duree);
+            cmd.Parameters.Add("nom", OleDbType.VarChar).Value = nom;
+            cmd.Parameters.Add("description", OleDbType.VarChar).Value = description;
+            cmd.Parameters.Add("AnimalID", OleDbType.Integer).Value = Int32.Parse(animal.Split(':')[0]);
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
+        }
+
     }
 }

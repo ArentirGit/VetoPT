@@ -88,7 +88,7 @@ namespace VetoPTApplication.CareManagement
             cancel = new Button();
             cancel.Size = new Size(60, 40);
             cancel.Location = new Point(200, 400);
-            cancel.Text = "Suprimer";
+            cancel.Text = "Cancel";
             myPanel.Controls.Add(cancel);
             cancel.Click += new EventHandler(cancel_Click);
 
@@ -112,7 +112,8 @@ namespace VetoPTApplication.CareManagement
 
         private void clear()
         {
-            description.Text = "Commentaire : \nExemple : \n - a declancher insomnie chez l'animal";
+            durationTreatments.Text = myTreatment.Split(':')[2];
+            description.Text = myTreatment.Split(':')[4];
         }
     }
 }
