@@ -48,14 +48,14 @@ namespace VetoPTApplication.CareManagement
             nameTreatments = new Label();
             nameTreatments.Size = new Size(300, 40);
             nameTreatments.Location = new Point(100, 70);
-            nameTreatments.Text = myTreatment.Split(':')[1];
+            nameTreatments.Text = myTreatment.Split(':')[3];
             myPanel.Controls.Add(nameTreatments);
 
 
             durationTreatments = new TextBox();
             durationTreatments.Size = new Size(300, 40);
             durationTreatments.Location = new Point(100, 170);
-            durationTreatments.Text = myTreatment.Split(':')[3];
+            durationTreatments.Text = myTreatment.Split(':')[2];
             myPanel.Controls.Add(durationTreatments);
 
             //création de la date
@@ -63,7 +63,7 @@ namespace VetoPTApplication.CareManagement
             beginingDate.Size = new Size(300, 40);
             beginingDate.Format = DateTimePickerFormat.Short;
             beginingDate.ValueChanged += new EventHandler(date_Change);
-            beginingDate.Value = Convert.ToDateTime(myTreatment.Split(':')[2]);
+            beginingDate.Value = Convert.ToDateTime(myTreatment.Split(':')[1]);
             beginingDate.Location = new Point(100, 220);
             myPanel.Controls.Add(beginingDate);
 
@@ -107,12 +107,12 @@ namespace VetoPTApplication.CareManagement
 
         private void date_Change(object sender, EventArgs e)
         {
-            beginingDate.Value = Convert.ToDateTime(myTreatment.Split(':')[2]);
+            beginingDate.Value = Convert.ToDateTime(myTreatment.Split(':')[1]);
         }
 
         private void clear()
         {
-            comment.Text = "Commentaire : \nExemple : \n - a declancher insomnie chez l'animal";
+            description.Text = "Commentaire : \nExemple : \n - a declancher insomnie chez l'animal";
         }
     }
 }
