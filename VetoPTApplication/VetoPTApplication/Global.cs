@@ -136,11 +136,6 @@ namespace VetoPTApplication
             ClientManagement.CancelAppointment ca = new ClientManagement.CancelAppointment(this.panel1); 
         }
 
-        private void afficherRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ClientManagement.DisplayAppointments da = new ClientManagement.DisplayAppointments(this.panel1, null); 
-        }
-
         private void modifierRendezvousToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClientManagement.ModifyAppointment ma = new ClientManagement.ModifyAppointment(this.panel1); 

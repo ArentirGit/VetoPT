@@ -142,7 +142,7 @@ namespace VetoPTApplication.CareManagement
 
         private void valider_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Valider");
+            db.addTreatments(animalSelect, nom.Text, dateCourante.Text, duree.Text,note.Text);
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -159,7 +159,12 @@ namespace VetoPTApplication.CareManagement
         {
             nameAnimal.Text = "Nom animal";
             nameClient.Text = "Nom client";
+            this.completeClient();
+            animals = new List<string>();
+            nameAnimal.Items.Clear();
             note.Text = "Note : \nExemple : fatigue,pate droite cassée ..";
+            nom.Text = "Nom";
+            duree.Text = "Durée";
         }
 
         private void nameClient_SelectedIndexChanged(object sender, EventArgs e)

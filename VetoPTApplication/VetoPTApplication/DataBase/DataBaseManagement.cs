@@ -121,7 +121,10 @@ namespace VetoPTApplication.DataBase
 
         public List<String> displayAnimalDetails(int code_animal)
         {
-            string display = "SELECT nom,poids,date_naissance FROM Animal "
+            string display = "SELECT Animal.nom,poids,date_naissance,Personne.nom,Personne.prenom,Espece.intitule,Race.intitule FROM Animal "
+                            + "JOIN Personne on Personne.id = Animal.PersonneID "
+                            + "JOIN Race on Race.id = Animal.RaceID "
+                            + "JOIN Espece on Espece.id = Race.EspeceID "
                             + "WHERE Animal.id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
@@ -131,7 +134,8 @@ namespace VetoPTApplication.DataBase
             while (reader.Read())
             {
                 animals.Add(reader.GetString(0) + ":" + reader.GetString(1)
-                    + ":" + reader.GetString(2));
+                    + ":" + reader.GetString(2) + ":" + reader.GetString(3) + ":" + reader.GetString(4)
+                    + ":" + reader.GetString(5) + ":" + reader.GetString(6));
             }
             reader.Close();
             dbCon.Close();
@@ -245,13 +249,13 @@ namespace VetoPTApplication.DataBase
 
         public List<string> getSpecies()
         {
-            string get = "SELECT intitule FROM Espece";
+            string get = "SELECT * FROM Espece";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(get, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> species = new List<string>();
             while (reader.Read()){
-                species.Add(reader.GetString(0));
+                species.Add(reader.GetInt32(0) + ":" +  reader.GetString(1));
             }
             reader.Close();
             dbCon.Close();
@@ -260,13 +264,13 @@ namespace VetoPTApplication.DataBase
 
         public List<string> getBreeds()
         {
-            string get = "SELECT intitule FROM Race";
+            string get = "SELECT * FROM Race";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(get, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> breeds = new List<string>();
             while (reader.Read()){
-                breeds.Add(reader.GetString(0));
+                breeds.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetInt32(2));
             }
             reader.Close();
             dbCon.Close();
@@ -275,13 +279,13 @@ namespace VetoPTApplication.DataBase
 
         public List<string> getPeople()
         {
-            string get = "SELECT nom,prenom FROM Personne";
+            string get = "SELECT id,nom,prenom FROM Personne";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(get, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> people = new List<string>();
             while (reader.Read()){
-                people.Add(reader.GetString(0) + ":" + reader.GetString(1));
+                people.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetString(2));
             }
             reader.Close();
             dbCon.Close();
@@ -372,22 +376,28 @@ namespace VetoPTApplication.DataBase
             return client;
         }
 
-        public void addAppointement(string date, string objet, int codeClient, int codeAnimal)
+        public void addAppointement(string date, string objet, int codeAnimal)
         {
-            string insert = "INSERT INTO Rendez_Vous JOIN Animal ON Rendez_Vous.id = Animal.id JOIN Personne ON Personne.id = Animal.id Values (?,?) Where Personne.id=? and Animal.id =?";
+            //Insert Into Rendez_Vous Join Animal_RDV ON Rendez_Vous.id = Animal_RDV.RDVID Join Animal on Animal.id = Animal_RDV.AnimalID
+            string insert = "INSERT INTO Rendez_Vous Values(?,?)";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
             cmd.Parameters.Add("Date", OleDbType.VarChar).Value = date;
             cmd.Parameters.Add("Objet", OleDbType.VarChar).Value = objet;
-            cmd.Parameters.Add("idClient", OleDbType.Integer).Value = codeClient;
+            cmd.ExecuteNonQuery();
+
+            insert = "INSERT INTO Animal_RDV Values(?,?)";
+            cmd = new OleDbCommand(insert, dbCon);
+            string rdvID="";
             cmd.Parameters.Add("idAnimal", OleDbType.Integer).Value = codeAnimal;
+            cmd.Parameters.Add("RDVID", OleDbType.VarChar).Value = rdvID;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
         public List<string> getAnimalsClient(int codeClient)
         {
-            string display = "SELECT * from Animal Join Personne On Animal.id=Personne.id Where Personne.id = ?";
+            string display = "SELECT Animal.id, Animal.nom from Personne Join Animal ON Animal.PersonneID = Personne.id Where Personne.id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             cmd.Parameters.Add("idClient", OleDbType.Integer).Value = codeClient;
@@ -403,17 +413,12 @@ namespace VetoPTApplication.DataBase
             return animals;
         }
 
-        public void modifyAppointement()
+        public void modifyAppointment()
         {
 
         }
 
-        public void cancelAppointement()
-        {
-
-        }
-
-        public void displayAppointements()
+        public void cancelAppointment()
         {
 
         }
@@ -431,6 +436,20 @@ namespace VetoPTApplication.DataBase
             reader.Close();
             dbCon.Close();
             return treatments;
+        }
+
+         public void addTreatments(string animal, string nom,string dateDebut,string duree,string description)
+        {
+            string insert = "INSERT INTO Traitement  Values (?,?,?,?,?) ";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(insert, dbCon);
+            cmd.Parameters.Add("dateDebut", OleDbType.VarChar).Value = dateDebut;
+            cmd.Parameters.Add("duree", OleDbType.Integer).Value = Int32.Parse(duree);
+            cmd.Parameters.Add("nom", OleDbType.VarChar).Value = nom;
+            cmd.Parameters.Add("description", OleDbType.VarChar).Value = description;
+            cmd.Parameters.Add("AnimalID", OleDbType.Integer).Value = Int32.Parse(animal.Split(':')[0]);
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
         }
 
     }

@@ -12,6 +12,20 @@ namespace VetoPTApplication.AnimalManagement
     class AddAnimal
     {
         private Panel addAnimalPanel;
+        private DataBase.DataBaseManagement db;
+
+        private ComboBox owner;
+        private int person_id;
+        private List<string> people;
+        
+        private ComboBox specy;
+        private int specy_id;
+        private List<string> species;
+
+        private ComboBox breed;
+        private int breed_id;
+        private List<string> breeds;
+
 
         public AddAnimal(Panel addAnimalPanel)
         {
@@ -21,7 +35,7 @@ namespace VetoPTApplication.AnimalManagement
 
         public void Init()
         {
-            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             addAnimalPanel.Controls.Clear();
             // titre
@@ -44,25 +58,16 @@ namespace VetoPTApplication.AnimalManagement
             weight.Text = "Poids (en kg)";
             addAnimalPanel.Controls.Add(weight);
             // proprietaire
-            ComboBox owner = new ComboBox();
+            owner = new ComboBox();
             owner.Size = new Size(100, 30);
             owner.Location = new Point(230, 160);
             owner.Text = "Propriétaire  ";
-            List<string> people = db.getPeople();
+            people = db.getPeople();
             foreach (string p in people){
-                owner.Items.Add(p.Split(':')[0] + " " + p.Split(':')[1]);
+                owner.Items.Add(p.Split(':')[1] + " " + p.Split(':')[2]);
             }
+            owner.SelectedIndexChanged += new EventHandler(ownerChange);
             addAnimalPanel.Controls.Add(owner);
-            ////////
-            string person_name = "";
-            string person_firstname = "";
-            int person_id = -1;
-            if (owner.SelectedItem != null && owner.SelectedItem.ToString() != "Propriétaire")
-            {
-                person_name = owner.SelectedText.Split(' ')[0];
-                person_firstname = owner.SelectedText.Split(' ')[1];
-                person_id = db.findPersonIdByName(person_name, person_firstname);
-            }   
             // date de naissance
             DateTimePicker date = new DateTimePicker();
             date.Format = DateTimePickerFormat.Short;
@@ -70,31 +75,27 @@ namespace VetoPTApplication.AnimalManagement
             date.Location = new Point(230, 190);
             addAnimalPanel.Controls.Add(date);
             // espece
-            ComboBox specy = new ComboBox();
+            specy = new ComboBox();
             specy.Size = new Size(100, 30);
             specy.Location = new Point(230, 220);
             specy.Text = "Espece";
-            List<string> species = db.getSpecies();
+            species = db.getSpecies();
             foreach (string s in species){
-                specy.Items.Add(s);
+                specy.Items.Add(s.Split(':')[1]);
             }
+            specy.SelectedIndexChanged += new EventHandler(specyChange);
             addAnimalPanel.Controls.Add(specy);
             // race
-            ComboBox breed = new ComboBox();
+            breed = new ComboBox();
             breed.Size = new Size(100, 30);
             breed.Location = new Point(230, 250);
             breed.Text = "Race";
-            breed.SelectedValueChanged += new EventHandler()
-            List<string> breeds = db.getBreeds();
+            breeds = db.getBreeds();
             foreach (string b in breeds){
-                breed.Items.Add(b);
+                breed.Items.Add(b.Split(':')[1]);
             }
+            breed.SelectedIndexChanged += new EventHandler(breedChange);
             addAnimalPanel.Controls.Add(breed);
-            ////////
-            string breed_name = breed.SelectedText;
-            int breed_id = -1;
-            if (breed.SelectedItem != null)
-                breed_id = db.findBreedIdByName(breed_name);
             // bouton confirmer
             Button confirmButton = new Button();
             confirmButton.Size = new Size(100, 30);
@@ -127,6 +128,21 @@ namespace VetoPTApplication.AnimalManagement
         public void refreshAnimals(object sender, EventArgs e)
         {
             new AddAnimal(addAnimalPanel);
+        }
+
+        public void ownerChange(object sender, EventArgs e)
+        {
+            person_id = Int32.Parse(people[owner.SelectedIndex].Split(':')[0]);        
+        }
+
+        public void specyChange(object sender, EventArgs e)
+        {
+            specy_id = Int32.Parse(species[specy.SelectedIndex].Split(':')[0]);
+        }
+
+        public void breedChange(object sender, EventArgs e)
+        {
+            breed_id = Int32.Parse(breeds[breed.SelectedIndex].Split(':')[0]);
         }
 
     }
