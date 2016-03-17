@@ -142,7 +142,7 @@ namespace VetoPTApplication.CareManagement
 
         private void valider_Click(object sender, EventArgs e)
         {
-            db.addTreatments(animalSelect, nom.Text, dateCourante.Text, duree.Text,note.text);
+            db.addTreatments(animalSelect, nom.Text, dateCourante.Text, duree.Text,note.Text);
         }
 
         private void cancel_Click(object sender, EventArgs e)

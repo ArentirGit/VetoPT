@@ -81,6 +81,7 @@ namespace VetoPTApplication.ClientManagement
         private void completeClient()
         {
             clients = db.DisplayClients();
+            client.Items.Clear();
             foreach (string s in clients)
             {
                 client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);

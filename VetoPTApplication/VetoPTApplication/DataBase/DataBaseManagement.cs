@@ -337,19 +337,24 @@ namespace VetoPTApplication.DataBase
         public void addAppointement(string date, string objet, int codeAnimal)
         {
             //Insert Into Rendez_Vous Join Animal_RDV ON Rendez_Vous.id = Animal_RDV.RDVID Join Animal on Animal.id = Animal_RDV.AnimalID
-            string insert = "INSERT INTO Rendez_Vous Values(?,?)";
+
+            string insert = "INSERT INTO Rendez_Vous OUTPUT Inserted.ID Values(?,?) ";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
             cmd.Parameters.Add("Date", OleDbType.VarChar).Value = date;
             cmd.Parameters.Add("Objet", OleDbType.VarChar).Value = objet;
             cmd.ExecuteNonQuery();
+            OleDbDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            int rdvID = reader.GetInt32(0);
+            dbCon.Close();
 
             insert = "INSERT INTO Animal_RDV Values(?,?)";
-            cmd = new OleDbCommand(insert, dbCon);
-            string rdvID="";
-            cmd.Parameters.Add("idAnimal", OleDbType.Integer).Value = codeAnimal;
-            cmd.Parameters.Add("RDVID", OleDbType.VarChar).Value = rdvID;
-            cmd.ExecuteNonQuery();
+            dbCon.Open();
+            OleDbCommand cmd2 = new OleDbCommand(insert, dbCon);
+            cmd2.Parameters.Add("idAnimal", OleDbType.Integer).Value = codeAnimal;
+            cmd2.Parameters.Add("RDVID", OleDbType.Integer).Value = rdvID;
+            cmd2.ExecuteNonQuery();
             dbCon.Close();
         }
 
@@ -371,8 +376,20 @@ namespace VetoPTApplication.DataBase
             return animals;
         }
 
-        public void modifyAppointment()
+        public void modifyAppointment(string date, string objet, int codeAnimal)
         {
+            string insert = "Select RDVID from Animal_RDV Where AnimalID= ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(insert, dbCon);
+            cmd.Parameters.Add("idAnimal", OleDbType.Integer).Value = codeAnimal;
+            cmd.ExecuteNonQuery();
+            OleDbDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            int rdvID = reader.GetInt32(0);
+            dbCon.Close();
+
+            //Update
+
 
         }
 

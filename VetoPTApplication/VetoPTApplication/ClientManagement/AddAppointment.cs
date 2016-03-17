@@ -48,7 +48,7 @@ namespace VetoPTApplication.ClientManagement
             client.Size = new Size(150, 30);
             client.Location = new Point(205, 100);
             client.Text = "Nom";
-            client.SelectedIndexChanged += new EventHandler(Name_SelectedIndexChanged);
+            client.SelectedIndexChanged += new EventHandler(Client_SelectedIndexChanged);
             AddAppointementPanel.Controls.Add(client);
             // animal
             animal = new ComboBox();
@@ -88,6 +88,7 @@ namespace VetoPTApplication.ClientManagement
         private void completeClient()
         {
             clients = db.DisplayClients();
+            client.Items.Clear();
             foreach (string s in clients)
             {
                 client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
@@ -95,12 +96,14 @@ namespace VetoPTApplication.ClientManagement
            
         }
 
-        private void Name_SelectedIndexChanged(object sender, EventArgs e)
+        private void Client_SelectedIndexChanged(object sender, EventArgs e)
         {
+            animal.Text = "";
             animals = db.getAnimalsClient(client.SelectedIndex);
-            foreach (string s in clients)
+            animal.Items.Clear();
+            foreach (string a in animals)
             {
-                animal.Items.Add(s.Split(':')[1]);
+                animal.Items.Add(a.Split(':')[1]);
             }
         }
 
