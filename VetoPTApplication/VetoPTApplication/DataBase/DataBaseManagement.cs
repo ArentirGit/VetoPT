@@ -76,13 +76,17 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public void UpdateAnimal(string name, string weight, int id){
-            string update = "UPDATE Animal SET nom = ? ,poids = ?  WHERE id = ?";
+        public void UpdateAnimal(string name, string weight, string birth, int person_id, int breed_id, int animal_id){
+            string update = "UPDATE Animal SET nom = ?, poids = ?,date_naissance = ?,PersonneID = ?, RaceID = ? "
+                             + "WHERE id = ?";
             dbCon.Open();            
             OleDbCommand cmd = new OleDbCommand(update, dbCon);
             cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
             cmd.Parameters.Add("Poids", OleDbType.VarChar).Value = weight;
-            cmd.Parameters.Add("Code", OleDbType.Integer).Value = id;
+            cmd.Parameters.Add("Date naissance", OleDbType.VarChar).Value = birth;
+            cmd.Parameters.Add("ID Personne", OleDbType.VarChar).Value = person_id;
+            cmd.Parameters.Add("ID Race", OleDbType.VarChar).Value = breed_id;
+            cmd.Parameters.Add("ID Animal", OleDbType.Integer).Value = animal_id;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }

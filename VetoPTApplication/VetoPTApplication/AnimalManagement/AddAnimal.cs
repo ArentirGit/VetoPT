@@ -90,11 +90,6 @@ namespace VetoPTApplication.AnimalManagement
             breed.Size = new Size(100, 30);
             breed.Location = new Point(230, 250);
             breed.Text = "Race";
-            /*
-            breeds = db.getBreeds();
-            foreach (string b in breeds){
-                breed.Items.Add(b.Split(':')[1]);
-            }*/
             breed.SelectedIndexChanged += new EventHandler(breedChange);
             addAnimalPanel.Controls.Add(breed);
             // bouton confirmer

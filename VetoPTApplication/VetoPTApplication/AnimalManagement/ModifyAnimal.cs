@@ -64,14 +64,15 @@ namespace VetoPTApplication.AnimalManagement
                 modifyAnimalPanel.Controls.Add(weight);
                 y += 30;
                 // proprietaire
-                ComboBox owner = new ComboBox();
+                owner = new ComboBox();
                 owner.Size = new Size(100, 30);
                 owner.Location = new Point(230, y);
                 owner.Text = "Propriétaire";
-                List<string> people = db.getPeople();
+                people = db.getPeople();
                 foreach (string p in people) {
-                    owner.Items.Add(p.Split(':')[0] + " " + p.Split(':')[1]);
+                    owner.Items.Add(p.Split(':')[1] + " " + p.Split(':')[2]);
                 }
+                owner.SelectedIndexChanged += new EventHandler(ownerChange);
                 modifyAnimalPanel.Controls.Add(owner);
                 y += 30;
                 // date de naissance
@@ -82,32 +83,31 @@ namespace VetoPTApplication.AnimalManagement
                 modifyAnimalPanel.Controls.Add(date);
                 y += 30;
                 // espece
-                ComboBox specy = new ComboBox();
+                specy = new ComboBox();
                 specy.Size = new Size(100, 30);
                 specy.Location = new Point(230, y);
                 specy.Text = "Espece";
-                List<string> species = db.getSpecies();
+                species = db.getSpecies();
                 foreach (string s in species) {
-                    specy.Items.Add(s);
+                    specy.Items.Add(s.Split(':')[1]);
                 }
+                specy.SelectedIndexChanged += new EventHandler(specyChange);
                 modifyAnimalPanel.Controls.Add(specy);
                 y += 30;
                 // race
-                ComboBox breed = new ComboBox();
+                breed = new ComboBox();
                 breed.Size = new Size(100, 30);
                 breed.Location = new Point(230, y);
                 breed.Text = "Race";
-                List<string> breeds = db.getBreeds();
-                foreach (string b in breeds) {
-                    breed.Items.Add(b);
-                }
+                breed.SelectedIndexChanged += new EventHandler(breedChange);
                 modifyAnimalPanel.Controls.Add(breed);
                 // bouton confirmer
                 Button confirmButton = new Button();
                 confirmButton.Size = new Size(100, 30);
                 confirmButton.Location = new Point(150, 310);
                 confirmButton.Text = "Confirmer";
-                confirmButton.Click += (sender, eventArgs) => { db.UpdateAnimal(name.Text, weight.Text + " kg", this.code_animal); };
+                confirmButton.Click += (sender, eventArgs) => { db.UpdateAnimal(name.Text, weight.Text + " kg", 
+                                                                 date.Text, person_id, breed_id, this.code_animal); };
                 confirmButton.Click += new EventHandler(displayAnimals);
                 modifyAnimalPanel.Controls.Add(confirmButton);
             }
@@ -140,13 +140,28 @@ namespace VetoPTApplication.AnimalManagement
             new DisplayAnimals(modifyAnimalPanel);
         }
 
+        public void ownerChange(object sender, EventArgs e)
+        {
+            person_id = Int32.Parse(people[owner.SelectedIndex].Split(':')[0]);
+        }
+
+        public void specyChange(object sender, EventArgs e)
+        {
+            specy_id = Int32.Parse(species[specy.SelectedIndex].Split(':')[0]);
+            completeBreeds(specy_id);
+        }
+
+        public void breedChange(object sender, EventArgs e)
+        {
+            breed_id = Int32.Parse(breeds[breed.SelectedIndex].Split(':')[0]);
+        }
+
         private void completeBreeds(int specy_id)
         {
             breeds = new List<string>();
             breeds = db.getBreedsSpecy(specy_id);
             breed.Items.Clear();
-            foreach (string b in breeds)
-            {
+            foreach (string b in breeds) {
                 breed.Items.Add(b);
             }
         }
