@@ -51,13 +51,6 @@ namespace VetoPTApplication.AnimalManagement
                 weight.Text = "Poids : " + d.Split(':')[1];
                 animalDetailsPanel.Controls.Add(weight);
                 y += 30;
-                // proprietaire
-                Label owner = new Label();
-                owner.Size = new Size(100, 30);
-                owner.Location = new Point(230, y);
-                owner.Text = "Propriétaire : ";
-                animalDetailsPanel.Controls.Add(owner);
-                y += 30;
                 // date de naissance
                 Label date = new Label();
                 date.Size = new Size(200, 30);
@@ -65,18 +58,25 @@ namespace VetoPTApplication.AnimalManagement
                 date.Text = "Date de naissance : " + d.Split(':')[2];
                 animalDetailsPanel.Controls.Add(date);
                 y += 30;
+                // proprietaire
+                Label owner = new Label();
+                owner.Size = new Size(300, 30);
+                owner.Location = new Point(230, y);
+                owner.Text = "Propriétaire : " + d.Split(':')[3] + " " + d.Split(':')[4];
+                animalDetailsPanel.Controls.Add(owner);
+                y += 30;
                 // espece
                 Label specy = new Label();
                 specy.Size = new Size(100, 30);
                 specy.Location = new Point(230, y);
-                specy.Text = "Espece : ";
+                specy.Text = "Espece : " + d.Split(':')[5];
                 animalDetailsPanel.Controls.Add(specy);
                 y += 30;
                 // race
                 Label breed = new Label();
                 breed.Size = new Size(100, 30);
                 breed.Location = new Point(230, y);
-                breed.Text = "Race : ";
+                breed.Text = "Race : " + d.Split(':')[6];
                 animalDetailsPanel.Controls.Add(breed);
                 // bouton proprietaire
                 Button ownerButton = new Button();
