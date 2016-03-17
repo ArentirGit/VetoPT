@@ -90,10 +90,11 @@ namespace VetoPTApplication.AnimalManagement
             breed.Size = new Size(100, 30);
             breed.Location = new Point(230, 250);
             breed.Text = "Race";
+            /*
             breeds = db.getBreeds();
             foreach (string b in breeds){
                 breed.Items.Add(b.Split(':')[1]);
-            }
+            }*/
             breed.SelectedIndexChanged += new EventHandler(breedChange);
             addAnimalPanel.Controls.Add(breed);
             // bouton confirmer
@@ -138,11 +139,22 @@ namespace VetoPTApplication.AnimalManagement
         public void specyChange(object sender, EventArgs e)
         {
             specy_id = Int32.Parse(species[specy.SelectedIndex].Split(':')[0]);
+            completeBreeds(specy_id);
         }
 
         public void breedChange(object sender, EventArgs e)
         {
             breed_id = Int32.Parse(breeds[breed.SelectedIndex].Split(':')[0]);
+        }
+
+        private void completeBreeds(int specy_id)
+        {
+            breeds = new List<string>();
+            breeds = db.getBreedsSpecy(specy_id);
+            breed.Items.Clear();
+            foreach (string b in breeds){
+                breed.Items.Add(b);
+            }
         }
 
     }

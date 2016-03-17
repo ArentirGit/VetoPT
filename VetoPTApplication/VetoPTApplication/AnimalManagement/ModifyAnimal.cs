@@ -15,6 +15,18 @@ namespace VetoPTApplication.AnimalManagement
         private int code_animal;
         DataBase.DataBaseManagement db;
 
+        private ComboBox owner;
+        private int person_id;
+        private List<string> people;
+
+        private ComboBox specy;
+        private int specy_id;
+        private List<string> species;
+
+        private ComboBox breed;
+        private int breed_id;
+        private List<string> breeds;
+
         public ModifyAnimal(Panel modifyAnimalPanel, int code_animal)
         {
             this.modifyAnimalPanel = modifyAnimalPanel;
@@ -57,8 +69,7 @@ namespace VetoPTApplication.AnimalManagement
                 owner.Location = new Point(230, y);
                 owner.Text = "Propriétaire";
                 List<string> people = db.getPeople();
-                foreach (string p in people)
-                {
+                foreach (string p in people) {
                     owner.Items.Add(p.Split(':')[0] + " " + p.Split(':')[1]);
                 }
                 modifyAnimalPanel.Controls.Add(owner);
@@ -76,8 +87,7 @@ namespace VetoPTApplication.AnimalManagement
                 specy.Location = new Point(230, y);
                 specy.Text = "Espece";
                 List<string> species = db.getSpecies();
-                foreach (string s in species)
-                {
+                foreach (string s in species) {
                     specy.Items.Add(s);
                 }
                 modifyAnimalPanel.Controls.Add(specy);
@@ -88,8 +98,7 @@ namespace VetoPTApplication.AnimalManagement
                 breed.Location = new Point(230, y);
                 breed.Text = "Race";
                 List<string> breeds = db.getBreeds();
-                foreach (string b in breeds)
-                {
+                foreach (string b in breeds) {
                     breed.Items.Add(b);
                 }
                 modifyAnimalPanel.Controls.Add(breed);
@@ -129,6 +138,17 @@ namespace VetoPTApplication.AnimalManagement
         private void displayAnimals(object sender, EventArgs e)
         {
             new DisplayAnimals(modifyAnimalPanel);
+        }
+
+        private void completeBreeds(int specy_id)
+        {
+            breeds = new List<string>();
+            breeds = db.getBreedsSpecy(specy_id);
+            breed.Items.Clear();
+            foreach (string b in breeds)
+            {
+                breed.Items.Add(b);
+            }
         }
 
     }

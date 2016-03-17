@@ -222,13 +222,30 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("Prenom personne", OleDbType.VarChar).Value = person_firstname;
             OleDbDataReader reader = cmd.ExecuteReader();
             int person_id = -1;
-            while (reader.Read())
-            {
+            while (reader.Read()) {
                 person_id = reader.GetInt32(0);
             }
             reader.Close();
             dbCon.Close();
             return person_id;
+        }
+
+        public List<string> getBreedsSpecy(int specy_id)
+        {
+            string get = "SELECT Race.intitule from Race "
+                        + "JOIN Espece on Espece.id = Race.EspeceID "
+                        + "WHERE Espece.id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(get, dbCon);
+            cmd.Parameters.Add("ID Espece", OleDbType.Integer).Value = specy_id;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> breeds = new List<string>();
+            while (reader.Read()) {
+                breeds.Add(reader.GetString(0));
+            }
+            reader.Close();
+            dbCon.Close();
+            return breeds;
         }
 
         public List<string> getAnimals()
@@ -238,8 +255,7 @@ namespace VetoPTApplication.DataBase
             OleDbCommand cmd = new OleDbCommand(get, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> animals = new List<string>();
-            while (reader.Read())
-            {
+            while (reader.Read()) {
                 animals.Add(reader.GetString(0));
             }
             reader.Close();
