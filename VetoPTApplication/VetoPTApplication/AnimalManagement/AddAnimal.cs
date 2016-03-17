@@ -47,12 +47,22 @@ namespace VetoPTApplication.AnimalManagement
             ComboBox owner = new ComboBox();
             owner.Size = new Size(100, 30);
             owner.Location = new Point(230, 160);
-            owner.Text = "Propriétaire";
+            owner.Text = "Propriétaire  ";
             List<string> people = db.getPeople();
             foreach (string p in people){
                 owner.Items.Add(p.Split(':')[0] + " " + p.Split(':')[1]);
             }
             addAnimalPanel.Controls.Add(owner);
+            ////////
+            string person_name = "";
+            string person_firstname = "";
+            int person_id = -1;
+            if (owner.SelectedItem != null && owner.SelectedItem.ToString() != "Propriétaire")
+            {
+                person_name = owner.SelectedText.Split(' ')[0];
+                person_firstname = owner.SelectedText.Split(' ')[1];
+                person_id = db.findPersonIdByName(person_name, person_firstname);
+            }   
             // date de naissance
             DateTimePicker date = new DateTimePicker();
             date.Format = DateTimePickerFormat.Short;
@@ -74,17 +84,23 @@ namespace VetoPTApplication.AnimalManagement
             breed.Size = new Size(100, 30);
             breed.Location = new Point(230, 250);
             breed.Text = "Race";
+            breed.SelectedValueChanged += new EventHandler()
             List<string> breeds = db.getBreeds();
             foreach (string b in breeds){
                 breed.Items.Add(b);
             }
             addAnimalPanel.Controls.Add(breed);
+            ////////
+            string breed_name = breed.SelectedText;
+            int breed_id = -1;
+            if (breed.SelectedItem != null)
+                breed_id = db.findBreedIdByName(breed_name);
             // bouton confirmer
             Button confirmButton = new Button();
             confirmButton.Size = new Size(100, 30);
             confirmButton.Location = new Point(150, 310);
             confirmButton.Text = "Confirmer";
-            confirmButton.Click += (sender, eventArgs) => { db.InsertAnimal(name.Text, weight.Text + " kg", date.Text); };
+            confirmButton.Click += (sender, eventArgs) => { db.InsertAnimal(name.Text, weight.Text + " kg", date.Text, person_id, breed_id); };
             confirmButton.Click += new EventHandler(displayAnimals);
             addAnimalPanel.Controls.Add(confirmButton);
             // bouton annuler
@@ -106,6 +122,11 @@ namespace VetoPTApplication.AnimalManagement
         private void displayAnimals(object sender, EventArgs e)
         {
             new DisplayAnimals(addAnimalPanel);
+        }
+
+        public void refreshAnimals(object sender, EventArgs e)
+        {
+            new AddAnimal(addAnimalPanel);
         }
 
     }

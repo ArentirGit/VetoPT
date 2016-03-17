@@ -62,14 +62,16 @@ namespace VetoPTApplication.DataBase
             return animals;
         }
 
-        public void InsertAnimal(string name,string weight, string birth, int personne_id){
-            string insert = "INSERT INTO Animal Values (?,?,?,?)";
+        public void InsertAnimal(string name,string weight, string birth, int person_id, int breed_id){
+            string insert = "INSERT INTO Animal Values (?,?,?,?,?)";
+            Console.WriteLine(person_id + "  " + breed_id);
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
             cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
             cmd.Parameters.Add("Poids", OleDbType.VarChar).Value = weight;
             cmd.Parameters.Add("Date de naissance", OleDbType.VarChar).Value = birth;
-            cmd.Parameters.Add("ID personne", OleDbType.Integer).Value = personne_id;
+            cmd.Parameters.Add("ID personne", OleDbType.Integer).Value = person_id;
+            cmd.Parameters.Add("ID race", OleDbType.Integer).Value = breed_id;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }
@@ -187,6 +189,42 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("Nom Race", OleDbType.VarChar).Value = breed_name;
             cmd.ExecuteNonQuery();
             dbCon.Close();
+        }
+
+        public int findBreedIdByName(string breed_name)
+        {
+            string display = "SELECT id FROM Race "
+                            + "WHERE Race.intitule = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            cmd.Parameters.Add("Nom race", OleDbType.VarChar).Value = breed_name;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            int breed_id = -1;
+            while (reader.Read()) {
+                breed_id = reader.GetInt32(0);
+            }
+            reader.Close();
+            dbCon.Close();
+            return breed_id;
+        }
+
+        public int findPersonIdByName(string person_name, string person_firstname)
+        {
+            string display = "SELECT id FROM Personne"
+                            + "WHERE Personne.nom = ? and Personne.prenom = ? ";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            cmd.Parameters.Add("Nom personne", OleDbType.VarChar).Value = person_name;
+            cmd.Parameters.Add("Prenom personne", OleDbType.VarChar).Value = person_firstname;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            int person_id = -1;
+            while (reader.Read())
+            {
+                person_id = reader.GetInt32(0);
+            }
+            reader.Close();
+            dbCon.Close();
+            return person_id;
         }
 
         public List<string> getAnimals()
