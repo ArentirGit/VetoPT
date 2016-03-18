@@ -66,7 +66,6 @@ namespace VetoPTApplication.DataBase
         public void InsertAnimal(string name, string weight, string birth, int person_id, int breed_id)
         {
             string insert = "INSERT INTO Animal Values (?,?,?,?,?)";
-            Console.WriteLine(person_id + "  " + breed_id);
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
             cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
@@ -80,15 +79,15 @@ namespace VetoPTApplication.DataBase
 
         public void UpdateAnimal(string name, string weight, string birth, int person_id, int breed_id, int animal_id)
         {
-            string update = "UPDATE Animal SET nom = ?, poids = ?,date_naissance = ?,PersonneID = ?, RaceID = ? "
+            string update = "UPDATE Animal SET nom = ?, poids = ?, date_naissance = ?, PersonneID = ?, RaceID = ? "
                              + "WHERE id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(update, dbCon);
             cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
             cmd.Parameters.Add("Poids", OleDbType.VarChar).Value = weight;
             cmd.Parameters.Add("Date naissance", OleDbType.VarChar).Value = birth;
-            cmd.Parameters.Add("ID Personne", OleDbType.VarChar).Value = person_id;
-            cmd.Parameters.Add("ID Race", OleDbType.VarChar).Value = breed_id;
+            cmd.Parameters.Add("ID Personne", OleDbType.Integer).Value = person_id;
+            cmd.Parameters.Add("ID Race", OleDbType.Integer).Value = breed_id;
             cmd.Parameters.Add("ID Animal", OleDbType.Integer).Value = animal_id;
             cmd.ExecuteNonQuery();
             dbCon.Close();
@@ -151,7 +150,7 @@ namespace VetoPTApplication.DataBase
 
         public void insertReminder(string date, string intitule)
         {
-            string insert = "INSERT INTO Rappel Values (1,?,?)";
+            string insert = "INSERT INTO Rappel Values (3,?,?)";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
             cmd.Parameters.Add("Date", OleDbType.VarChar).Value = date;
@@ -160,26 +159,44 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public void updateReminder(int code_reminder, string date, string intitule)
+        public void updateReminder(int reminder_id, string date, string intitule)
         {
             string update = "UPDATE Rappel SET date = ?, intitule = ? WHERE id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(update, dbCon);
             cmd.Parameters.Add("Date", OleDbType.VarChar).Value = date;
             cmd.Parameters.Add("Intitule", OleDbType.VarChar).Value = intitule;
-            cmd.Parameters.Add("id", OleDbType.Integer).Value = code_reminder;
+            cmd.Parameters.Add("id", OleDbType.Integer).Value = reminder_id;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
-        public void deleteReminder(int code_reminder)
+        public void deleteReminder(int reminder_id)
         {
             string delete = "DELETE FROM Rappel WHERE id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(delete, dbCon);
-            cmd.Parameters.Add("id", OleDbType.Integer).Value = code_reminder;
+            cmd.Parameters.Add("id", OleDbType.Integer).Value = reminder_id;
             cmd.ExecuteNonQuery();
             dbCon.Close();
+        }
+
+        public String getReminderDetails(int reminder_id)
+        {
+            string display = "SELECT date FROM Rappel "
+                            + "WHERE id = ? ";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            cmd.Parameters.Add("ID Reminder", OleDbType.Integer).Value = reminder_id;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            String details = "";
+            while (reader.Read())
+            {
+                details += (reader.GetString(0));
+            }
+            reader.Close();
+            dbCon.Close();
+            return details;
         }
 
         public void insertSpecy(string specy_name)
@@ -205,14 +222,15 @@ namespace VetoPTApplication.DataBase
         public int findBreedIdByName(string breed_name)
         {
             string display = "SELECT id FROM Race "
-                            + "WHERE Race.intitule = ?";
+                            + "WHERE intitule = ?";
             dbCon.Open();
-            OleDbCommand cmd = new OleDbCommand(display, dbCon);
-            cmd.Parameters.Add("Nom race", OleDbType.VarChar).Value = breed_name;
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);      
+            cmd.Parameters.Add("Intitule Race", OleDbType.VarChar).Value = breed_name;
             OleDbDataReader reader = cmd.ExecuteReader();
-            int breed_id = -1;
+            int breed_id = -10;
             while (reader.Read())
             {
+                Console.WriteLine("test");
                 breed_id = reader.GetInt32(0);
             }
             reader.Close();
@@ -220,18 +238,35 @@ namespace VetoPTApplication.DataBase
             return breed_id;
         }
 
-        public int findPersonIdByName(string person_name, string person_firstname)
+        public int findSpecyIdByName(string specy_name)
         {
-            string display = "SELECT id FROM Personne"
-                            + "WHERE Personne.nom = ? and Personne.prenom = ? ";
+            string display = "SELECT id FROM Espece "
+                            + "WHERE intitule = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
-            cmd.Parameters.Add("Nom personne", OleDbType.VarChar).Value = person_name;
+            cmd.Parameters.Add("Intitule Espece", OleDbType.VarChar).Value = specy_name;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            int specy_id = -1;
+            while (reader.Read())
+            {
+                specy_id = reader.GetInt32(0);
+            }
+            reader.Close();
+            dbCon.Close();
+            return specy_id;
+        }
+
+        public int findPersonIdByName(string person_name, string person_firstname)
+        {
+            string display = "SELECT id FROM Personne "
+                            + "WHERE nom = ? and prenom = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            cmd.Parameters.Add("Nom Personne", OleDbType.VarChar).Value = person_name;
             cmd.Parameters.Add("Prenom personne", OleDbType.VarChar).Value = person_firstname;
             OleDbDataReader reader = cmd.ExecuteReader();
             int person_id = -1;
-            while (reader.Read())
-            {
+            while (reader.Read()) {
                 person_id = reader.GetInt32(0);
             }
             reader.Close();
@@ -241,7 +276,7 @@ namespace VetoPTApplication.DataBase
 
         public List<string> getBreedsSpecy(int specy_id)
         {
-            string get = "SELECT Race.intitule from Race "
+            string get = "SELECT Race.id , Race.intitule from Race "
                         + "JOIN Espece on Espece.id = Race.EspeceID "
                         + "WHERE Espece.id = ?";
             dbCon.Open();
@@ -251,7 +286,7 @@ namespace VetoPTApplication.DataBase
             List<string> breeds = new List<string>();
             while (reader.Read())
             {
-                breeds.Add(reader.GetString(0));
+                breeds.Add(reader.GetInt32(0) + ":" + reader.GetString(1));
             }
             reader.Close();
             dbCon.Close();

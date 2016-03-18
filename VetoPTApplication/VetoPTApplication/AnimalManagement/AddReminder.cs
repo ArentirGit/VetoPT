@@ -50,7 +50,7 @@ namespace VetoPTApplication.AnimalManagement
             addReminderPanel.Controls.Add(animal);
             // Date
             DateTimePicker date = new DateTimePicker();
-            date.Format = DateTimePickerFormat.Long;
+            date.Format = DateTimePickerFormat.Short;
             date.Size = new Size(150, 30);
             date.Location = new Point(205, 160);
             addReminderPanel.Controls.Add(date);

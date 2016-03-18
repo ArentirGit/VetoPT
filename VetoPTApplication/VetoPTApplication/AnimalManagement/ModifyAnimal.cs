@@ -60,14 +60,15 @@ namespace VetoPTApplication.AnimalManagement
             TextBox weight = new TextBox();
             weight.Size = new Size(100, 30);
             weight.Location = new Point(230, y);
-            weight.Text = details.Split(':')[1];
+            weight.Text = details.Split(':')[1].Remove(details.Split(':')[1].Length - 3);      // pour éviter qu'il y ait plusieurs "kg" 
             modifyAnimalPanel.Controls.Add(weight);
             y += 30;
             // proprietaire
             owner = new ComboBox();
             owner.Size = new Size(100, 30);
             owner.Location = new Point(230, y);
-            owner.Text = "Propriétaire";
+            owner.SelectedText = details.Split(':')[3] + " " + details.Split(':')[4];
+            person_id = db.findPersonIdByName(details.Split(':')[3], details.Split(':')[4]);
             people = db.getPeople();
             foreach (string p in people)
             {
@@ -81,13 +82,15 @@ namespace VetoPTApplication.AnimalManagement
             date.Format = DateTimePickerFormat.Short;
             date.Size = new Size(100, 30);
             date.Location = new Point(230, y);
+            date.Text = details.Split(':')[2];
             modifyAnimalPanel.Controls.Add(date);
             y += 30;
             // espece
             specy = new ComboBox();
             specy.Size = new Size(100, 30);
             specy.Location = new Point(230, y);
-            specy.Text = "Espece";
+            specy.SelectedText = details.Split(':')[5];
+            specy_id = db.findSpecyIdByName(specy.SelectedText);
             species = db.getSpecies();
             foreach (string s in species)
             {
@@ -100,7 +103,8 @@ namespace VetoPTApplication.AnimalManagement
             breed = new ComboBox();
             breed.Size = new Size(100, 30);
             breed.Location = new Point(230, y);
-            breed.Text = "Race";
+            breed.SelectedText = details.Split(':')[6];
+            breed_id = db.findBreedIdByName(details.Split(':')[6]);
             breed.SelectedIndexChanged += new EventHandler(breedChange);
             modifyAnimalPanel.Controls.Add(breed);
             // bouton confirmer
@@ -165,9 +169,8 @@ namespace VetoPTApplication.AnimalManagement
             breeds = new List<string>();
             breeds = db.getBreedsSpecy(specy_id);
             breed.Items.Clear();
-            foreach (string b in breeds)
-            {
-                breed.Items.Add(b);
+            foreach (string b in breeds) {
+                breed.Items.Add(b.Split(':')[1]);
             }
         }
 

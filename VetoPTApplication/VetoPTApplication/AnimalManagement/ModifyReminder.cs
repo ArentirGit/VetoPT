@@ -51,9 +51,10 @@ namespace VetoPTApplication.AnimalManagement
             addReminderPanel.Controls.Add(animal);
             // Date
             DateTimePicker date = new DateTimePicker();
-            date.Format = DateTimePickerFormat.Long;
+            date.Format = DateTimePickerFormat.Short;
             date.Size = new Size(150, 30);
             date.Location = new Point(205, 160);
+            date.Text = db.getReminderDetails(reminder_id);
             addReminderPanel.Controls.Add(date);
             // bouton confirmer
             Button confirmButton = new Button();
