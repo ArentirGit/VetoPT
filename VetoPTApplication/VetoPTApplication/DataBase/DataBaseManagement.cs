@@ -20,6 +20,20 @@ namespace VetoPTApplication.DataBase
             ChaineBd = "Provider=SQLOLEDB;Data Source=INFO-SIMPLET;Initial Catalog=" + nameDataBase + ";Uid=ETD; Pwd=ETD";
             dbCon = new OleDbConnection(ChaineBd);
         }
+
+        public void insertUser(string user_rank, string id, string password)
+        {
+            string insert = "INSERT INTO Personnel Values (?,?,?)";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(insert, dbCon);
+            cmd.Parameters.Add("Rang User", OleDbType.VarChar).Value = user_rank;
+            cmd.Parameters.Add("Identifiant User", OleDbType.VarChar).Value = id;
+            cmd.Parameters.Add("Mot de passe User", OleDbType.VarChar).Value = password;
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
+        }
+
+
         public List<Animal> SearchAnimals(string name)
         {
             #region Accès sécurisé
