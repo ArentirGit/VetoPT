@@ -33,6 +33,46 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
+        public List<string> displayUsers()
+        {
+            string display = "SELECT * FROM Personnel";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> users = new List<string>();
+            while (reader.Read())
+            {
+                users.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetString(2) + ":" + reader.GetString(3));
+            }
+            reader.Close();
+            dbCon.Close();
+            return users;
+        }
+
+        public void updateUser(string rank, string login, string password, int user_id)
+        {
+            string update = "UPDATE Personnel SET rank = ?, login = ?, password = ? "
+                             + "WHERE id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(update, dbCon);
+            cmd.Parameters.Add("Rang User", OleDbType.VarChar).Value = rank;
+            cmd.Parameters.Add("Login User", OleDbType.VarChar).Value = login;
+            cmd.Parameters.Add("Password User", OleDbType.VarChar).Value = password;
+            cmd.Parameters.Add("ID Personnel", OleDbType.Integer).Value = user_id;
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
+        }
+
+        public void deleteUser(int user_id)
+        {
+            string delete = "DELETE FROM Personnel WHERE id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(delete, dbCon);
+            cmd.Parameters.Add("ID User", OleDbType.Integer).Value = user_id;
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
+        }
+
 
         public List<Animal> SearchAnimals(string name)
         {

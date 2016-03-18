@@ -21,27 +21,27 @@ namespace VetoPTApplication.UserManagement
         private void Init()
         {
             userManagementPanel.Controls.Clear();
-
+            // titre
             Label title = new Label();
             title.Size = new Size(300, 30);
             title.Font = new Font("Arial", 20);
             title.Location = new Point(170, 20);
             title.Text = "Gestion des utilisateurs";
             userManagementPanel.Controls.Add(title);
-
-            Button displayUsersButton = new Button();
-            displayUsersButton.Location = new Point(205, 150);
-            displayUsersButton.Text = "Liste des utilisateurs";
-            displayUsersButton.Size = new Size(200, 30);
-            displayUsersButton.Click += new EventHandler(displayUsers);
-            userManagementPanel.Controls.Add(displayUsersButton);
-
+            // ajouter un utilisateur
             Button addUserButton = new Button();
-            addUserButton.Location = new Point(205, 300);
+            addUserButton.Location = new Point(205, 130);
             addUserButton.Text = "Ajouter un utilisateur";
             addUserButton.Size = new Size(200, 30);
             addUserButton.Click += new EventHandler(addUser);
             userManagementPanel.Controls.Add(addUserButton);
+            // afficher les utilisateurs
+            Button displayUsersButton = new Button();
+            displayUsersButton.Location = new Point(205, 200);
+            displayUsersButton.Text = "Liste des utilisateurs";
+            displayUsersButton.Size = new Size(200, 30);
+            displayUsersButton.Click += new EventHandler(displayUsers);
+            userManagementPanel.Controls.Add(displayUsersButton);
         }
 
         private void displayUsers(object sender, EventArgs e)

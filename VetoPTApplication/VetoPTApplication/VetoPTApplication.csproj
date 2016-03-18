@@ -100,6 +100,7 @@
     <Compile Include="StockManagement\ModifyPrice.cs" />
     <Compile Include="UserManagement\AddUser.cs" />
     <Compile Include="UserManagement\DisplayUsers.cs" />
+    <Compile Include="UserManagement\ModifyUser.cs" />
     <Compile Include="UserManagement\UserHomePage.cs" />
     <EmbeddedResource Include="Global.resx">
       <DependentUpon>Global.cs</DependentUpon>
