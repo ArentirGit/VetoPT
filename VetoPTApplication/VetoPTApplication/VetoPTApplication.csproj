@@ -50,6 +50,9 @@
     <Compile Include="AnimalManagement\AddSpecy.cs" />
     <Compile Include="AnimalManagement\AnimalDetails.cs" />
     <Compile Include="AnimalManagement\DisplayAnimals.cs" />
+    <Compile Include="AnimalManagement\DisplayAppointmentsAnimal.cs" />
+    <Compile Include="AnimalManagement\DisplayCareAnimal.cs" />
+    <Compile Include="AnimalManagement\DisplayOwnerAnimal.cs" />
     <Compile Include="AnimalManagement\DisplayReminders.cs" />
     <Compile Include="AnimalManagement\HomePage.cs" />
     <Compile Include="AnimalManagement\ModifyAnimal.cs" />

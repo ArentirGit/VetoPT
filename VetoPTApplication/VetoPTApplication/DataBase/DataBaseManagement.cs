@@ -25,8 +25,8 @@ namespace VetoPTApplication.DataBase
             #region Accès sécurisé
             string sql = "Select Code_Animal, Nom_Animal, Poids_Animal FROM Animal "
                        + " WHERE Nom_Animal Like ?  ORDER BY Nom_Animal";
-            nameDataBase = "nom";       
-            
+            nameDataBase = "nom";
+
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(sql, dbCon);
             cmd.Parameters.Add("init", OleDbType.VarChar).Value = name;
@@ -54,7 +54,8 @@ namespace VetoPTApplication.DataBase
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> animals = new List<string>();
-            while (reader.Read()){
+            while (reader.Read())
+            {
                 animals.Add(reader.GetInt32(0) + ":" + reader.GetString(1));
             }
             reader.Close();
@@ -62,7 +63,8 @@ namespace VetoPTApplication.DataBase
             return animals;
         }
 
-        public void InsertAnimal(string name,string weight, string birth, int person_id, int breed_id){
+        public void InsertAnimal(string name, string weight, string birth, int person_id, int breed_id)
+        {
             string insert = "INSERT INTO Animal Values (?,?,?,?,?)";
             Console.WriteLine(person_id + "  " + breed_id);
             dbCon.Open();
@@ -76,10 +78,11 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public void UpdateAnimal(string name, string weight, string birth, int person_id, int breed_id, int animal_id){
+        public void UpdateAnimal(string name, string weight, string birth, int person_id, int breed_id, int animal_id)
+        {
             string update = "UPDATE Animal SET nom = ?, poids = ?,date_naissance = ?,PersonneID = ?, RaceID = ? "
                              + "WHERE id = ?";
-            dbCon.Open();            
+            dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(update, dbCon);
             cmd.Parameters.Add("Nom", OleDbType.VarChar).Value = name;
             cmd.Parameters.Add("Poids", OleDbType.VarChar).Value = weight;
@@ -109,7 +112,7 @@ namespace VetoPTApplication.DataBase
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             cmd.Parameters.Add("Code", OleDbType.Integer).Value = code_animal;
-            dbCon.Close(); 
+            dbCon.Close();
         }
 
         public void displayAnimalCare(int code_animal)
@@ -123,9 +126,9 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public List<String> displayAnimalDetails(int code_animal)
+        public String displayAnimalDetails(int code_animal)
         {
-            string display = "SELECT Animal.nom,poids,date_naissance,Personne.nom,Personne.prenom,Espece.intitule,Race.intitule FROM Animal "
+            string display = "SELECT Animal.nom,poids,date_naissance,Personne.nom,Personne.prenom,Espece.intitule,Race.intitule, Personne.id FROM Animal "
                             + "JOIN Personne on Personne.id = Animal.PersonneID "
                             + "JOIN Race on Race.id = Animal.RaceID "
                             + "JOIN Espece on Espece.id = Race.EspeceID "
@@ -134,16 +137,16 @@ namespace VetoPTApplication.DataBase
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             cmd.Parameters.Add("Code", OleDbType.Integer).Value = code_animal;
             OleDbDataReader reader = cmd.ExecuteReader();
-            List<string> animals = new List<string>();
+            String details = "";
             while (reader.Read())
             {
-                animals.Add(reader.GetString(0) + ":" + reader.GetString(1)
+                details += (reader.GetString(0) + ":" + reader.GetString(1)
                     + ":" + reader.GetString(2) + ":" + reader.GetString(3) + ":" + reader.GetString(4)
-                    + ":" + reader.GetString(5) + ":" + reader.GetString(6));
+                    + ":" + reader.GetString(5) + ":" + reader.GetString(6) + ":" + reader.GetInt32(7));
             }
             reader.Close();
             dbCon.Close();
-            return animals;
+            return details;
         }
 
         public void insertReminder(string date, string intitule)
@@ -208,7 +211,8 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("Nom race", OleDbType.VarChar).Value = breed_name;
             OleDbDataReader reader = cmd.ExecuteReader();
             int breed_id = -1;
-            while (reader.Read()) {
+            while (reader.Read())
+            {
                 breed_id = reader.GetInt32(0);
             }
             reader.Close();
@@ -226,7 +230,8 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("Prenom personne", OleDbType.VarChar).Value = person_firstname;
             OleDbDataReader reader = cmd.ExecuteReader();
             int person_id = -1;
-            while (reader.Read()) {
+            while (reader.Read())
+            {
                 person_id = reader.GetInt32(0);
             }
             reader.Close();
@@ -244,12 +249,51 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("ID Espece", OleDbType.Integer).Value = specy_id;
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> breeds = new List<string>();
-            while (reader.Read()) {
+            while (reader.Read())
+            {
                 breeds.Add(reader.GetString(0));
             }
             reader.Close();
             dbCon.Close();
             return breeds;
+        }
+
+        public List<string> getAppointmentsAnimal(int animal_id)
+        {
+            string get = "SELECT Animal_RDV.id from Animal "
+                        + "JOIN Animal_RDV on Animal_RDV.AnimalID = Animal.id "
+                        + "WHERE Animal.id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(get, dbCon);
+            cmd.Parameters.Add("ID Animal", OleDbType.Integer).Value = animal_id;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> appointments = new List<string>();
+            while (reader.Read())
+            {
+                appointments.Add(reader.GetString(0));
+            }
+            reader.Close();
+            dbCon.Close();
+            return appointments;
+        }
+
+        public List<string> getCaresAnimal(int animal_id)
+        {
+            string get = "SELECT * FROM Traitement "
+                         + "JOIN Animal on Animal.id = Traitement.AnimalID "
+                         + "WHERE Animal.id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(get, dbCon);
+            cmd.Parameters.Add("ID Animal", OleDbType.Integer).Value = animal_id;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> cares = new List<string>();
+            while (reader.Read())
+            {
+                cares.Add(reader.GetString(0));
+            }
+            reader.Close();
+            dbCon.Close();
+            return cares;
         }
 
         public List<string> getAnimals()
@@ -259,7 +303,8 @@ namespace VetoPTApplication.DataBase
             OleDbCommand cmd = new OleDbCommand(get, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> animals = new List<string>();
-            while (reader.Read()) {
+            while (reader.Read())
+            {
                 animals.Add(reader.GetString(0));
             }
             reader.Close();
@@ -274,8 +319,9 @@ namespace VetoPTApplication.DataBase
             OleDbCommand cmd = new OleDbCommand(get, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> species = new List<string>();
-            while (reader.Read()){
-                species.Add(reader.GetInt32(0) + ":" +  reader.GetString(1));
+            while (reader.Read())
+            {
+                species.Add(reader.GetInt32(0) + ":" + reader.GetString(1));
             }
             reader.Close();
             dbCon.Close();
@@ -289,7 +335,8 @@ namespace VetoPTApplication.DataBase
             OleDbCommand cmd = new OleDbCommand(get, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> breeds = new List<string>();
-            while (reader.Read()){
+            while (reader.Read())
+            {
                 breeds.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetInt32(2));
             }
             reader.Close();
@@ -304,7 +351,8 @@ namespace VetoPTApplication.DataBase
             OleDbCommand cmd = new OleDbCommand(get, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> people = new List<string>();
-            while (reader.Read()){
+            while (reader.Read())
+            {
                 people.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetString(2));
             }
             reader.Close();
@@ -314,17 +362,35 @@ namespace VetoPTApplication.DataBase
 
         public List<string> getReminders()
         {
-            string get = "SELECT * FROM Rappel";   
+            string get = "SELECT * FROM Rappel";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(get, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> reminders = new List<string>();
-            while (reader.Read()){
+            while (reader.Read())
+            {
                 reminders.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetString(2));
             }
             reader.Close();
             dbCon.Close();
             return reminders;
+        }
+
+        public string getReminder(int reminder_id)
+        {
+            string get = "SELECT intitule FROM Rappel "
+                        + "WHERE id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(get, dbCon);
+            cmd.Parameters.Add("ID Reminder", OleDbType.Integer).Value = reminder_id;
+            OleDbDataReader reader = cmd.ExecuteReader();
+            string reminder = "";
+            while (reader.Read()) {
+                reminder += reader.GetString(0);
+            }
+            reader.Close();
+            dbCon.Close();
+            return reminder;
         }
 
         //ClientManagement
@@ -475,7 +541,7 @@ namespace VetoPTApplication.DataBase
             return treatments;
         }
 
-         public void addTreatments(string animal, string nom,string dateDebut,string duree,string description)
+        public void addTreatments(string animal, string nom, string dateDebut, string duree, string description)
         {
             string insert = "INSERT INTO Traitement  Values (?,?,?,?,?) ";
             dbCon.Open();

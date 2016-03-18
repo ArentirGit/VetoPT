@@ -37,7 +37,7 @@ namespace VetoPTApplication.AnimalManagement
             TextBox name = new TextBox();
             name.Size = new Size(150, 30);
             name.Location = new Point(205, 100);
-            name.Text = "Intitulé";    
+            name.Text = db.getReminder(reminder_id);
             addReminderPanel.Controls.Add(name);
             // animal
             ComboBox animal = new ComboBox();
@@ -45,7 +45,7 @@ namespace VetoPTApplication.AnimalManagement
             animal.Location = new Point(205, 130);
             animal.Text = "Animal";
             List<string> animals = db.getAnimals();
-            foreach (string a in animals){
+            foreach (string a in animals) {
                 animal.Items.Add(a);
             }
             addReminderPanel.Controls.Add(animal);

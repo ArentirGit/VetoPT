@@ -73,8 +73,8 @@ namespace VetoPTApplication.AnimalManagement
                 // bouton supprimer animal
                 Button delAnimalButton = new Button();
                 delAnimalButton.Location = new Point(x, y);
-                delAnimalButton.Text = "Supprimer animal"; 
-                delAnimalButton.Size = new Size(75, 20);         
+                delAnimalButton.Text = "Supprimer animal";
+                delAnimalButton.Size = new Size(75, 20);
                 delAnimalButton.Click += (sender, eventArgs) => { db.DeleteAnimal(animal_id); };
                 delAnimalButton.Click += new EventHandler(refreshAnimals);
                 displayAnimalsPanel.Controls.Add(delAnimalButton);
@@ -84,7 +84,7 @@ namespace VetoPTApplication.AnimalManagement
                 displayRemindersAnimalButton.Location = new Point(x, y);
                 displayRemindersAnimalButton.Text = "Rendez-vous";
                 displayRemindersAnimalButton.Size = new Size(80, 20);
-                displayRemindersAnimalButton.Click += new EventHandler(refreshAnimals);
+                displayRemindersAnimalButton.Click += (sender, eventArgs) => displayAppointmentsAnimal(sender, eventArgs, animal_id);
                 displayAnimalsPanel.Controls.Add(displayRemindersAnimalButton);
                 x += 90;
                 // bouton soins
@@ -92,7 +92,7 @@ namespace VetoPTApplication.AnimalManagement
                 careButton.Location = new Point(x, y);
                 careButton.Text = "Soins";
                 careButton.Size = new Size(75, 20);
-                careButton.Click += new EventHandler(refreshAnimals);
+                careButton.Click += (sender, eventArgs) => displayCareAnimal(sender, eventArgs, animal_id);
                 displayAnimalsPanel.Controls.Add(careButton);
                 x += 85;
                 // bouton details
@@ -131,6 +131,16 @@ namespace VetoPTApplication.AnimalManagement
         public void displayAnimalDetails(object sender, EventArgs e, int id)
         {
             new AnimalDetails(displayAnimalsPanel, id);
+        }
+
+        public void displayAppointmentsAnimal(object sender, EventArgs e, int id)
+        {
+            new DisplayAppointmentsAnimal(displayAnimalsPanel, id);
+        }
+
+        public void displayCareAnimal(object sender, EventArgs e, int id)
+        {
+            new DisplayCareAnimal(displayAnimalsPanel, id);
         }
     }
 }

@@ -19,15 +19,15 @@ namespace VetoPTApplication.AnimalManagement
             Init();
             //DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
         }
-        
+
         public void Init()
         {
             // suppression de tout les objets du panel
             animalManagementPanel.Controls.Clear();
-                // MENU //
+            // MENU //
             // titre
             Label title = new Label();
-            title.Size = new Size(300,30);
+            title.Size = new Size(300, 30);
             title.Font = new Font("Arial", 20);
             title.Location = new Point(170, 20);
             title.Text = "Gestion des animaux";
@@ -36,7 +36,7 @@ namespace VetoPTApplication.AnimalManagement
             Button displayAnimalsButton = new Button();
             displayAnimalsButton.Location = new Point(205, 100);
             displayAnimalsButton.Text = "Afficher animaux";
-            displayAnimalsButton.Size = new Size(200,30);
+            displayAnimalsButton.Size = new Size(200, 30);
             displayAnimalsButton.Click += new EventHandler(displayAnimals);
             animalManagementPanel.Controls.Add(displayAnimalsButton);
             // bouton ajouter animaux

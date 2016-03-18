@@ -17,7 +17,7 @@ namespace VetoPTApplication.AnimalManagement
         private ComboBox owner;
         private int person_id;
         private List<string> people;
-        
+
         private ComboBox specy;
         private int specy_id;
         private List<string> species;
@@ -63,7 +63,8 @@ namespace VetoPTApplication.AnimalManagement
             owner.Location = new Point(230, 160);
             owner.Text = "Propriétaire  ";
             people = db.getPeople();
-            foreach (string p in people){
+            foreach (string p in people)
+            {
                 owner.Items.Add(p.Split(':')[1] + " " + p.Split(':')[2]);
             }
             owner.SelectedIndexChanged += new EventHandler(ownerChange);
@@ -80,7 +81,8 @@ namespace VetoPTApplication.AnimalManagement
             specy.Location = new Point(230, 220);
             specy.Text = "Espece";
             species = db.getSpecies();
-            foreach (string s in species){
+            foreach (string s in species)
+            {
                 specy.Items.Add(s.Split(':')[1]);
             }
             specy.SelectedIndexChanged += new EventHandler(specyChange);
@@ -106,9 +108,9 @@ namespace VetoPTApplication.AnimalManagement
             cancelButton.Location = new Point(310, 310);
             cancelButton.Text = "Annuler";
             cancelButton.Click += new EventHandler(homePage);
-            addAnimalPanel.Controls.Add(cancelButton); 
+            addAnimalPanel.Controls.Add(cancelButton);
 
-            
+
         }
 
         private void homePage(object sender, EventArgs e)
@@ -128,7 +130,7 @@ namespace VetoPTApplication.AnimalManagement
 
         public void ownerChange(object sender, EventArgs e)
         {
-            person_id = Int32.Parse(people[owner.SelectedIndex].Split(':')[0]);        
+            person_id = Int32.Parse(people[owner.SelectedIndex].Split(':')[0]);
         }
 
         public void specyChange(object sender, EventArgs e)
@@ -147,7 +149,8 @@ namespace VetoPTApplication.AnimalManagement
             breeds = new List<string>();
             breeds = db.getBreedsSpecy(specy_id);
             breed.Items.Clear();
-            foreach (string b in breeds){
+            foreach (string b in breeds)
+            {
                 breed.Items.Add(b);
             }
         }
