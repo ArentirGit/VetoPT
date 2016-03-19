@@ -157,17 +157,6 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
-        public void displayAppointment(int code_animal)
-        {
-            string display = "SELECT date, objet FROM Rendez_Vous "
-                            + "JOIN Animal ON Rendez_Vous.id = Animal.id "
-                            + "WHERE Animal.id = ?";
-            dbCon.Open();
-            OleDbCommand cmd = new OleDbCommand(display, dbCon);
-            cmd.Parameters.Add("Code", OleDbType.Integer).Value = code_animal;
-            dbCon.Close();
-        }
-
         public void displayAnimalCare(int code_animal)
         {
             string display = "SELECT nom FROM Traitement "
@@ -593,11 +582,27 @@ namespace VetoPTApplication.DataBase
             return animals;
         }
 
+        public string getAppointment(int code_animal)
+        {
+            string display = "SELECT date, objet FROM Rendez_Vous Join Animal_RDV" 
+                   + "ON Rendez_Vous.id = Animal_RDV.RDVID Join Animal on Animal.id = Animal_RDV.AnimalID where Animal.id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            cmd.Parameters.Add("Code", OleDbType.Integer).Value = code_animal;
+            cmd.ExecuteNonQuery();
+            OleDbDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            string appointment = reader.GetString(0) + ":" + reader.GetString(1);
+            reader.Close();
+            dbCon.Close();
+            return appointment;
+        }
+
         public void modifyAppointment(string date, string objet, int codeAnimal)
         {
-            string insert = "Select RDVID from Animal_RDV Where AnimalID= ?";
+            string modify = "Select RDVID from Animal_RDV Where AnimalID= ?";
             dbCon.Open();
-            OleDbCommand cmd = new OleDbCommand(insert, dbCon);
+            OleDbCommand cmd = new OleDbCommand(modify, dbCon);
             cmd.Parameters.Add("idAnimal", OleDbType.Integer).Value = codeAnimal;
             cmd.ExecuteNonQuery();
             OleDbDataReader reader = cmd.ExecuteReader();

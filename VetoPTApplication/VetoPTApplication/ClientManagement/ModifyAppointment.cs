@@ -10,20 +10,25 @@ namespace VetoPTApplication.ClientManagement
 {
     class ModifyAppointment
     {
-         private Panel ModifyAppointementPanel;
+        private Panel ModifyAppointementPanel;
 
-         Label title;
+        Label title;
 
-         ComboBox name;
-         ComboBox animal;
+        ComboBox client;
+        ComboBox animal;
 
-         MonthCalendar calendar;
-         TextBox reason;
+        MonthCalendar calendar;
+        TextBox reason;
 
-         Button confirmButton;
-         Button cancelButton;
+        Button confirmButton;
+        Button cancelButton;
 
-         public ModifyAppointment(Panel ModifyAppointementPanel)
+        List<string> clients;
+        List<string> animals;
+
+        DataBase.DataBaseManagement db;
+
+        public ModifyAppointment(Panel ModifyAppointementPanel)
         {
             this.ModifyAppointementPanel = ModifyAppointementPanel;
             Init();
@@ -31,7 +36,7 @@ namespace VetoPTApplication.ClientManagement
 
         public void Init()
         {
-            DataBase.DataBaseManagement db = new DataBase.DataBaseManagement("VetoPTArentir");
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             ModifyAppointementPanel.Controls.Clear();
             // titre
@@ -42,16 +47,18 @@ namespace VetoPTApplication.ClientManagement
             title.Text = "Modifier rendez-vous";
             ModifyAppointementPanel.Controls.Add(title);
             // nom
-            name = new ComboBox();
-            name.Size = new Size(150, 30);
-            name.Location = new Point(205, 100);
-            name.Text = "Nom";    
-            ModifyAppointementPanel.Controls.Add(name);
+            client = new ComboBox();
+            client.Size = new Size(150, 30);
+            client.Location = new Point(205, 100);
+            client.Text = "Nom";
+            client.SelectedIndexChanged += new EventHandler(Client_SelectedIndexChanged);
+            ModifyAppointementPanel.Controls.Add(client);
             // animal
             animal = new ComboBox();
             animal.Size = new Size(150, 30);
             animal.Location = new Point(205, 130);
             animal.Text = "Animal";
+            animal.SelectedIndexChanged += new EventHandler(Animal_SelectedIndexChanged);
             ModifyAppointementPanel.Controls.Add(animal);
             // Date
             calendar = new MonthCalendar();
@@ -77,6 +84,42 @@ namespace VetoPTApplication.ClientManagement
             cancelButton.Text = "Annuler";
             ModifyAppointementPanel.Controls.Add(cancelButton);
             cancelButton.Click += new EventHandler(cancel_Click);
+
+            completeClient();
+        }
+
+        
+        private void completeClient()
+        {
+            clients = db.DisplayClients();
+            client.Items.Clear();
+            foreach (string s in clients)
+            {
+                client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+            }
+
+        }
+
+        private void Client_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            animal.Text = "";
+            animals = db.getAnimalsClient(client.SelectedIndex);
+            animal.Items.Clear();
+            foreach (string a in animals)
+            {
+                animal.Items.Add(a.Split(':')[1]);
+            }
+        }
+
+        private void Animal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //calendar.SelectionStart = db.get
+        }
+
+        private void confirm_Click(object sender, EventArgs e)
+        {
+            db.addAppointement(calendar.SelectionStart.ToShortDateString(), reason.Text, Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
+            clear();
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -84,16 +127,12 @@ namespace VetoPTApplication.ClientManagement
             clear();
         }
 
-        private void confirm_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Confirmer");
-        }
-
         private void clear()
         {
-            name.Text = "Nom";
+            client.Text = "Nom";
             animal.Text = "Animal";
             reason.Text = "Objet du rendez-vous";
+
         }
 
 

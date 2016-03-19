@@ -10,17 +10,17 @@ namespace VetoPTApplication.ClientManagement
 {
     class AddAppointment
     {
-         private Panel AddAppointementPanel;
+        private Panel AddAppointementPanel;
         DataBase.DataBaseManagement db;
-         Label title;
+        Label title;
 
-         ComboBox client;
-         ComboBox animal;
-         MonthCalendar calendar;
-         TextBox reason;
+        ComboBox client;
+        ComboBox animal;
+        MonthCalendar calendar;
+        TextBox reason;
 
-         Button confirmButton;
-         Button cancelButton;
+        Button confirmButton;
+        Button cancelButton;
 
         List<string> clients;
         List<string> animals;
@@ -93,7 +93,7 @@ namespace VetoPTApplication.ClientManagement
             {
                 client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
             }
-           
+
         }
 
         private void Client_SelectedIndexChanged(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace VetoPTApplication.ClientManagement
             client.Text = "Nom";
             animal.Text = "Animal";
             reason.Text = "Objet du rendez-vous";
-           
+
         }
     }
 }
