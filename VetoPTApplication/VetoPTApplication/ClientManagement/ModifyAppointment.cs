@@ -113,12 +113,14 @@ namespace VetoPTApplication.ClientManagement
 
         private void Animal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //calendar.SelectionStart = db.get
+            string appointment = db.getAppointment(Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
+            calendar.SelectionStart = DateTime.Parse(appointment.Split(':')[0]);
+            reason.Text = appointment.Split(':')[1];
         }
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            db.addAppointement(calendar.SelectionStart.ToShortDateString(), reason.Text, Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
+            db.modifyAppointment(calendar.SelectionStart.ToShortDateString(), reason.Text, Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
             clear();
         }
 

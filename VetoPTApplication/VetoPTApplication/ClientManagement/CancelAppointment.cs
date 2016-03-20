@@ -17,7 +17,7 @@ namespace VetoPTApplication.ClientManagement
         ComboBox client;
         ComboBox animal;
         MonthCalendar calendar;
-        TextBox reason;
+        Label reason;
 
         List<string> clients;
         List<string> animals;
@@ -57,13 +57,14 @@ namespace VetoPTApplication.ClientManagement
             animal.Size = new Size(150, 30);
             animal.Location = new Point(205, 130);
             animal.Text = "Animal";
+            animal.SelectedIndexChanged += new EventHandler(Animal_SelectedIndexChanged);
             CancelAppointementPanel.Controls.Add(animal);
             // Date
             calendar = new MonthCalendar();
             calendar.Location = new Point(165, 170);
             CancelAppointementPanel.Controls.Add(calendar);
             // raison
-            reason = new TextBox();
+            reason = new Label();
             reason.Size = new Size(150, 30);
             reason.Location = new Point(205, 350);
             reason.Text = "Objet du rendez-vous";
@@ -108,9 +109,16 @@ namespace VetoPTApplication.ClientManagement
             }
         }
 
+        private void Animal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string appointment = db.getAppointment(animal.SelectedIndex);
+            calendar.SelectionStart = DateTime.Parse(appointment.Split(':')[0]);
+            reason.Text = appointment.Split(':')[1];
+        }
+
         private void confirm_Click(object sender, EventArgs e)
         {
-            db.addAppointement(calendar.SelectionStart.ToShortDateString(), reason.Text, Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
+            db.cancelAppointment(Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
             clear();
         }
 

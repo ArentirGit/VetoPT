@@ -600,25 +600,30 @@ namespace VetoPTApplication.DataBase
 
         public void modifyAppointment(string date, string objet, int codeAnimal)
         {
-            string modify = "Select RDVID from Animal_RDV Where AnimalID= ?";
+            //update t1 inner join (select * from t2) x on t1.c0 = x.c0 set t1.c1 = 10;
+
+            string modify = "UPDATE Rendez_Vous SET Rendez_Vous.date = ?, Rendez_Vous.objet = ? Join Animal_RDV ON Rendez_Vous.id = Animal_RDV.RDVID "
+                + "Join Animal on Animal.id = Animal_RDV.AnimalID where Animal.id = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(modify, dbCon);
+            cmd.Parameters.Add("date", OleDbType.Integer).Value = date;
+            cmd.Parameters.Add("objet", OleDbType.Integer).Value = objet;
             cmd.Parameters.Add("idAnimal", OleDbType.Integer).Value = codeAnimal;
             cmd.ExecuteNonQuery();
-            OleDbDataReader reader = cmd.ExecuteReader();
-            reader.Read();
-            int rdvID = reader.GetInt32(0);
             dbCon.Close();
-
-            //Update
-
-
         }
 
-        public void cancelAppointment()
+        public void cancelAppointment(int codeAnimal)
         {
-
+            string cancel = "Delete From Rendez_Vous Join Animal_RDV ON Rendez_Vous.id = Animal_RDV.RDVID "
+               + "Join Animal on Animal.id = Animal_RDV.AnimalID where Animal.id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(cancel, dbCon);
+            cmd.Parameters.Add("idAnimal", OleDbType.Integer).Value = codeAnimal;
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
         }
+
         public List<string> DisplayTreatments()
         {
             string display = "SELECT id,dateDebut,duree,nom,description from Traitement";
