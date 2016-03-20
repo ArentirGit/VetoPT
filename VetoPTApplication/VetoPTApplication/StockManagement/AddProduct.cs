@@ -11,17 +11,18 @@ namespace VetoPTApplication.StockManagement
     class AddProduct
     {
         private Panel AddProductPanel;
+        DataBase.DataBaseManagement db;
 
-         Label title;
+        Label title;
 
-         ComboBox reference;
-         ComboBox quantite;
-         MonthCalendar calendar;
-         TextBox prix;
+        TextBox reference;
+        TextBox quantite;
+        MonthCalendar calendar;
+        TextBox prix;
 
-         Button confirmButton;
-         Button cancelButton;
-         public AddProduct(Panel AddProductPanel)
+        Button confirmButton;
+        Button cancelButton;
+        public AddProduct(Panel AddProductPanel)
         {
             this.AddProductPanel = AddProductPanel;
             Init();
@@ -29,6 +30,7 @@ namespace VetoPTApplication.StockManagement
 
         public void Init()
         {
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             AddProductPanel.Controls.Clear();
             // titre
@@ -39,38 +41,34 @@ namespace VetoPTApplication.StockManagement
             title.Text = "Ajouter un produit";
             AddProductPanel.Controls.Add(title);
             // référence
-            reference = new ComboBox();
+            reference = new TextBox();
             reference.Size = new Size(150, 30);
             reference.Location = new Point(205, 100);
-            reference.Text = "Référence";    
+            reference.Text = "Référence";
             AddProductPanel.Controls.Add(reference);
             // quantité
-            quantite = new ComboBox();
+            quantite = new TextBox();
             quantite.Size = new Size(150, 30);
-            quantite.Location = new Point(205, 130);
+            quantite.Location = new Point(205, 135);
             quantite.Text = "Quantité";
             AddProductPanel.Controls.Add(quantite);
-            // Date
-            calendar = new MonthCalendar();
-            calendar.Location = new Point(165, 170);
-            AddProductPanel.Controls.Add(calendar);
-            // raison
+            // prix
             prix = new TextBox();
             prix.Size = new Size(150, 30);
-            prix.Location = new Point(205, 350);
+            prix.Location = new Point(205, 170);
             prix.Text = "Prix";
             AddProductPanel.Controls.Add(prix);
             // bouton confirmer
             confirmButton = new Button();
             confirmButton.Size = new Size(100, 30);
-            confirmButton.Location = new Point(150, 400);
+            confirmButton.Location = new Point(150, 220);
             confirmButton.Text = "Confirmer";
             AddProductPanel.Controls.Add(confirmButton);
             confirmButton.Click += new EventHandler(confirm_Click);
             // bouton annuler
             cancelButton = new Button();
             cancelButton.Size = new Size(100, 30);
-            cancelButton.Location = new Point(310, 400);
+            cancelButton.Location = new Point(310, 220);
             cancelButton.Text = "Annuler";
             AddProductPanel.Controls.Add(cancelButton);
             cancelButton.Click += new EventHandler(cancel_Click);
@@ -78,7 +76,8 @@ namespace VetoPTApplication.StockManagement
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Confirmer");
+            db.addProduct(reference.Text, Int32.Parse(quantite.Text), Double.Parse(prix.Text));
+            clear();
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -91,7 +90,7 @@ namespace VetoPTApplication.StockManagement
             reference.Text = "Référence";
             quantite.Text = "Quantité";
             prix.Text = "Prix";
-           
+
         }
     }
 }

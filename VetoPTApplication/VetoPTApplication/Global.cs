@@ -159,7 +159,7 @@ namespace VetoPTApplication
 
         private void modifierPrixToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StockManagement.ModifyPrice mp = new StockManagement.ModifyPrice(this.panel1);
+            StockManagement.ModifyPrice mp = new StockManagement.ModifyPrice(this.panel1,null);
         }
 
         private void ajouterProduitToolStripMenuItem_Click(object sender, EventArgs e)

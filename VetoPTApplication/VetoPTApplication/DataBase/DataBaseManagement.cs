@@ -624,6 +624,7 @@ namespace VetoPTApplication.DataBase
             dbCon.Close();
         }
 
+        //Care management
         public List<string> DisplayTreatments()
         {
             string display = "SELECT id,dateDebut,duree,nom,description from Traitement";
@@ -652,6 +653,68 @@ namespace VetoPTApplication.DataBase
             cmd.Parameters.Add("AnimalID", OleDbType.Integer).Value = Int32.Parse(animal.Split(':')[0]);
             cmd.ExecuteNonQuery();
             dbCon.Close();
+        }
+
+        //Stock Management
+        public void addProduct(string reference, int quantite, double prix)
+        {
+            string insert = "INSERT INTO Produit Values (?,?,?) ";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(insert, dbCon);
+            cmd.Parameters.Add("reference", OleDbType.VarChar).Value = reference;
+            cmd.Parameters.Add("quantite", OleDbType.Integer).Value = quantite;
+            cmd.Parameters.Add("prix", OleDbType.Double).Value = prix;
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
+        }
+
+        public List<string> DisplayProducts()
+        {
+            string display = "SELECT id, intitule, quantite, prix from Produit";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> products = new List<string>();
+            while (reader.Read())
+            {
+                products.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetInt32(2) + ":" + reader.GetDouble(3));
+            }
+            reader.Close();
+            dbCon.Close();
+            return products;
+        }
+
+        public void modifyPrice(string reference, double price)
+        {
+            string update = "UPDATE Produit SET prix= ? WHERE intitule = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(update, dbCon);
+            cmd.Parameters.Add("prix", OleDbType.Double).Value = price;
+            cmd.Parameters.Add("intitule", OleDbType.VarChar).Value = reference;
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
+        }
+
+        public void deleteProduct(int productId)
+        {
+            string delete = "DELETE FROM Produit WHERE id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(delete, dbCon);
+            cmd.Parameters.Add("Code produit", OleDbType.Integer).Value = productId;
+            cmd.ExecuteNonQuery();
+            dbCon.Close();
+        }
+
+        public string detailsProduct(int productId)
+        {
+            string details = "SELECT id, intitule, quantite, prix from Produit where id = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(details, dbCon);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            string product = reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetInt32(2) + ":" + reader.GetDouble(3);
+            reader.Close();
+            dbCon.Close();
+            return product;
         }
 
     }

@@ -70,7 +70,7 @@ namespace VetoPTApplication.StockManagement
 
         private void modifyPrice_Click(object sender, EventArgs e)
         {
-            StockManagement.ModifyPrice mc = new StockManagement.ModifyPrice(this.stockManagementPanel);
+            StockManagement.ModifyPrice mc = new StockManagement.ModifyPrice(this.stockManagementPanel,null);
         }
 
         private void addProduct_Click(object sender, EventArgs e)

@@ -46,13 +46,6 @@ namespace VetoPTApplication.ClientManagement
             clientsList.Size = new Size(75, 1000);
             completeClientsList();
             displayClientsPanel.Controls.Add(clientsList);
-            // bouton afficher rendez-vous
-            displayAppointmentsButton = new Button();
-            displayAppointmentsButton.Location = new Point(0, 0);
-            displayAppointmentsButton.Text = "Afficher rendez-vous";
-            displayAppointmentsButton.Size = new Size(150, 30);
-            displayClientsPanel.Controls.Add(displayAppointmentsButton);
-            displayAppointmentsButton.Click += new EventHandler(displayAppointments_Click);
             // bouton ajouter client
             addClientButton = new Button();
             addClientButton.Location = new Point(260, 10);
@@ -70,12 +63,7 @@ namespace VetoPTApplication.ClientManagement
 
         private void addClient_Click(object sender, EventArgs e)
         {
-            ClientManagement.AddClient ca = new ClientManagement.AddClient(this.displayClientsPanel);
-        }
-
-        private void displayAppointments_Click(object sender, EventArgs e)
-        {
-            //ClientManagement.DisplayAppointments ca = new ClientManagement.DisplayAppointments(this.displayClientsPanel);
+            AddClient ca = new AddClient(this.displayClientsPanel);
         }
 
         private void completeClientsList()

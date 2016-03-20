@@ -23,6 +23,7 @@ namespace VetoPTApplication.ClientManagement
 
         List<string> animals;
         int code;
+        string clientData;
 
         DataBase.DataBaseManagement db;
          public DisplayAppointments(Panel DisplayAppointmentsPanel, int code)
@@ -57,7 +58,7 @@ namespace VetoPTApplication.ClientManagement
             animal.Size = new Size(150, 30);
             animal.Location = new Point(205, 130);
             animal.Text = "Animal";
-            //animal.SelectedIndexChanged += new EventHandler(animal_SelectedIndexChanged);
+            animal.SelectedIndexChanged += new EventHandler(animal_SelectedIndexChanged);
             DisplayAppointmentsPanel.Controls.Add(animal);
             // Date
             calendar = new MonthCalendar();
@@ -76,29 +77,28 @@ namespace VetoPTApplication.ClientManagement
             backButton.Text = "Retour";
             DisplayAppointmentsPanel.Controls.Add(backButton);
             backButton.Click += new EventHandler(back_Click);
-        }
-        /*
-        private void completeClient()
-        {
-            clients = db.DisplayClients();
-            client.Items.Clear();
-            foreach (string s in clients)
-            {
-                client.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
-            }
 
+            completeAnimals();
+            clientData = db.detailsClient(code);
+            client.Text = clientData.Split(':')[1] +" "+ clientData.Split(':')[2];
         }
-        private void client_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void completeAnimals()
         {
-            adress.Text = clients[client.SelectedIndex].Split(':')[4];
-            mail.Text = clients[client.SelectedIndex].Split(':')[5];
+            animals = db.getAnimalsClient(code);
+            animal.Items.Clear();
+            foreach (string a in animals)
+            {
+                animal.Items.Add(a.Split(':')[1]);
+            }
         }
 
         private void animal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            string animalData = db.getAppointment(Int32.Parse(animals[animal.SelectedIndex].Split(':')[0]));
+            calendar.SelectionStart = DateTime.Parse(animalData.Split(':')[0]);
+            reason.Text = animalData.Split(':')[1];
         }
-        */
 
         private void back_Click(object sender, EventArgs e)
         {

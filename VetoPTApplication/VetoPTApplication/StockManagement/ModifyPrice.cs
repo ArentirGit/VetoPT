@@ -11,6 +11,7 @@ namespace VetoPTApplication.StockManagement
     class ModifyPrice
     {
         private Panel modifyPricePanel;
+        DataBase.DataBaseManagement db;
 
         Label title;
 
@@ -20,14 +21,20 @@ namespace VetoPTApplication.StockManagement
         Button confirmButton;
         Button cancelButton;
 
-        public ModifyPrice(Panel modifyPricePanel)
+        int? code;
+        List<string> products;
+        string productData;
+
+        public ModifyPrice(Panel modifyPricePanel, int? code)
         {
             this.modifyPricePanel = modifyPricePanel;
+            this.code = code;
             Init();
         }
 
         public void Init()
         {
+            db = new DataBase.DataBaseManagement("VetoPTArentir");
             // suppression de tout les objets du panel
             modifyPricePanel.Controls.Clear();
             // titre
@@ -42,6 +49,7 @@ namespace VetoPTApplication.StockManagement
             product.Size = new Size(100, 30);
             product.Location = new Point(230, 100);
             product.Text = "Produit";
+            product.SelectedIndexChanged += new EventHandler(product_SelectedIndexChanged);
             modifyPricePanel.Controls.Add(product);
             // prix 
             price = new TextBox();
@@ -63,11 +71,39 @@ namespace VetoPTApplication.StockManagement
             cancelButton.Text = "Annuler";
             modifyPricePanel.Controls.Add(cancelButton);
             cancelButton.Click += new EventHandler(cancel_Click);
+
+            completeProducts();
+        }
+
+        private void completeProducts()
+        {
+            if (code == null)
+            {
+                products = db.DisplayProducts();
+                foreach (string p in products)
+                {
+                    product.Items.Add(p.Split(':')[1]);
+                }
+            }
+            else
+            {
+                productData = db.detailsProduct(code.Value);
+                product.Items.Add(productData.Split(':')[1]);
+                product.Text = productData.Split(':')[1];
+                price.Text = productData.Split(':')[3];
+            }
+            
+        }
+
+        private void product_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            price.Text = products[product.SelectedIndex].Split(':')[3];
         }
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Confirmer");
+            db.modifyPrice(product.Text, Double.Parse(price.Text));
+            clear();
         }
 
         private void cancel_Click(object sender, EventArgs e)
