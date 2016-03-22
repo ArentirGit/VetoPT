@@ -59,8 +59,6 @@
     <Compile Include="AnimalManagement\ModifyReminder.cs" />
     <Compile Include="CareManagement\DetailsTreatments.cs" />
     <Compile Include="CareManagement\DisplayTreatment.cs" />
-    <Compile Include="CareManagement\HomeCareManagement.cs" />
-    <Compile Include="CareManagement\MonitoringPatient.cs" />
     <Compile Include="CareManagement\AddTreatment.cs" />
     <Compile Include="CareManagement\Print.cs" />
     <Compile Include="CareManagement\WriteOrdinance.cs" />

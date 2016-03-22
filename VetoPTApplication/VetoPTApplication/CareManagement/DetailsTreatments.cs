@@ -24,7 +24,7 @@ namespace VetoPTApplication.CareManagement
         private DateTimePicker beginingDate;
         
 
-        public DetailsTreatments(Panel panel ,string treatment )
+        public DetailsTreatments(Panel panel ,string treatment)
         {
             myPanel = panel;
             myTreatment = treatment;
