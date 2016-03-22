@@ -19,13 +19,13 @@ namespace VetoPTApplication.CareManagement
         private Button validate;
         private Button cancel;
 
-        private ComboBox nameAnimal;
-        private ComboBox nameClient;
         private TextBox nom;
         private TextBox duree;
         private RichTextBox note;
         private DateTimePicker dateCourante;
 
+        private ComboBox nameAnimal;
+        private ComboBox nameClient;
         private List<string> clients;
         private List<string> animals;
         private string animalSelect;
@@ -135,7 +135,7 @@ namespace VetoPTApplication.CareManagement
             nameAnimal.Items.Clear();
             foreach (string s in animals)
             {
-                nameAnimal.Items.Add(s.Split(':')[1] + " " + s.Split(':')[2]);
+                nameAnimal.Items.Add(s.Split(':')[1]);
             }
 
         }

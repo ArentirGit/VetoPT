@@ -641,6 +641,23 @@ namespace VetoPTApplication.DataBase
             return treatments;
         }
 
+        public List<string> getTreatments(string animal)
+        {
+            string display = "SELECT id,dateDebut,duree,nom,description from Traitement where AnimalID = ?";
+            dbCon.Open();
+            OleDbCommand cmd = new OleDbCommand(display, dbCon);
+            cmd.Parameters.Add("AnimalID", OleDbType.Integer).Value = Int32.Parse(animal.Split(':')[0]);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            List<string> treatments = new List<string>();
+            while (reader.Read())
+            {
+                treatments.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetInt32(2) + ":" + reader.GetString(3) + ":" + reader.GetString(4));
+            }
+            reader.Close();
+            dbCon.Close();
+            return treatments;
+        }
+
         public void addTreatments(string animal, string nom, string dateDebut, string duree, string description)
         {
             string insert = "INSERT INTO Traitement  Values (?,?,?,?,?) ";
