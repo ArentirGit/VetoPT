@@ -97,7 +97,8 @@ namespace VetoPTApplication.CareManagement
 
         private void valider_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Valider");
+           // MessageBox.Show("Valider");
+            clear();
         }
 
         private void cancel_Click(object sender, EventArgs e)

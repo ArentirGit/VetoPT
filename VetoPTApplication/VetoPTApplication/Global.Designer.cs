@@ -48,7 +48,6 @@
             this.ajouterUneRaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUneEspèceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSoinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.suiviPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherTraitementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterTraitementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rédigerOrdonnanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -235,7 +234,6 @@
             // gestionSoinsToolStripMenuItem
             // 
             this.gestionSoinsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.suiviPatientToolStripMenuItem,
             this.afficherTraitementsToolStripMenuItem,
             this.ajouterTraitementToolStripMenuItem,
             this.rédigerOrdonnanceToolStripMenuItem,
@@ -244,13 +242,6 @@
             this.gestionSoinsToolStripMenuItem.Size = new System.Drawing.Size(133, 19);
             this.gestionSoinsToolStripMenuItem.Text = "Gestion des soins";
             this.gestionSoinsToolStripMenuItem.Click += new System.EventHandler(this.gestionSoinsToolStripMenuItem_Click);
-            // 
-            // suiviPatientToolStripMenuItem
-            // 
-            this.suiviPatientToolStripMenuItem.Name = "suiviPatientToolStripMenuItem";
-            this.suiviPatientToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.suiviPatientToolStripMenuItem.Text = "Suivi patient";
-            this.suiviPatientToolStripMenuItem.Click += new System.EventHandler(this.suiviPatientToolStripMenuItem_Click);
             // 
             // afficherTraitementsToolStripMenuItem
             // 
@@ -436,7 +427,6 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterUneEspèceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherUtilisateursToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUtilisateurToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem suiviPatientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherTraitementsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterTraitementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rédigerOrdonnanceToolStripMenuItem;
