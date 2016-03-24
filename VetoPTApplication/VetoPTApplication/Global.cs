@@ -25,7 +25,7 @@ namespace VetoPTApplication
 
         private void suiviPatientToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CareManagement.MonitoringPatient m = new CareManagement.MonitoringPatient(this.panel1);
+            //CareManagement.MonitoringPatient m = new CareManagement.MonitoringPatient(this.panel1);
         }
 
         private void afficherTraitementsToolStripMenuItem_Click(object sender, EventArgs e)

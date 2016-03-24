@@ -17,7 +17,6 @@ namespace VetoPTApplication.StockManagement
 
         TextBox reference;
         TextBox quantite;
-        MonthCalendar calendar;
         TextBox prix;
 
         Button confirmButton;

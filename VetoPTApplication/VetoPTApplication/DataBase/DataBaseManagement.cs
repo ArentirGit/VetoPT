@@ -673,37 +673,37 @@ namespace VetoPTApplication.DataBase
         }
 
         //Stock Management
-        public void addProduct(string reference, int quantite, double prix)
+        public void addProduct(string reference, int quantite, Double prix)
         {
             string insert = "INSERT INTO Produit Values (?,?,?) ";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(insert, dbCon);
             cmd.Parameters.Add("reference", OleDbType.VarChar).Value = reference;
-            cmd.Parameters.Add("quantite", OleDbType.Integer).Value = quantite;
             cmd.Parameters.Add("prix", OleDbType.Double).Value = prix;
+            cmd.Parameters.Add("quantite", OleDbType.Integer).Value = quantite;
             cmd.ExecuteNonQuery();
             dbCon.Close();
         }
 
         public List<string> DisplayProducts()
         {
-            string display = "SELECT id, intitule, quantite, prix from Produit";
+            string display = "SELECT id, intitule, prix_unitaire, quantite from Produit";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(display, dbCon);
             OleDbDataReader reader = cmd.ExecuteReader();
             List<string> products = new List<string>();
             while (reader.Read())
             {
-                products.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetInt32(2) + ":" + reader.GetDouble(3));
+                products.Add(reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetDouble(2) + ":" + reader.GetInt32(3));
             }
             reader.Close();
             dbCon.Close();
             return products;
         }
 
-        public void modifyPrice(string reference, double price)
+        public void modifyPrice(string reference, Double price)
         {
-            string update = "UPDATE Produit SET prix= ? WHERE intitule = ?";
+            string update = "UPDATE Produit SET prix_unitaire= ? WHERE intitule = ?";
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(update, dbCon);
             cmd.Parameters.Add("prix", OleDbType.Double).Value = price;
@@ -724,11 +724,12 @@ namespace VetoPTApplication.DataBase
 
         public string detailsProduct(int productId)
         {
-            string details = "SELECT id, intitule, quantite, prix from Produit where id = ?";
+            string details = "SELECT id, intitule, prix_unitaire, quantite from Produit WHERE id = ?"; 
             dbCon.Open();
             OleDbCommand cmd = new OleDbCommand(details, dbCon);
+            cmd.Parameters.Add("Code produit", OleDbType.Integer).Value = productId;
             OleDbDataReader reader = cmd.ExecuteReader();
-            string product = reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetInt32(2) + ":" + reader.GetDouble(3);
+            string product = reader.GetInt32(0) + ":" + reader.GetString(1) + ":" + reader.GetDouble(2) + ":" + reader.GetInt32(3);
             reader.Close();
             dbCon.Close();
             return product;

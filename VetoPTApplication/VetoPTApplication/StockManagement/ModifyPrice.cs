@@ -90,19 +90,21 @@ namespace VetoPTApplication.StockManagement
                 productData = db.detailsProduct(code.Value);
                 product.Items.Add(productData.Split(':')[1]);
                 product.Text = productData.Split(':')[1];
-                price.Text = productData.Split(':')[3];
+                price.Text = productData.Split(':')[2];
             }
             
         }
 
         private void product_SelectedIndexChanged(object sender, EventArgs e)
         {
-            price.Text = products[product.SelectedIndex].Split(':')[3];
+            price.Text = products[product.SelectedIndex].Split(':')[2];
         }
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            db.modifyPrice(product.Text, Double.Parse(price.Text));
+            db.modifyPrice(product.Text, float.Parse(price.Text));
+            product.Items.Clear();
+            completeProducts();
             clear();
         }
 

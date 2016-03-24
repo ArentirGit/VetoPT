@@ -71,32 +71,41 @@ namespace VetoPTApplication.ClientManagement
             int y = 75;     // ordonnee boutons pour chaque client
             foreach (string s in db.DisplayClients())
             {
-                clientsList.Text += s.Split(':')[1] + "\n\n";
+                Label name = new Label();
+                name.Location = new Point(60, y);
+                name.Size = new Size(100, 28);
+                name.Text += s.Split(':')[1];
+                displayClientsPanel.Controls.Add(name);
+                Label firstName = new Label();
+                firstName.Location = new Point(170, y);
+                firstName.Size = new Size(100, 28);
+                firstName.Text += s.Split(':')[2];
+                displayClientsPanel.Controls.Add(firstName);
                 int client_id = Int32.Parse(s.Split(':')[0]);
                 // bouton modifier client
                 Button modifyClientButton = new Button();
-                modifyClientButton.Location = new Point(145, y);
+                modifyClientButton.Location = new Point(275, y);
                 modifyClientButton.Text = "Modifier client";
                 modifyClientButton.Size = new Size(75, 20);
                 modifyClientButton.Click += (sender, eventArgs) => modifyClient_Click(sender, eventArgs, client_id);
                 displayClientsPanel.Controls.Add(modifyClientButton);
                 // bouton supprimer client
                 Button deleteClientButton = new Button();
-                deleteClientButton.Location = new Point(230, y);
+                deleteClientButton.Location = new Point(360, y);
                 deleteClientButton.Text = "Supprimer client";
                 deleteClientButton.Size = new Size(75, 20);
                 deleteClientButton.Click += (sender, eventArgs) => deleteClient_Click(sender, eventArgs, client_id);
                 displayClientsPanel.Controls.Add(deleteClientButton);
                 // bouton afficher rdv client
                 Button displayAppointmentButton = new Button();
-                displayAppointmentButton.Location = new Point(305, y);
+                displayAppointmentButton.Location = new Point(435, y);
                 displayAppointmentButton.Text = "Afficher rendez-vous";
                 displayAppointmentButton.Size = new Size(75, 20);
                 displayAppointmentButton.Click += (sender, eventArgs) => displayAppointment_Click(sender, eventArgs, client_id);
                 displayClientsPanel.Controls.Add(displayAppointmentButton);
                 // bouton details client
                 Button detailsClientButton = new Button();
-                detailsClientButton.Location = new Point(380, y);
+                detailsClientButton.Location = new Point(510, y);
                 detailsClientButton.Text = "Détails client";
                 detailsClientButton.Size = new Size(75, 20);
                 detailsClientButton.Click += (sender, eventArgs) => detailsClient_Click(sender, eventArgs, client_id);

@@ -83,7 +83,7 @@ namespace VetoPTApplication.StockManagement
 
         private void product_SelectedIndexChanged(object sender, EventArgs e)
         {
-            quantity.Text = products[product.SelectedIndex].Split(':')[2];
+            quantity.Text = products[product.SelectedIndex].Split(':')[3];
         }
 
         private void confirm_Click(object sender, EventArgs e)
@@ -91,6 +91,7 @@ namespace VetoPTApplication.StockManagement
             db.deleteProduct(Int32.Parse(products[product.SelectedIndex].Split(':')[0]));
             product.Items.Clear();
             completeProducts();
+            clear();
         }
 
         private void cancel_Click(object sender, EventArgs e)
